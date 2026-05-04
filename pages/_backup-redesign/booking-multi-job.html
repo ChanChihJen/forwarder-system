@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Booking 多 Job 管理</title><link rel="stylesheet" href="../assets/app.css"></head>
+  <body data-title="Booking → 多 Job 管理" data-subtitle="一筆 Booking 可拆成多筆 Job，Ocean 依 SO / HBL / CBM / 客戶，Air 依 MAWB / HAWB / CW / 件重尺拆分">
+    <div data-shell>
+      <section class="page-head"><div><h2 class="page-title">BKG-2504-0008 拆分計畫</h2><p class="page-desc">展示 Booking 轉 Job 前的拆分規則、Job 草稿與建立後跳轉。</p></div><div class="actions"><a class="btn gray" href="booking-form.html">返回 Booking</a><a class="btn gray" href="../doc/1-1.booking-multi-job-management-ocean-air-dual-mode.html">原始 Wireframe</a><a class="btn primary" href="job-detail.html">建立 Job 並開啟</a></div></section>
+      <section class="card pad" data-mode-scope>
+        <div class="card-head" style="padding:0 0 14px;border-bottom:0"><h3 class="card-title">拆分模式</h3><div class="mode-switch"><button class="mode-btn active" data-mode="ocean">Ocean Split</button><button class="mode-btn" data-mode="air">Air Split</button></div></div>
+        <div class="mode-panel active" data-mode-panel="ocean">
+          <div class="grid-4"><div class="mini-card"><b>By SO</b><div class="hint">WHL9823 建立 1 筆 Job</div></div><div class="mini-card"><b>By HBL</b><div class="hint">ABC / Green Ocean 分別出 HBL</div></div><div class="mini-card"><b>By CBM</b><div class="hint">LCL 拆分 18.4 / 12.2 CBM</div></div><div class="mini-card"><b>By Customer</b><div class="hint">同櫃不同委託方</div></div></div>
+        </div>
+        <div class="mode-panel" data-mode-panel="air">
+          <div class="grid-4"><div class="mini-card"><b>By MAWB</b><div class="hint">297-88126644</div></div><div class="mini-card"><b>By HAWB</b><div class="hint">2 筆 HAWB</div></div><div class="mini-card"><b>By CW</b><div class="hint">620 / 310 KG</div></div><div class="mini-card"><b>By Pieces</b><div class="hint">件重尺拆分</div></div></div>
+        </div>
+      </section>
+      <section class="card">
+        <div class="card-head"><h3 class="card-title">Job 草稿</h3><button class="btn soft sm" data-modal="新增 Job 拆分列">新增拆分列</button></div>
+        <div class="card-body"><div class="table-wrap"><table class="table"><thead><tr><th>Job Draft</th><th>拆分依據</th><th>Customer</th><th>Shipment</th><th>HBL / HAWB</th><th>狀態</th><th>操作</th></tr></thead><tbody>
+          <tr><td><b>JOB-DRAFT-01</b></td><td>SO WHL9823 + HBL</td><td>ABC TRADING</td><td>1 x 40'HQ / 53.823 CBM</td><td>HBL-TPE-240001</td><td><span class="pill blue">Ready</span></td><td><a class="btn sm primary" href="job-detail.html">建立 Job</a></td></tr>
+          <tr><td><b>JOB-DRAFT-02</b></td><td>Customer Split</td><td>Green Ocean Foods</td><td>LCL 18.4 CBM</td><td>HBL-TXG-240018</td><td><span class="pill amber">Need Review</span></td><td><button class="btn sm soft" data-toast="已開啟拆分檢查">檢查</button></td></tr>
+          <tr><td><b>JOB-DRAFT-A1</b></td><td>MAWB / HAWB</td><td>Metro Retail</td><td>620 CW / 86 PKGS</td><td>HAWB-TPE-00016</td><td><span class="pill blue">Ready</span></td><td><a class="btn sm primary" href="job-detail.html">建立 Job</a></td></tr>
+        </tbody></table></div></div>
+      </section>
+      <section class="card pad"><div class="card-title">轉換結果</div><div class="divider"></div><div class="flow"><div class="flow-step done"><div class="flow-no">01</div><div class="flow-name">Booking Confirmed</div><span class="pill green">Done</span></div><div class="flow-step active"><div class="flow-no">02</div><div class="flow-name">Split Review</div><span class="pill blue">Current</span></div><div class="flow-step warn"><div class="flow-no">03</div><div class="flow-name">Create Job</div><span class="pill amber">Next</span></div><a class="flow-step" href="job-detail.html"><div class="flow-no">04</div><div class="flow-name">Job Detail</div><span class="pill gray">Open</span></a></div></section>
+    </div>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>

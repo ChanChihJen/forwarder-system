@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>商業夥伴基本檔 Wireframe</title>
+  <style>
+    *{box-sizing:border-box} body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",Arial,sans-serif;background:#f3f6fa;color:#1f2937}.topbar{height:64px;background:#fff;border-bottom:1px solid #d7dee8;display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:10}.page-title{font-size:21px;font-weight:800}.subtitle{font-size:12px;color:#64748b;margin-top:3px}.top-actions{display:flex;gap:10px}.btn{border:1px solid #cbd5e1;background:#fff;border-radius:9px;padding:8px 12px;font-size:13px;cursor:pointer}.btn.primary{background:#1769aa;color:#fff;border-color:#1769aa}.btn.warn{background:#fff7ed;color:#c2410c;border-color:#fdba74}.content{padding:22px 28px 40px;max-width:1500px;margin:0 auto}.card{background:#fff;border:1px solid #dbe3ee;border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 2px 8px rgba(15,59,99,.05)}.note{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.55;margin-bottom:16px}.head{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:14px}label{display:block;font-size:12px;color:#64748b;margin-bottom:6px}.field,.select,textarea{width:100%;border:1px solid #cbd5e1;background:#fff;border-radius:8px;min-height:36px;padding:8px 10px;font-size:14px}textarea{min-height:72px;resize:vertical}.badge{display:inline-flex;padding:4px 8px;border-radius:999px;font-size:12px;background:#e0f2fe;color:#075985;margin-right:6px;margin-top:6px}.badge.green{background:#dcfce7;color:#166534}.badge.gray{background:#f1f5f9;color:#475569}.tabs{display:flex;gap:6px;margin:14px 0 0;border-bottom:1px solid #dbe3ee;overflow-x:auto}.tab{padding:11px 16px;border:1px solid #dbe3ee;border-bottom:0;border-radius:12px 12px 0 0;background:#eef4fa;color:#33536b;font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap}.tab.active{background:#fff;color:#0f3b63}.tab .hint{font-weight:500;color:#64748b;font-size:12px;margin-left:4px}.panel{display:none;background:#fff;border:1px solid #dbe3ee;border-top:0;border-radius:0 0 16px 16px;padding:18px;margin-bottom:18px}.panel.active{display:block}.section-title{font-size:15px;font-weight:800;color:#0f3b63;margin:4px 0 12px;display:flex;justify-content:space-between;align-items:center;gap:12px}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:14px 18px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 18px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 18px}.divider{height:1px;background:#e5edf5;margin:18px 0}table{width:100%;border-collapse:collapse;font-size:13px}th{background:#eef4fa;color:#33536b;text-align:left;padding:10px;border:1px solid #dbe3ee}td{padding:9px 10px;border:1px solid #dbe3ee;vertical-align:top}.mini-input,.mini-select{width:100%;border:1px solid #cbd5e1;border-radius:6px;padding:6px 8px;background:#fff}.role-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}.role-item{border:1px solid #cbd5e1;background:#fff;border-radius:10px;padding:10px;display:flex;gap:8px;align-items:flex-start;min-height:58px}.role-item small{display:block;color:#64748b;margin-top:3px;line-height:1.35}.role-card{border:1px solid #dbe3ee;border-radius:14px;padding:14px;background:#fafcff;margin-top:12px}.mapping-tip{border:1px dashed #93c5fd;background:#eff6ff;color:#1e3a8a;border-radius:12px;padding:12px;font-size:13px;line-height:1.6}.footer-bar{display:flex;justify-content:space-between;color:#64748b;font-size:12px;padding-top:14px;border-top:1px solid #e5edf5}.muted{color:#64748b;font-size:12px}.tag{font-size:12px;background:#f1f5f9;color:#475569;border-radius:999px;padding:3px 8px}@media(max-width:1100px){.head,.grid-4,.role-grid{grid-template-columns:1fr 1fr}.grid-3{grid-template-columns:1fr 1fr}}@media(max-width:720px){.topbar{height:auto;padding:14px;align-items:flex-start;gap:12px;flex-direction:column}.content{padding:14px}.head,.grid-2,.grid-3,.grid-4,.role-grid{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header class="topbar">
+  <div><div class="page-title">商業夥伴基本檔管理</div><div class="subtitle">同一筆公司資料可依角色用於客戶、Shipper、Consignee、Notify、海外代理、供應商、船公司 / 航空公司與帳務對象</div></div>
+  <div class="top-actions"><button class="btn">返回列表</button><button class="btn warn">停用</button><button class="btn primary">儲存</button></div>
+</header>
+<main class="content">
+  <div class="note">本版已將「地址主檔」與「文件用途 Mapping」拆開：先建立公司的基礎地址，再指定 HBL Shipper、Consignee、Notify、Billing Address 等文件用途要引用哪一筆地址。</div>
+
+  <section class="card">
+    <div class="head">
+      <div><label>公司 / 個體名稱 *</label><input class="field" value="ABC TRADING CO., LTD."><span class="badge green">Active</span><span class="badge">Customer</span><span class="badge">Shipper</span><span class="badge gray">可用於 Job</span></div>
+      <div><label>夥伴代號 *</label><input class="field" value="ABC001"></div>
+      <div><label>公司別 / 分站</label><select class="select"><option>香港 COMPO1</option><option>台灣 TPE</option><option>深圳 SZX</option></select></div>
+      <div><label>主要負責人</label><input class="field" value="TONY TONY"></div>
+    </div>
+  </section>
+
+  <nav class="tabs" aria-label="商業夥伴資料頁籤">
+    <button class="tab active" data-tab="basic">基本資料</button>
+    <button class="tab" data-tab="roles">角色設定</button>
+    <button class="tab" data-tab="contacts">聯絡人 <span class="hint">3</span></button>
+    <button class="tab" data-tab="addressMaster">地址主檔 <span class="hint">3</span></button>
+    <button class="tab" data-tab="partyMapping">文件用途 Mapping <span class="hint">4</span></button>
+    <button class="tab" data-tab="billing">帳務條件</button>
+    <button class="tab" data-tab="charges">預設費用</button>
+    <button class="tab" data-tab="history">Job 使用紀錄</button>
+  </nav>
+
+  <section class="panel active" id="basic">
+    <div class="section-title">基本資料</div>
+    <div class="grid-4">
+      <div><label>資料類型 *</label><select class="select"><option>公司</option><option>個人</option><option>政府 / 機構</option></select></div><div><label>狀態</label><select class="select"><option>生效</option><option>暫停使用</option><option>停用</option></select></div><div><label>國家 / 地區</label><input class="field" value="HONG KONG"></div><div><label>預設幣別</label><select class="select"><option>HKD</option><option>USD</option><option>TWD</option><option>CNY</option></select></div>
+      <div><label>統一編號 / Tax ID</label><input class="field" placeholder="可空白"></div><div><label>英文簡稱</label><input class="field" value="ABC TRADING"></div><div><label>中文名稱</label><input class="field" placeholder="可空白"></div><div><label>信用等級</label><select class="select"><option>正常</option><option>需主管確認</option><option>暫停放帳</option></select></div>
+    </div>
+    <div class="divider"></div><div class="grid-2"><div><label>內部備註</label><textarea placeholder="例如：高價貨需先通知主管；文件地址需使用英文版本。"></textarea></div><div class="mapping-tip">Job 選擇此商業夥伴時，可依角色帶入常用聯絡人、地址主檔、文件用途設定、帳務條件與預設費用。已建立的歷史 Job 不會被主檔異動自動覆蓋。</div></div>
+  </section>
+
+  <section class="panel" id="roles">
+    <div class="section-title">角色設定：同一公司可同時具備多個角色</div>
+    <div class="role-grid">
+      <label class="role-item"><input type="checkbox" checked><span>客戶 / Customer<small>可作為 Job 委託方</small></span></label><label class="role-item"><input type="checkbox" checked><span>Shipper<small>可帶入出貨人</small></span></label><label class="role-item"><input type="checkbox"><span>Consignee<small>可帶入收貨人</small></span></label><label class="role-item"><input type="checkbox"><span>Notify Party<small>可帶入通知方</small></span></label><label class="role-item"><input type="checkbox"><span>Oversea Agent<small>海外代理</small></span></label><label class="role-item"><input type="checkbox"><span>Supplier / Vendor<small>應付對象</small></span></label><label class="role-item"><input type="checkbox"><span>Carrier 船公司 / 航空公司<small>承運商資料</small></span></label><label class="role-item"><input type="checkbox" checked><span>Billing Party<small>發票抬頭與付款方</small></span></label>
+    </div>
+    <div class="role-card"><div class="section-title">客戶設定</div><div class="grid-4"><div><label>預設 Sales</label><input class="field" value="TONY TONY"></div><div><label>預設 CS</label><input class="field" placeholder="選擇人員"></div><div><label>預設 Incoterms</label><select class="select"><option>FOB</option><option>EXW</option><option>CIF</option><option>DAP</option></select></div><div><label>預設運輸模式</label><select class="select"><option>Sea Export - FCL</option><option>Sea Export - LCL</option><option>Air Export</option></select></div></div></div>
+    <div class="role-card"><div class="section-title">船公司 / 航空公司設定 <span class="tag">勾選 Carrier 後啟用</span></div><div class="grid-4"><div><label>SCAC / Carrier Code</label><input class="field" placeholder="例如 MAEU"></div><div><label>承運商類型</label><select class="select"><option>船公司</option><option>航空公司</option><option>NVOCC</option></select></div><div><label>訂艙聯絡窗口</label><input class="field" placeholder="選擇聯絡人"></div><div><label>航線備註</label><input class="field" placeholder="例如：美線強項"></div></div></div>
+    <div class="role-card"><div class="section-title">海外代理設定 <span class="tag">勾選 Oversea Agent 後啟用</span></div><div class="grid-4"><div><label>代理區域</label><input class="field" placeholder="USWC / Japan / Europe"></div><div><label>代理港口</label><input class="field" placeholder="LAX, LGB"></div><div><label>文件聯絡人</label><input class="field" placeholder="選擇聯絡人"></div><div><label>Profit Share 條件</label><input class="field" placeholder="例如 50/50"></div></div></div>
+  </section>
+
+  <section class="panel" id="contacts">
+    <div class="section-title">聯絡人 <button class="btn">＋新增聯絡人</button></div>
+    <table><thead><tr><th>主要</th><th>姓名 *</th><th>部門 / 職稱</th><th>Email</th><th>電話</th><th>用途</th><th>狀態</th></tr></thead><tbody><tr><td><input type="radio" checked></td><td><input class="mini-input" value="Mary Chan"></td><td><input class="mini-input" value="Shipping"></td><td><input class="mini-input" value="mary@example.com"></td><td><input class="mini-input" value="+852 1234 5678"></td><td>Booking / 文件確認</td><td>生效</td></tr><tr><td><input type="radio"></td><td><input class="mini-input"></td><td><input class="mini-input"></td><td><input class="mini-input"></td><td><input class="mini-input"></td><td>帳務</td><td>生效</td></tr></tbody></table>
+  </section>
+
+  <section class="panel" id="addressMaster">
+    <div class="section-title">地址主檔：先建立這家公司實際可用的地址 <button class="btn">＋新增地址</button></div>
+    <div class="mapping-tip" style="margin-bottom:14px">這裡只管理「地址本身」，不決定它要印在哪份文件上。文件要用哪個地址，請到「文件用途 Mapping」設定。</div>
+    <table>
+      <thead><tr><th style="width:70px">預設</th><th style="width:150px">地址類型</th><th style="width:190px">地址名稱</th><th>英文地址</th><th>中文地址</th><th style="width:120px">狀態</th></tr></thead>
+      <tbody>
+        <tr><td><input type="radio" name="defaultAddress" checked></td><td><select class="mini-select"><option>Office</option><option>Warehouse</option><option>Billing</option><option>Factory</option></select></td><td><input class="mini-input" value="Head Office"></td><td><textarea>ROOM 1201, 12/F, EXAMPLE BUILDING, HONG KONG</textarea></td><td><textarea></textarea></td><td><select class="mini-select"><option>生效</option><option>停用</option></select></td></tr>
+        <tr><td><input type="radio" name="defaultAddress"></td><td><select class="mini-select"><option>Billing</option><option>Office</option><option>Warehouse</option><option>Factory</option></select></td><td><input class="mini-input" value="Billing Address"></td><td><textarea>ROOM 1201, 12/F, EXAMPLE BUILDING, HONG KONG</textarea></td><td><textarea></textarea></td><td><select class="mini-select"><option>生效</option><option>停用</option></select></td></tr>
+        <tr><td><input type="radio" name="defaultAddress"></td><td><select class="mini-select"><option>Warehouse</option><option>Office</option><option>Billing</option><option>Factory</option></select></td><td><input class="mini-input" value="Shenzhen Warehouse"></td><td><textarea>NO. 88 EXAMPLE ROAD, SHENZHEN, CHINA</textarea></td><td><textarea>中國深圳市範例路88號</textarea></td><td><select class="mini-select"><option>生效</option><option>停用</option></select></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel" id="partyMapping">
+    <div class="section-title">文件用途 Mapping：指定各文件欄位要引用哪一筆地址 <button class="btn">＋新增用途</button></div>
+    <div class="mapping-tip" style="margin-bottom:14px">這裡不重複輸入地址，而是從「地址主檔」選擇。Job / HBL / MBL 可依用途自動帶入預設顯示名稱與地址，必要時在 Job 文件內另存快照。</div>
+    <table>
+      <thead><tr><th style="width:170px">文件 / 使用情境</th><th style="width:170px">Party 欄位</th><th style="width:210px">引用地址</th><th style="width:230px">文件顯示名稱</th><th>帶入文件的地址預覽</th><th style="width:120px">狀態</th></tr></thead>
+      <tbody>
+        <tr><td>HBL / MBL</td><td><select class="mini-select"><option>Shipper</option><option>Consignee</option><option>Notify</option><option>Also Notify</option></select></td><td><select class="mini-select"><option>Head Office</option><option>Billing Address</option><option>Shenzhen Warehouse</option></select></td><td><input class="mini-input" value="ABC TRADING CO., LTD."></td><td><textarea readonly>ROOM 1201, 12/F, EXAMPLE BUILDING, HONG KONG</textarea></td><td><select class="mini-select"><option>生效</option><option>停用</option></select></td></tr>
+        <tr><td>HBL / MBL</td><td><select class="mini-select"><option>Notify</option><option>Shipper</option><option>Consignee</option><option>Also Notify</option></select></td><td><select class="mini-select"><option>Head Office</option><option>Billing Address</option><option>Shenzhen Warehouse</option></select></td><td><input class="mini-input" value="ABC TRADING CO., LTD."></td><td><textarea readonly>ROOM 1201, 12/F, EXAMPLE BUILDING, HONG KONG</textarea></td><td><select class="mini-select"><option>生效</option><option>停用</option></select></td></tr>
+        <tr><td>Invoice / Statement</td><td><select class="mini-select"><option>Billing Party</option><option>Bill To</option></select></td><td><select class="mini-select"><option>Billing Address</option><option>Head Office</option><option>Shenzhen Warehouse</option></select></td><td><input class="mini-input" value="ABC TRADING CO., LTD."></td><td><textarea readonly>ROOM 1201, 12/F, EXAMPLE BUILDING, HONG KONG</textarea></td><td><select class="mini-select"><option>生效</option><option>停用</option></select></td></tr>
+        <tr><td>Pickup / Delivery</td><td><select class="mini-select"><option>Pickup Address</option><option>Delivery Address</option></select></td><td><select class="mini-select"><option>Shenzhen Warehouse</option><option>Head Office</option><option>Billing Address</option></select></td><td><input class="mini-input" value="ABC TRADING - SZ WH"></td><td><textarea readonly>NO. 88 EXAMPLE ROAD, SHENZHEN, CHINA</textarea></td><td><select class="mini-select"><option>生效</option><option>停用</option></select></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel" id="billing"><div class="section-title">帳務條件</div><div class="grid-4"><div><label>信用額度</label><input class="field" value="100,000"></div><div><label>付款條件</label><select class="select"><option>月結 30 天</option><option>COD</option><option>月結 60 天</option></select></div><div><label>發票抬頭</label><input class="field" value="ABC TRADING CO., LTD."></div><div><label>發票地址</label><select class="select"><option>依文件用途 Mapping：Billing Party</option><option>手動指定</option></select></div><div><label>帳務聯絡人</label><input class="field" value="Accounting Team"></div><div><label>收款幣別</label><select class="select"><option>HKD</option><option>USD</option></select></div><div><label>是否需主管核准</label><select class="select"><option>否</option><option>是</option></select></div><div><label>月結單寄送方式</label><select class="select"><option>Email</option><option>紙本</option><option>不寄送</option></select></div></div></section>
+
+  <section class="panel" id="charges"><div class="section-title">預設費用 / Profit Share Item <button class="btn">＋新增費用</button></div><table><thead><tr><th>類型</th><th>費用項目</th><th>描述</th><th>幣別</th><th>單價</th><th>單位</th><th>套用時機</th><th>狀態</th></tr></thead><tbody><tr><td>應收</td><td><input class="mini-input" value="DOC FEE"></td><td><input class="mini-input" value="Document fee"></td><td>HKD</td><td><input class="mini-input" value="350"></td><td>SET</td><td>建立 Job 時提示帶入</td><td>生效</td></tr><tr><td>應付</td><td><input class="mini-input"></td><td><input class="mini-input"></td><td>USD</td><td><input class="mini-input"></td><td>SET</td><td>手動選用</td><td>生效</td></tr></tbody></table></section>
+
+  <section class="panel" id="history"><div class="section-title">Job 使用紀錄</div><table><thead><tr><th>Job No.</th><th>日期</th><th>角色</th><th>使用地址</th><th>HBL No.</th><th>狀態</th></tr></thead><tbody><tr><td>JHKG2504001</td><td>2026-04-25</td><td>Shipper / Billing Party</td><td>Head Office / Billing Address</td><td>HBL-HKG-001</td><td>進行中</td></tr><tr><td>JHKG2503988</td><td>2026-04-18</td><td>Consignee</td><td>Shenzhen Warehouse</td><td>HBL-HKG-988</td><td>已結案</td></tr></tbody></table><div class="footer-bar"><div>建立者：TONY TONY　建立時間：2026-04-25 16:30</div><div>最後修改者：TONY TONY　最後修改時間：2026-04-25 17:35</div></div></section>
+</main>
+<script>
+  const tabs=document.querySelectorAll('.tab');const panels=document.querySelectorAll('.panel');
+  tabs.forEach(tab=>tab.addEventListener('click',()=>{const target=tab.dataset.tab;tabs.forEach(i=>i.classList.remove('active'));panels.forEach(p=>p.classList.remove('active'));tab.classList.add('active');document.getElementById(target).classList.add('active');}));
+</script>
+</body>
+</html>

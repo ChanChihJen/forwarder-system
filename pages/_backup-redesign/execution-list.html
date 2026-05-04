@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Execution List</title><link rel="stylesheet" href="../assets/app.css"></head>
+  <body data-title="Execution List / Workbench" data-subtitle="待辦與 Job 作業入口，點擊可進入 Execution Center 操作節點">
+    <div data-shell>
+      <section class="page-head"><div><h2 class="page-title">Execution Workbench</h2><p class="page-desc">Execution 是操作中心，不只是進度看板。此列表讓 OP 依節點、狀態與負責人進入作業。</p></div><a class="btn primary" href="execution-center.html">開啟 Execution Center</a></section>
+      <section class="kpi-grid"><div class="kpi"><b>Todo</b><strong>9</strong><small>今日待辦</small></div><div class="kpi"><b>Waiting External</b><strong>6</strong><small>等 Carrier / Customer</small></div><div class="kpi"><b>Blocked</b><strong>2</strong><small>異常待處理</small></div><div class="kpi"><b>Done</b><strong>21</strong><small>本週完成</small></div></section>
+      <section class="card"><div class="card-head"><h3 class="card-title">待辦清單</h3><button class="btn gray sm" data-toast="已依 ETA 排序">排序</button></div><div class="card-body"><div class="table-wrap"><table class="table"><thead><tr><th>Job</th><th>Mode</th><th>節點</th><th>Due</th><th>等待對象</th><th>狀態</th><th>操作</th></tr></thead><tbody>
+        <tr data-href="execution-center.html"><td><b>FSEJ25040001</b><div class="hint">ABC TRADING</div></td><td><span class="pill blue">Ocean</span></td><td>出口報關</td><td>2026-05-05 12:00</td><td>Customer PL</td><td><span class="pill amber">Waiting External</span></td><td><a class="btn sm primary" href="execution-center.html">處理</a></td></tr>
+        <tr data-href="execution-center.html"><td><b>FSEJ25040001</b></td><td><span class="pill blue">Ocean</span></td><td>拖車 / 進倉</td><td>2026-05-06</td><td>Truck Vendor</td><td><span class="pill gray">Todo</span></td><td><a class="btn sm primary" href="execution-center.html">處理</a></td></tr>
+        <tr data-href="execution-center.html"><td><b>FSAJ25040009</b></td><td><span class="pill purple">Air</span></td><td>Flight / POD</td><td>2026-05-04</td><td>Airline</td><td><span class="pill blue">Active</span></td><td><a class="btn sm primary" href="execution-center.html">處理</a></td></tr>
+        <tr data-href="execution-center.html"><td><b>FSEJ25040014</b></td><td><span class="pill blue">Ocean</span></td><td>Draft MBL</td><td>2026-05-05</td><td>Carrier</td><td><span class="pill red">Blocked</span></td><td><a class="btn sm primary" href="execution-center.html">處理</a></td></tr>
+      </tbody></table></div></div></section>
+    </div>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>

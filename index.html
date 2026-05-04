@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>迅捷 Forwarder Wireframe Demo</title>
+<link rel="stylesheet" href="assets/demo-list.css">
+</head>
+<body>
+<header class="topbar">
+  <div><div class="page-title">迅捷 Forwarder 進出口管理系統｜Wireframe Demo</div><div class="subtitle">以 doc 目錄原始 HTML Wireframe 為主線，補上列表入口與流程串接，供客戶照既有畫面語言操作展示。</div></div>
+  <div class="actions"><a class="btn primary" href="pages/booking-list.html">開始 Booking 流程</a><a class="btn gray" href="doc/document-center-advanced-wireframe.html">查看 doc 原始檔</a></div>
+</header>
+<main class="content">
+  <div class="note">展示定位：這不是正式系統，也不是重新設計 UI。主線頁面由既有 doc HTML 搬移到 pages，保留原本欄位、頁籤、狀態與操作示範；列表頁只作為客戶展示入口。</div>
+  <section class="summary-grid">
+    <div class="summary-item"><b>主線 Wireframe</b><span>8</span><div class="hint">由 doc 搬移到 pages</div></div>
+    <div class="summary-item"><b>列表入口</b><span>4</span><div class="hint">Customer / Booking / Job / Execution</div></div>
+    <div class="summary-item"><b>雙模式</b><span>Ocean / Air</span><div class="hint">Booking、Job、Execution 保留切換</div></div>
+    <div class="summary-item"><b>Mock 操作</b><span>Toast / Modal</span><div class="hint">純前端展示</div></div>
+  </section>
+  <section class="card">
+    <div class="section-title">客戶展示主流程</div>
+    <div class="flow">
+      <a class="flow-card done" href="pages/customer-list.html"><div class="flow-no">01</div><div class="flow-name">商業夥伴基本檔</div><span class="pill green">Master</span><div class="flow-desc">角色、聯絡人、地址主檔、文件用途 Mapping 與帳務條件。</div></a>
+      <a class="flow-card active" href="pages/booking-list.html"><div class="flow-no">02</div><div class="flow-name">Booking 管理</div><span class="pill blue">Quote</span><div class="flow-desc">Quick Quote、正式 Booking、FCL / LCL、Ocean / Air 報價。</div></a>
+      <a class="flow-card warn" href="pages/booking-multi-job.html"><div class="flow-no">03</div><div class="flow-name">Booking → 多 Job</div><span class="pill amber">Split</span><div class="flow-desc">依 SO / HBL / CBM 或 MAWB / HAWB / CW 拆分。</div></a>
+      <a class="flow-card active" href="pages/job-detail.html"><div class="flow-no">04</div><div class="flow-name">Job Detail</div><span class="pill blue">Operation</span><div class="flow-desc">Shipment、Routing、Cargo、Execution 進度、文件與費用摘要。</div></a>
+      <a class="flow-card active" href="pages/execution-center.html"><div class="flow-no">05</div><div class="flow-name">Execution Center</div><span class="pill blue">Workbench</span><div class="flow-desc">SI、MBL、報關、拖車、On Board；Air HAWB / MAWB / Flight。</div></a>
+      <a class="flow-card warn" href="pages/document-flow.html"><div class="flow-no">06</div><div class="flow-name">Document Flow</div><span class="pill amber">Control</span><div class="flow-desc">文件來源、產生、確認、上傳、同步與歸檔流程。</div></a>
+      <a class="flow-card done" href="pages/document-center.html"><div class="flow-no">07</div><div class="flow-name">Document Center</div><span class="pill green">Library</span><div class="flow-desc">全域搜尋、缺件管理、批次操作、預覽、版本與歸檔。</div></a>
+      <a class="flow-card done" href="pages/ap-ar-charge-management.html"><div class="flow-no">08</div><div class="flow-name">AP / AR Charge</div><span class="pill green">Finance</span><div class="flow-desc">Quote 帶入、Execution 成本、GP、請款付款與審核。</div></a>
+    </div>
+  </section>
+  <section class="grid-4">
+    <div class="card"><div class="section-title">商業夥伴</div><p class="hint">列表入口延伸，Detail 使用 doc 原始商業夥伴基本檔。</p><a class="btn primary" href="pages/customer-list.html">進入列表</a></div>
+    <div class="card"><div class="section-title">Booking</div><p class="hint">保留原 Quick Quote → Booking → Multi Job 操作語境。</p><a class="btn primary" href="pages/booking-list.html">進入 Booking</a></div>
+    <div class="card"><div class="section-title">Job / Execution</div><p class="hint">Job Detail 與 Execution Center 均使用原始雙模式 Wireframe。</p><a class="btn primary" href="pages/job-list.html">進入 Job</a></div>
+    <div class="card"><div class="section-title">Document / Charge</div><p class="hint">文件中心與費用工作台維持原本高擬真頁面。</p><a class="btn primary" href="pages/document-center.html">進入文件中心</a></div>
+  </section>
+</main>
+</body>
+</html>

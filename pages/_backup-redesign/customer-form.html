@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>商業夥伴表單</title><link rel="stylesheet" href="../assets/app.css"></head>
+  <body data-title="商業夥伴表單" data-subtitle="保留角色設定、聯絡人、地址主檔、文件用途 Mapping、帳務條件、預設費用與 Job 使用紀錄">
+    <div data-shell>
+      <section class="page-head">
+        <div><h2 class="page-title">ABC TRADING CO., LTD. <span class="pill green">Active</span></h2><p class="page-desc">Customer / Shipper / Billing Party，可於 Job 建立時帶入預設聯絡人、文件地址與帳務條件。</p></div>
+        <div class="actions"><a class="btn gray" href="customer-list.html">返回列表</a><a class="btn gray" href="../doc/0.customer_master_wireframe.html">原始 Wireframe</a><button class="btn primary" data-toast="商業夥伴資料已儲存">儲存</button></div>
+      </section>
+      <section class="summary-grid">
+        <div class="summary-item"><b>Partner Code</b><span>BP-000128</span></div>
+        <div class="summary-item"><b>Tax ID</b><span>24581234</span></div>
+        <div class="summary-item"><b>Default Sales</b><span>TONY</span></div>
+        <div class="summary-item"><b>Payment Term</b><span>AR 30 days</span></div>
+      </section>
+      <section data-tabs="customer">
+        <nav class="tabs">
+          <button class="tab active" data-tab-target="basic">基本資料</button>
+          <button class="tab" data-tab-target="roles">角色設定</button>
+          <button class="tab" data-tab-target="contacts">聯絡人 / 地址</button>
+          <button class="tab" data-tab-target="mapping">文件 Mapping</button>
+          <button class="tab" data-tab-target="billing">帳務條件</button>
+          <button class="tab" data-tab-target="history">Job 使用紀錄</button>
+        </nav>
+        <div class="panel active" id="basic" data-tab-panel="customer">
+          <div class="grid-4"><div><label>公司名稱</label><input class="field" value="ABC TRADING CO., LTD."></div><div><label>英文簡稱</label><input class="field" value="ABC TRADING"></div><div><label>國家</label><select class="select"><option>Taiwan</option></select></div><div><label>狀態</label><select class="select"><option>Active</option><option>Inactive</option></select></div></div>
+          <div class="divider"></div><label>內部備註</label><textarea>高價貨需先通知主管；文件地址需使用英文版本。</textarea>
+        </div>
+        <div class="panel" id="roles" data-tab-panel="customer">
+          <div class="grid-4">
+            <label class="mini-card"><input type="checkbox" checked> 客戶 / Customer<div class="hint">可作為 Job 委託方</div></label>
+            <label class="mini-card"><input type="checkbox" checked> Shipper<div class="hint">可帶入出貨人</div></label>
+            <label class="mini-card"><input type="checkbox"> Consignee<div class="hint">可帶入收貨人</div></label>
+            <label class="mini-card"><input type="checkbox"> Notify Party<div class="hint">通知方</div></label>
+            <label class="mini-card"><input type="checkbox"> Oversea Agent<div class="hint">海外代理</div></label>
+            <label class="mini-card"><input type="checkbox"> Supplier / Vendor<div class="hint">應付對象</div></label>
+            <label class="mini-card"><input type="checkbox"> Carrier<div class="hint">船公司 / 航空公司</div></label>
+            <label class="mini-card"><input type="checkbox" checked> Billing Party<div class="hint">發票抬頭與付款方</div></label>
+          </div>
+        </div>
+        <div class="panel" id="contacts" data-tab-panel="customer">
+          <div class="grid-2"><div><label>主要聯絡人</label><input class="field" value="Mary Chan / Shipping / mary@example.com"></div><div><label>主要地址</label><textarea>8F, No. 168, Minsheng E. Rd., Taipei, Taiwan</textarea></div></div>
+          <div class="divider"></div><button class="btn soft" data-modal="新增聯絡人">新增聯絡人</button> <button class="btn soft" data-modal="新增地址">新增地址</button>
+        </div>
+        <div class="panel" id="mapping" data-tab-panel="customer">
+          <table class="table"><thead><tr><th>文件</th><th>預設 Party</th><th>地址版本</th><th>備註</th></tr></thead><tbody><tr><td>HBL</td><td>Shipper / Consignee / Notify</td><td>英文地址</td><td>Confirmed 後需版控</td></tr><tr><td>Commercial Invoice</td><td>Billing Party</td><td>稅籍地址</td><td>供 AR 使用</td></tr><tr><td>Arrival Notice</td><td>Notify / Oversea Agent</td><td>英文地址</td><td>目的港代理通知</td></tr></tbody></table>
+        </div>
+        <div class="panel" id="billing" data-tab-panel="customer">
+          <div class="grid-4"><div><label>AR Term</label><select class="select"><option>30 days</option></select></div><div><label>Credit Limit</label><input class="field" value="TWD 800,000"></div><div><label>Default Currency</label><select class="select"><option>TWD</option><option>USD</option></select></div><div><label>預設費用</label><input class="field" value="DOC, H/C, THC"></div></div>
+        </div>
+        <div class="panel" id="history" data-tab-panel="customer">
+          <table class="table"><thead><tr><th>Job No.</th><th>模式</th><th>航線</th><th>使用角色</th><th>狀態</th></tr></thead><tbody><tr><td>FSEJ25040001</td><td>Ocean FCL</td><td>KHH to LAX</td><td>Customer / Shipper</td><td><span class="pill blue">In Execution</span></td></tr><tr><td>FSAJ25040009</td><td>Air Export</td><td>TPE to SIN</td><td>Customer</td><td><span class="pill green">Closed</span></td></tr></tbody></table>
+        </div>
+      </section>
+    </div>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Document Flow｜文件流程 Wireframe</title>
+<style>
+:root{--blue:#1769aa;--blue2:#eaf5ff;--line:#d7dee8;--text:#1f2937;--muted:#64748b;--green:#16a34a;--greenbg:#ecfdf5;--amber:#d97706;--amberbg:#fff7ed;--red:#dc2626;--redbg:#fee2e2;--purple:#7c3aed;--purplebg:#f3e8ff;--soft:#f8fafc}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",Arial,sans-serif;background:#f3f6fa;color:var(--text);font-size:14px}.topbar{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:0 28px;position:sticky;top:0;z-index:20}.page-title{font-size:21px;font-weight:900}.subtitle{font-size:12px;color:var(--muted);margin-top:3px}.actions{display:flex;gap:10px;align-items:center}.btn{border:1px solid #cbd5e1;background:#fff;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer}.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}.btn.green{background:var(--green);color:#fff;border-color:var(--green)}.btn.gray{background:#f8fafc;color:#334155}.content{max-width:1600px;margin:0 auto;padding:22px 28px 44px}.note{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.55;margin-bottom:16px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 2px 8px rgba(15,59,99,.05)}.section-title{font-size:15px;font-weight:900;color:#0f3b63;margin:4px 0 12px;display:flex;justify-content:space-between;align-items:center;gap:12px}.summary-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.summary-item{background:#fff;border:1px solid #dbeafe;border-radius:12px;padding:10px}.summary-item b{display:block;color:#0f3b63;margin-bottom:4px;font-size:12px}.summary-item span{font-size:14px;font-weight:800}.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);overflow-x:auto}.tab{padding:11px 16px;border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;background:#eef4fa;color:#33536b;font-size:14px;font-weight:800;cursor:pointer;white-space:nowrap}.tab.active{background:#fff;color:#0f3b63}.panel{display:none;background:#fff;border:1px solid var(--line);border-top:0;border-radius:0 0 16px 16px;padding:18px;margin-bottom:18px}.panel.active{display:block}.flow-board{display:flex;gap:10px;align-items:stretch;flex-wrap:wrap}.flow-card{width:190px;border:1px solid #dbe3ee;background:#fff;border-radius:14px;padding:12px;position:relative}.flow-card:after{content:'→';position:absolute;right:-12px;top:42%;font-weight:900;color:#94a3b8}.flow-card:last-child:after{content:''}.flow-card.done{background:#ecfdf5;border-color:#86efac}.flow-card.active{background:#eaf5ff;border-color:#1769aa;outline:2px solid rgba(23,105,170,.16)}.flow-card.warn{background:#fff7ed;border-color:#fed7aa}.flow-no{font-size:12px;color:#64748b}.flow-name{font-weight:900;color:#0f3b63;margin:4px 0}.flow-desc{font-size:12px;color:#64748b;line-height:1.45}.pill{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:900;white-space:nowrap}.pill.blue{background:var(--blue2);color:var(--blue)}.pill.green{background:var(--greenbg);color:#166534}.pill.amber{background:var(--amberbg);color:#9a3412}.pill.red{background:#fee2e2;color:#991b1b}.pill.gray{background:#f1f5f9;color:#475569}.pill.purple{background:var(--purplebg);color:#5b21b6}.layout{display:grid;grid-template-columns:1fr 360px;gap:18px}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.doc-card{border:1px solid #dbe3ee;background:#fbfdff;border-radius:16px;padding:14px;margin-bottom:12px}.doc-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.doc-name{font-size:16px;font-weight:900;color:#0f3b63}.doc-meta{font-size:12px;color:#64748b;margin-top:4px;line-height:1.45}.source-map{display:grid;grid-template-columns:180px 1fr 170px;gap:10px;align-items:stretch;margin-top:12px}.source-box,.target-box,.status-box{border:1px dashed #93c5fd;background:#eff6ff;border-radius:12px;padding:10px}.source-box b,.target-box b,.status-box b{display:block;color:#0f3b63;margin-bottom:5px}.table{width:100%;border-collapse:collapse;font-size:13px;background:#fff}th{background:#eef4fa;color:#33536b;text-align:left;padding:10px;border:1px solid var(--line)}td{padding:9px 10px;border:1px solid var(--line);vertical-align:top}.side-panel{position:sticky;top:88px;align-self:start}.mini-list{display:flex;flex-direction:column;gap:9px}.mini-item{border:1px solid #dbe3ee;border-radius:12px;padding:10px;background:#fff}.mini-item b{display:block;color:#0f3b63;margin-bottom:4px}.hint{font-size:12px;color:var(--muted);line-height:1.55}.divider{height:1px;background:#e5edf5;margin:18px 0}label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:800}.field,.select,textarea{width:100%;border:1px solid #cbd5e1;background:#fff;border-radius:8px;min-height:36px;padding:8px 10px;font-size:14px;font-family:inherit}textarea{min-height:82px;resize:vertical}.upload-box{border:2px dashed #cbd5e1;background:#f8fafc;border-radius:14px;padding:18px;text-align:center;color:#64748b;margin-bottom:12px}.lock-note{border-left:4px solid #1769aa;background:#f8fbff;padding:10px;border-radius:10px;font-size:13px;color:#334155}.preview{border:1px solid #cbd5e1;background:#fff;border-radius:14px;min-height:360px;padding:18px;box-shadow:inset 0 0 0 8px #f8fafc}.paper-title{text-align:center;font-size:18px;font-weight:900;letter-spacing:.5px;margin:10px 0 16px}.paper-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.paper-field{border:1px solid #111;padding:8px;min-height:65px;font-size:12px;white-space:pre-line}.paper-long{border:1px solid #111;padding:8px;min-height:100px;font-size:12px;white-space:pre-line;margin-top:10px}.logline{background:#fbfdff;border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px;line-height:1.55}.matrix th:first-child{width:180px}.relation{display:flex;gap:8px;flex-wrap:wrap}.relation span{border:1px solid #dbe3ee;border-radius:999px;padding:5px 9px;background:#fff;font-size:12px;font-weight:800;color:#33536b}@media(max-width:1200px){.layout{grid-template-columns:1fr}.side-panel{position:static}.summary-grid,.grid-4{grid-template-columns:repeat(3,1fr)}.source-map{grid-template-columns:1fr}.flow-card{width:calc(33.33% - 8px)}}@media(max-width:760px){.topbar{height:auto;align-items:flex-start;flex-direction:column;padding:14px}.content{padding:14px}.summary-grid,.grid-2,.grid-3,.grid-4{grid-template-columns:1fr}.flow-card{width:100%}.flow-card:after{content:''}.paper-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div><div class="page-title">Document Flow｜文件流程管理 Wireframe</div><div class="subtitle">以 Job 的 Execution 摘要與 Execution Center 完整節點為基礎，整理文件來源、產生、確認、上傳、同步與歸檔流程</div></div>
+  <div class="actions"><button class="btn gray">返回 Job</button><button class="btn gray">開啟 Execution Center</button><button class="btn primary">儲存文件流程</button></div>
+</header>
+<main class="content">
+  <div class="note">定位建議：Document Flow 不取代 Execution Center，也不取代 HBL / MBL 操作頁。它是一個「文件流程總覽 + 文件狀態控管頁」，讓 OP / CS 快速知道每份文件目前卡在哪個節點、來源是內部產生或外部回傳、是否已同步到 Document Center。</div>
+
+  <section class="card">
+    <div class="section-title">Job / Shipment Summary</div>
+    <div class="summary-grid">
+      <div class="summary-item"><b>Job No.</b><span>FSEJ25040001</span></div>
+      <div class="summary-item"><b>Shipment</b><span>Shipment 1｜FCL</span></div>
+      <div class="summary-item"><b>Carrier</b><span>COSCO</span></div>
+      <div class="summary-item"><b>Vessel / Voyage</b><span>OOCL BEIJING / 092S</span></div>
+      <div class="summary-item"><b>POL → POD</b><span>SHANGHAI → MELBOURNE</span></div>
+      <div class="summary-item"><b>ETD / ETA</b><span>2021-10-30 / 2021-11-10</span></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="section-title">文件流程主線</div>
+    <div class="flow-board">
+      <div class="flow-card done"><div class="flow-no">01</div><div class="flow-name">Booking / SO</div><span class="pill green">Done</span><div class="flow-desc">SO / Booking Confirmation 作為後續文件的起點。</div></div>
+      <div class="flow-card active"><div class="flow-no">02</div><div class="flow-name">HBL Draft</div><span class="pill blue">Draft</span><div class="flow-desc">由 Job / Cargo / Party 資料產生，客戶確認後鎖定版本。</div></div>
+      <div class="flow-card active"><div class="flow-no">03</div><div class="flow-name">SI</div><span class="pill blue">Sent</span><div class="flow-desc">由 HBL / Shipment 資料整理後送 Carrier / Co-loader。</div></div>
+      <div class="flow-card warn"><div class="flow-no">04</div><div class="flow-name">Draft MBL</div><span class="pill amber">Waiting</span><div class="flow-desc">外部回傳 PDF，需比對 SI / HBL / Shipment。</div></div>
+      <div class="flow-card warn"><div class="flow-no">05</div><div class="flow-name">Customs Docs</div><span class="pill amber">Pending</span><div class="flow-desc">報關資料、Invoice / Packing List 與報關回執。</div></div>
+      <div class="flow-card"><div class="flow-no">06</div><div class="flow-name">Final / Release</div><span class="pill gray">Not Ready</span><div class="flow-desc">Final MBL、正式 HBL、放單證明與歸檔。</div></div>
+    </div>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="dashboard">文件總覽</button>
+    <button class="tab" data-tab="source">來源與產生規則</button>
+    <button class="tab" data-tab="workbench">文件處理 Workbench</button>
+    <button class="tab" data-tab="matrix">Execution 關聯矩陣</button>
+    <button class="tab" data-tab="archive">Document Center 歸檔</button>
+    <button class="tab" data-tab="log">記錄</button>
+  </nav>
+
+  <section class="panel active" id="dashboard">
+    <div class="layout">
+      <div>
+        <div class="section-title">文件清單 / Document Flow Status</div>
+        <div class="doc-card">
+          <div class="doc-head"><div><div class="doc-name">HBL Draft / HBL Final</div><div class="doc-meta">來源：Job → HBL 管理｜狀態獨立於 Job，但會參考 Job / Shipment 資料完整性</div></div><span class="pill blue">Draft</span></div>
+          <div class="source-map"><div class="source-box"><b>資料來源</b>Party / Cargo / Routing / Freight Term</div><div class="target-box"><b>下一步</b>送客戶確認 → Confirmed → Issued → Released</div><div class="status-box"><b>風險</b><span class="pill amber">客戶未確認</span></div></div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-head"><div><div class="doc-name">SI｜Shipping Instruction</div><div class="doc-meta">來源：Job / Shipment / HBL 整理後產生｜送 Carrier / Co-loader</div></div><span class="pill green">Sent</span></div>
+          <div class="source-map"><div class="source-box"><b>資料來源</b>HBL Party + Cargo + Container + Vessel</div><div class="target-box"><b>下一步</b>等待 Draft MBL 回傳並比對差異</div><div class="status-box"><b>同步</b><span class="pill green">Execution Updated</span></div></div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-head"><div><div class="doc-name">Draft MBL / Final MBL</div><div class="doc-meta">來源：Carrier / Co-loader 外部回傳｜系統只管理附件、欄位摘錄與確認狀態</div></div><span class="pill amber">Draft Waiting</span></div>
+          <div class="source-map"><div class="source-box"><b>資料來源</b>外部 PDF / Email / 紙本掃描</div><div class="target-box"><b>下一步</b>上傳 Draft → 比對 → 確認 → 收 Final MBL</div><div class="status-box"><b>缺件</b><span class="pill red">Final Missing</span></div></div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-head"><div><div class="doc-name">出口報關文件</div><div class="doc-meta">來源：客戶文件 + 報關行回傳｜包含 Commercial Invoice、Packing List、報關單、放行證明</div></div><span class="pill amber">Preparing</span></div>
+          <div class="source-map"><div class="source-box"><b>資料來源</b>客戶 / 報關行</div><div class="target-box"><b>下一步</b>送報關行 → 已送關 → 放行 → 回傳附件</div><div class="status-box"><b>缺件</b><span class="pill amber">Invoice / PL</span></div></div>
+        </div>
+        <div class="doc-card">
+          <div class="doc-head"><div><div class="doc-name">拖車 / 進倉 / On Board 證明</div><div class="doc-meta">來源：車行、倉庫、Carrier 回傳｜支援 FCL 拖車與 LCL CFS 進倉</div></div><span class="pill gray">Not Started</span></div>
+          <div class="source-map"><div class="source-box"><b>資料來源</b>車行 / 倉庫 / Carrier</div><div class="target-box"><b>下一步</b>派車 / 進倉 → 裝櫃 / 還櫃 → On Board</div><div class="status-box"><b>提醒</b><span class="pill amber">Cut-off 近</span></div></div>
+        </div>
+      </div>
+      <aside class="side-panel card" style="margin:0">
+        <div class="section-title">文件完成度</div>
+        <div class="mini-list">
+          <div class="mini-item"><b>整體文件進度</b><div class="hint">8 / 15 文件已完成或已上傳</div><div style="height:10px;background:#e5e7eb;border-radius:999px;margin-top:8px"><span style="display:block;width:53%;height:100%;background:#1769aa;border-radius:999px"></span></div></div>
+          <div class="mini-item"><b>目前最急缺件</b><span class="pill amber">Invoice / Packing List</span><div class="hint">影響出口報關節點。</div></div>
+          <div class="mini-item"><b>下一個確認點</b><span class="pill blue">Draft MBL 比對</span><div class="hint">收到 Carrier 回傳後進行。</div></div>
+          <div class="mini-item"><b>歸檔原則</b><div class="hint">完成文件自動同步 Document Center；操作仍回到 Execution / HBL / MBL 節點。</div></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="panel" id="source">
+    <div class="section-title">文件來源與產生規則</div>
+    <table class="table">
+      <thead><tr><th>文件</th><th>來源類型</th><th>主要資料來源</th><th>誰負責</th><th>是否由系統產生</th><th>確認後行為</th></tr></thead>
+      <tbody>
+        <tr><td>HBL Draft</td><td><span class="pill blue">內部產生</span></td><td>Job Party、Cargo、Routing、Container、Freight Term</td><td>OP / 文件人員</td><td>是，可套 HBL Template</td><td>Confirmed 後鎖定主要欄位；修改需新版本</td></tr>
+        <tr><td>SI</td><td><span class="pill blue">內部產生 / 匯出</span></td><td>HBL + Shipment + Carrier Booking</td><td>OP</td><td>是，送 Carrier / Co-loader</td><td>Sent 後等待 Draft MBL</td></tr>
+        <tr><td>Draft MBL</td><td><span class="pill amber">外部回傳</span></td><td>Carrier / Co-loader PDF</td><td>OP 比對</td><td>否，上傳與摘錄欄位</td><td>確認後可等待 Final MBL</td></tr>
+        <tr><td>Final MBL</td><td><span class="pill amber">外部回傳</span></td><td>Carrier / Co-loader PDF / 紙本掃描</td><td>OP</td><td>否，上傳附件</td><td>同步 Document Center，進入放單處理</td></tr>
+        <tr><td>報關文件</td><td><span class="pill purple">混合來源</span></td><td>客戶文件 + 報關行回傳</td><td>OP / 報關行</td><td>部分欄位由系統整理</td><td>放行後回寫 Customs Execution 狀態</td></tr>
+        <tr><td>拖車 / 進倉文件</td><td><span class="pill amber">外部回傳</span></td><td>車行、倉庫、CFS</td><td>OP / Vendor</td><td>否，主要管理附件與時間</td><td>完成後回寫 Trucking / Warehouse 節點</td></tr>
+        <tr><td>On Board / Release Evidence</td><td><span class="pill amber">外部回傳</span></td><td>Carrier / Co-loader / Agent</td><td>OP</td><td>否，記錄日期與附件</td><td>回寫 On Board 與 Document Completed</td></tr>
+      </tbody>
+    </table>
+    <div class="divider"></div>
+    <div class="lock-note">關鍵設計：Document Flow 只做「跨文件狀態控管」。文件內容的正式編輯仍回到各節點，例如 HBL 在 HBL 管理、SI / MBL 在 Execution Center、報關在 Customs 節點。</div>
+  </section>
+
+  <section class="panel" id="workbench">
+    <div class="layout">
+      <div>
+        <div class="section-title">文件處理 Workbench｜Draft MBL 範例</div>
+        <div class="grid-4">
+          <div><label>文件類型</label><select class="select"><option>Draft MBL</option><option>Final MBL</option><option>HBL Draft</option><option>Customs Declaration</option></select></div>
+          <div><label>來源</label><select class="select"><option>Carrier / COSCO</option><option>Co-loader</option><option>Customer</option><option>Customs Broker</option></select></div>
+          <div><label>狀態</label><select class="select"><option>待上傳</option><option selected>待比對</option><option>已確認</option><option>需修正</option></select></div>
+          <div><label>關聯節點</label><select class="select"><option>MBL Draft</option><option>SI</option><option>出口報關</option><option>On Board</option></select></div>
+        </div>
+        <div class="divider"></div>
+        <div class="grid-2">
+          <div>
+            <label>上傳文件</label>
+            <div class="upload-box">拖曳 PDF / Image / Email Attachment 到此處<br><button class="btn gray" style="margin-top:10px">選擇檔案</button></div>
+            <table class="table"><tr><th>已上傳檔案</th><th>來源</th><th>狀態</th></tr><tr><td>draft-mbl-cosco.pdf</td><td>Email / Carrier</td><td><span class="pill blue">待比對</span></td></tr></table>
+          </div>
+          <div>
+            <label>比對 Checklist</label>
+            <table class="table"><tr><th>比對項目</th><th>SI</th><th>Draft MBL</th><th>結果</th></tr><tr><td>MBL No.</td><td>-</td><td>COSU123456789</td><td><span class="pill green">OK</span></td></tr><tr><td>Vessel / Voyage</td><td>OOCL BEIJING / 092S</td><td>OOCL BEIJING / 092S</td><td><span class="pill green">OK</span></td></tr><tr><td>POL / POD</td><td>SHANGHAI / MELBOURNE</td><td>SHANGHAI / MELBOURNE</td><td><span class="pill green">OK</span></td></tr><tr><td>Packages / Weight / CBM</td><td>149 CTNS / 5432.5 / 53.823</td><td>149 CTNS / 5432.5 / 53.823</td><td><span class="pill green">OK</span></td></tr></table>
+          </div>
+        </div>
+        <div class="divider"></div>
+        <div style="display:flex;justify-content:flex-end;gap:10px;flex-wrap:wrap"><button class="btn gray">儲存比對結果</button><button class="btn gray">要求 Carrier 修正</button><button class="btn green">標記 Draft MBL 已確認</button></div>
+      </div>
+      <aside class="side-panel">
+        <div class="preview">
+          <div class="paper-title">DRAFT MASTER BILL OF LADING</div>
+          <div class="paper-grid"><div class="paper-field"><b>Shipper</b>FLY INT'L LOGISTICS CO., LTD.</div><div class="paper-field"><b>Consignee</b>TO ORDER OF COSCO SHIPPING LINES</div><div class="paper-field"><b>Vessel / Voyage</b>OOCL BEIJING / 092S</div><div class="paper-field"><b>POL / POD</b>SHANGHAI / MELBOURNE</div></div>
+          <div class="paper-long"><b>Cargo</b>BMOU5853097 / CN937420 / 40'HQ\n149 CARTONS / 5,432.5000 KGS / 53.8230 CBM\nLITHIUM ION BATTERIES / ELECTRIC SCOOTER</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="panel" id="matrix">
+    <div class="section-title">Execution 關聯矩陣</div>
+    <table class="table matrix">
+      <thead><tr><th>Execution 節點</th><th>需要文件</th><th>產出文件</th><th>文件狀態如何影響 Execution</th><th>操作入口</th></tr></thead>
+      <tbody>
+        <tr><td>訂艙 / SO</td><td>Booking Confirmation</td><td>SO / Carrier Booking No.</td><td>完成後可進入 SI / HBL Draft</td><td><button class="btn gray">開啟 Booking / Shipment</button></td></tr>
+        <tr><td>HBL 管理</td><td>Party、Cargo、Routing</td><td>HBL Draft / Final HBL</td><td>HBL Confirmed 才建議進入正式出單 / 放單</td><td><button class="btn gray">開啟 HBL 管理</button></td></tr>
+        <tr><td>SI 發送</td><td>HBL 資料、Shipment、Container</td><td>SI PDF / SI Sent Log</td><td>SI Sent 後 MBL Draft 狀態變成 Waiting</td><td><button class="btn gray">開啟 SI</button></td></tr>
+        <tr><td>MBL 管理</td><td>SI、Carrier 回傳 Draft</td><td>Draft MBL / Final MBL</td><td>Final MBL Received 後可進入 Release / Document Completed</td><td><button class="btn gray">開啟 MBL</button></td></tr>
+        <tr><td>出口報關</td><td>Commercial Invoice、Packing List、報關資料</td><td>報關單號、放行證明</td><td>未放行時 On Board / 裝船前會顯示風險提醒</td><td><button class="btn gray">開啟 Customs</button></td></tr>
+        <tr><td>拖車 / 進倉</td><td>Pickup / Delivery Address、Cut-off</td><td>派車單、進倉紙、倉庫收貨證明</td><td>未完成時 Cut-off 風險提高</td><td><button class="btn gray">開啟 Trucking / CFS</button></td></tr>
+        <tr><td>On Board</td><td>Carrier / Terminal 回覆</td><td>On Board Date、裝船證明</td><td>On Board 後才適合完成 Final 文件與結案檢查</td><td><button class="btn gray">開啟 On Board</button></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel" id="archive">
+    <div class="section-title">Document Center 歸檔視圖</div>
+    <div class="note">Document Center 建議作為「查詢 / 下載 / 對外寄送」中心，不作為主要編輯入口。編輯與狀態變更仍應回到對應 Execution 節點。</div>
+    <table class="table">
+      <thead><tr><th>文件名稱</th><th>分類</th><th>來源節點</th><th>版本</th><th>狀態</th><th>可見對象</th><th>操作</th></tr></thead>
+      <tbody>
+        <tr><td>HBL-FHSMELEJ2110001-v1.pdf</td><td>HBL</td><td>HBL 管理</td><td>v1</td><td><span class="pill blue">Draft</span></td><td>Internal / Customer Draft</td><td><button class="btn gray">下載</button></td></tr>
+        <tr><td>SI-COSCO-20211030.pdf</td><td>SI</td><td>SI 發送</td><td>v1</td><td><span class="pill green">Sent</span></td><td>Internal / Carrier</td><td><button class="btn gray">下載</button></td></tr>
+        <tr><td>Draft-MBL-COSCO.pdf</td><td>MBL</td><td>MBL 管理</td><td>Carrier Draft</td><td><span class="pill amber">待比對</span></td><td>Internal</td><td><button class="btn gray">開啟比對</button></td></tr>
+        <tr><td>Commercial-Invoice.pdf</td><td>Customs</td><td>出口報關</td><td>Customer Copy</td><td><span class="pill amber">待補</span></td><td>Internal / Broker</td><td><button class="btn gray">上傳</button></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel" id="log">
+    <div class="section-title">文件操作記錄</div>
+    <div class="logline"><b>2026-04-26 14:20｜TONY</b><br>建立 Document Flow，從 Job FSEJ25040001 同步 Shipment / HBL / Execution 狀態。</div>
+    <div class="logline"><b>2026-04-26 14:24｜TONY</b><br>SI 已標記 Sent，MBL Draft 狀態改為 Waiting Carrier Reply。</div>
+    <div class="logline"><b>2026-04-26 14:32｜系統</b><br>偵測出口報關缺少 Commercial Invoice / Packing List，已加入風險提醒。</div>
+  </section>
+</main>
+<script>
+const tabs=document.querySelectorAll('.tab');const panels=document.querySelectorAll('.panel');
+tabs.forEach(tab=>tab.addEventListener('click',()=>openTab(tab.dataset.tab)));
+function openTab(id){tabs.forEach(t=>t.classList.toggle('active',t.dataset.tab===id));panels.forEach(p=>p.classList.toggle('active',p.id===id));}
+</script>
+</body>
+</html>

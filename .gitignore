@@ -1,0 +1,11 @@
+.DS_Store
+**/.DS_Store
+
+# Local archives and spreadsheet source samples are not needed for the static demo site.
+*.zip
+*.xls
+*.xlsx
+
+# Local server / tool caches.
+.cache/
+.tmp/

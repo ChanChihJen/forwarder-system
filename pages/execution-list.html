@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Execution List｜Wireframe Demo</title>
+<link rel="stylesheet" href="../assets/demo-list.css">
+<link rel="stylesheet" href="../assets/demo-nav.css">
+</head>
+<body>
+<header class="topbar">
+  <div><div class="page-title">Execution Workbench｜列表入口</div><div class="subtitle">延伸入口頁；點擊待辦後進入 doc 原始 Ocean / Air Execution Center。</div></div>
+  <div class="actions"><a class="btn gray" href="../index.html">Demo 首頁</a><a class="btn primary" href="execution-center.html">開啟 Execution Center</a></div>
+</header>
+<main class="content">
+  <section class="summary-grid">
+    <div class="summary-item"><b>Todo</b><span>9</span><div class="hint">今日待辦</div></div>
+    <div class="summary-item"><b>Waiting External</b><span>6</span><div class="hint">等 Carrier / Customer</div></div>
+    <div class="summary-item"><b>Blocked</b><span>2</span><div class="hint">異常待處理</div></div>
+    <div class="summary-item"><b>Done</b><span>21</span><div class="hint">本週完成</div></div>
+  </section>
+  <section class="card">
+    <div class="section-title">Execution Todo <a class="btn gray" href="execution-center.html">開啟原始 Execution Center</a></div>
+    <table class="table">
+      <thead><tr><th>Job</th><th>Mode</th><th>節點</th><th>Due</th><th>等待對象</th><th>狀態</th><th>操作</th></tr></thead>
+      <tbody>
+        <tr data-href="execution-center.html"><td><b>FSEJ25040001</b><div class="hint">ABC TRADING</div></td><td><span class="pill blue">Ocean</span></td><td>出口報關</td><td>2026-05-05 12:00</td><td>Customer PL</td><td><span class="pill amber">Waiting External</span></td><td><a class="btn primary" href="execution-center.html">處理</a></td></tr>
+        <tr data-href="execution-center.html"><td><b>FSEJ25040001</b></td><td><span class="pill blue">Ocean</span></td><td>拖車 / 進倉</td><td>2026-05-06</td><td>Truck Vendor</td><td><span class="pill gray">Todo</span></td><td><a class="btn gray" href="execution-center.html">處理</a></td></tr>
+        <tr data-href="execution-center.html"><td><b>FSAJ25040009</b></td><td><span class="pill purple">Air</span></td><td>Flight / POD</td><td>2026-05-04</td><td>Airline</td><td><span class="pill blue">Active</span></td><td><a class="btn gray" href="execution-center.html">處理</a></td></tr>
+        <tr data-href="execution-center.html"><td><b>FSEJ25040014</b></td><td><span class="pill blue">Ocean</span></td><td>Draft MBL</td><td>2026-05-05</td><td>Carrier</td><td><span class="pill red">Blocked</span></td><td><a class="btn gray" href="execution-center.html">處理</a></td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+<script src="../assets/demo-nav.js"></script>
+<script>document.querySelectorAll('tr[data-href]').forEach(row=>row.addEventListener('click',e=>{if(!e.target.closest('a,button,input,select')) location.href=row.dataset.href;}));</script>
+</body>
+</html>

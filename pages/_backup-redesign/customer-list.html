@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>商業夥伴基本檔</title><link rel="stylesheet" href="../assets/app.css"></head>
+  <body data-title="商業夥伴基本檔" data-subtitle="來源：doc/0.customer_master_wireframe.html，展示多角色主檔、聯絡人、地址與帳務條件">
+    <div data-shell>
+      <section class="page-head">
+        <div><h2 class="page-title">商業夥伴列表</h2><p class="page-desc">查詢客戶、Shipper、Consignee、海外代理、供應商、Carrier 與 Billing Party。點擊列可進入表單。</p></div>
+        <a class="btn primary" href="customer-form.html">新增商業夥伴</a>
+      </section>
+      <section class="kpi-grid">
+        <div class="kpi"><b>Active</b><strong>126</strong><small>可用於 Job</small></div>
+        <div class="kpi"><b>Billing Party</b><strong>54</strong><small>含帳務條件</small></div>
+        <div class="kpi"><b>Carrier / Supplier</b><strong>31</strong><small>AP 對象</small></div>
+        <div class="kpi"><b>待補資料</b><strong>8</strong><small>地址或稅籍缺漏</small></div>
+      </section>
+      <section class="card">
+        <div class="card-head"><h3 class="card-title">Partner List</h3><div class="actions"><button class="btn gray sm" data-toast="已套用角色篩選">篩選</button><button class="btn gray sm" data-toast="已匯出主檔清單">匯出</button></div></div>
+        <div class="card-body">
+          <div class="filters">
+            <div><label>關鍵字</label><input class="field" placeholder="公司名稱 / 統編 / 聯絡人"></div>
+            <div><label>角色</label><select class="select"><option>All Roles</option><option>Customer</option><option>Shipper</option><option>Carrier</option></select></div>
+            <div><label>狀態</label><select class="select"><option>Active</option><option>Inactive</option><option>Missing Data</option></select></div>
+            <div><label>Sales</label><select class="select"><option>All</option><option>TONY</option><option>MARY</option></select></div>
+            <button class="btn primary" data-toast="搜尋完成">搜尋</button>
+          </div>
+          <div class="table-wrap"><table class="table">
+            <thead><tr><th>公司名稱</th><th>角色</th><th>主要聯絡人</th><th>帳務條件</th><th>文件用途</th><th>狀態</th><th>操作</th></tr></thead>
+            <tbody>
+              <tr data-href="customer-form.html"><td><b>ABC TRADING CO., LTD.</b><div class="hint">TAX ID 24581234</div></td><td><span class="pill blue">Customer</span> <span class="pill green">Shipper</span> <span class="pill gray">Billing Party</span></td><td>Mary Chan<br><span class="hint">mary@example.com</span></td><td>AR 30 days</td><td>HBL / Invoice / Packing</td><td><span class="pill green">Active</span></td><td><a class="btn sm soft" href="customer-form.html">編輯</a></td></tr>
+              <tr data-href="customer-form.html"><td><b>Pacific Star Logistics LLC</b><div class="hint">USA Agent</div></td><td><span class="pill purple">Oversea Agent</span> <span class="pill gray">Notify</span></td><td>Jason Lee</td><td>AP 45 days</td><td>Arrival Notice / D/O</td><td><span class="pill green">Active</span></td><td><a class="btn sm soft" href="customer-form.html">查看</a></td></tr>
+              <tr data-href="customer-form.html"><td><b>Ocean Bridge Lines</b><div class="hint">Carrier Code OBL</div></td><td><span class="pill blue">Carrier</span> <span class="pill amber">Supplier</span></td><td>Carrier Desk</td><td>AP 30 days</td><td>MBL / SO / Debit Note</td><td><span class="pill green">Active</span></td><td><a class="btn sm soft" href="customer-form.html">查看</a></td></tr>
+              <tr data-href="customer-form.html"><td><b>Green Ocean Foods BV</b><div class="hint">EU Consignee</div></td><td><span class="pill blue">Consignee</span> <span class="pill gray">Notify</span></td><td>Linda Vos</td><td>Collect</td><td>LC HBL / Commercial Docs</td><td><span class="pill amber">Missing Data</span></td><td><a class="btn sm soft" href="customer-form.html">補資料</a></td></tr>
+              <tr data-href="customer-form.html"><td><b>Formosa Warehouse Co.</b><div class="hint">KHH CFS</div></td><td><span class="pill amber">Supplier</span></td><td>OP Counter</td><td>AP 15 days</td><td>進倉單 / 費用</td><td><span class="pill green">Active</span></td><td><a class="btn sm soft" href="customer-form.html">查看</a></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </section>
+    </div>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>

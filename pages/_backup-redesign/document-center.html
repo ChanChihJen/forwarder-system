@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Document Center</title><link rel="stylesheet" href="../assets/app.css"></head>
+  <body data-title="Document Center" data-subtitle="來源：document-center-advanced-wireframe.html，全域文件搜尋、缺件、批次操作、預覽、版本與歸檔">
+    <div data-shell>
+      <section class="page-head"><div><h2 class="page-title">全域文件中心</h2><p class="page-desc">不需要先進 Job 才能查文件。Document Center 管檔案、版本、補傳與下載；流程卡點仍回 Document Flow / Execution。</p></div><div class="actions"><a class="btn gray" href="document-flow.html">Document Flow</a><a class="btn gray" href="../doc/document-center-advanced-wireframe.html">原始進階版</a><button class="btn primary" data-modal="上傳文件">上傳文件</button></div></section>
+      <section class="kpi-grid"><div class="kpi"><b>全部文件</b><strong>248</strong><small>跨 Job / HBL / MBL</small></div><div class="kpi"><b>Missing</b><strong>7</strong><small>待追件</small></div><div class="kpi"><b>Pending Review</b><strong>14</strong><small>待確認</small></div><div class="kpi"><b>Archived</b><strong>119</strong><small>已歸檔</small></div></section>
+      <div class="layout-2">
+        <section>
+          <div class="card"><div class="card-head"><h3 class="card-title">全域搜尋</h3><div class="actions"><button class="btn gray sm" data-toast="已批次下載 ZIP">批次下載</button><button class="btn gray sm" data-toast="已建立追件任務">建立追件</button></div></div><div class="card-body">
+            <div class="filters"><div><label>關鍵字</label><input class="field" placeholder="Job No. / HBL No. / MBL No. / 客戶 / 文件名稱"></div><div><label>文件類型</label><select class="select"><option>All</option><option>HBL</option><option>MBL</option><option>Commercial Docs</option></select></div><div><label>Status</label><select class="select"><option>All</option><option>Missing</option><option>Final</option></select></div><div><label>來源</label><select class="select"><option>All</option><option>Job</option><option>Execution</option><option>Customer</option></select></div><button class="btn primary" data-toast="搜尋完成">搜尋</button></div>
+            <div class="table-wrap"><table class="table"><thead><tr><th><input type="checkbox"></th><th>文件</th><th>Job / Shipment</th><th>來源</th><th>版本</th><th>狀態</th><th>操作</th></tr></thead><tbody>
+              <tr><td><input type="checkbox"></td><td><b>HBL Draft PDF</b><div class="hint">HBL-TPE-240001</div></td><td><a href="job-detail.html">FSEJ25040001</a><div class="hint">Shipment 1 / FCL</div></td><td>Job HBL 管理</td><td>v2</td><td><span class="pill blue">Draft</span></td><td><button class="btn sm soft" data-modal="文件預覽">預覽</button></td></tr>
+              <tr><td><input type="checkbox"></td><td><b>Packing List</b><div class="hint">Customer Document</div></td><td><a href="job-detail.html">FSEJ25040001</a><div class="hint">Customs Execution</div></td><td>Customer Upload</td><td>-</td><td><span class="pill red">Missing</span></td><td><button class="btn sm primary" data-modal="補傳文件">補傳</button></td></tr>
+              <tr><td><input type="checkbox"></td><td><b>Draft MBL</b><div class="hint">Carrier PDF</div></td><td><a href="job-detail.html">FSEJ25040001</a></td><td>Execution MBL</td><td>v1</td><td><span class="pill amber">Pending Review</span></td><td><button class="btn sm soft" data-modal="Draft MBL 預覽">預覽</button></td></tr>
+              <tr><td><input type="checkbox"></td><td><b>Commercial Invoice</b></td><td>FSEJ25040021</td><td>Customer Email</td><td>Final</td><td><span class="pill green">Archived</span></td><td><button class="btn sm soft" data-toast="已下載文件">下載</button></td></tr>
+              <tr><td><input type="checkbox"></td><td><b>SO / Booking Confirmation</b></td><td>BKG-2504-0008</td><td>Booking</td><td>Final</td><td><span class="pill green">Final</span></td><td><button class="btn sm soft" data-toast="已開啟 SO">查看</button></td></tr>
+            </tbody></table></div>
+          </div></div>
+          <section data-tabs="doccenter"><nav class="tabs"><button class="tab active" data-tab-target="missing">缺件管理</button><button class="tab" data-tab-target="batch">批次操作</button><button class="tab" data-tab-target="versions">版本 / 記錄</button><button class="tab" data-tab-target="rules">歸檔規則</button></nav>
+            <div class="panel active" id="missing" data-tab-panel="doccenter"><div class="grid-3"><div class="mini-card"><b>Packing List</b><span class="pill red">Missing</span><div class="hint">影響出口報關期限 2026-05-05 12:00。</div></div><div class="mini-card"><b>MSDS</b><span class="pill amber">Pending Review</span><div class="hint">DG 貨物需確認。</div></div><div class="mini-card"><b>Seal Photo</b><span class="pill gray">Todo</span><div class="hint">拖車 / 裝櫃完成後回傳。</div></div></div></div>
+            <div class="panel" id="batch" data-tab-panel="doccenter"><button class="btn primary" data-toast="Customer Document Pack 已產生">下載客戶文件包</button> <button class="btn soft" data-toast="已標記歸檔">標記歸檔</button> <button class="btn soft" data-toast="已寄送追件信">寄送追件信</button></div>
+            <div class="panel" id="versions" data-tab-panel="doccenter"><div class="list-cards"><div class="mini-card"><b>HBL Draft v2</b><div class="hint">2026-05-04 10:35 同步 Document Center。</div></div><div class="mini-card"><b>HBL Draft v1</b><div class="hint">2026-05-03 16:10，由 Job HBL 管理建立。</div></div></div></div>
+            <div class="panel" id="rules" data-tab-panel="doccenter"><table class="table"><thead><tr><th>文件類型</th><th>來源操作頁</th><th>進入 Center 時機</th><th>歸檔條件</th></tr></thead><tbody><tr><td>HBL</td><td>Job → HBL 管理</td><td>Draft 產生時同步索引</td><td>Released 或 Job Closed</td></tr><tr><td>MBL</td><td>Execution Center</td><td>Draft / Final 回傳</td><td>Final MBL Received</td></tr><tr><td>Customer Docs</td><td>Document Center 補傳</td><td>上傳後立即建索引</td><td>Review Passed</td></tr></tbody></table></div>
+          </section>
+        </section>
+        <aside class="side-panel card pad"><h3 class="card-title">文件預覽</h3><div class="divider"></div><div class="doc-preview"><div class="paper-title">DRAFT MBL</div><div class="paper-grid"><div class="paper-field"><b>Shipper</b><br>ABC TRADING CO., LTD.</div><div class="paper-field"><b>Consignee</b><br>Pacific Star Trading LLC</div></div><div class="paper-long"><b>Cargo</b><br>1 X 40'HQ / 149 CARTONS / 5,432.5000 KGS / 53.8230 CBM<br>Container: BMOU5853097 / Seal: CN937420</div></div></aside>
+      </div>
+    </div>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>

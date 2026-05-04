@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Document Center 進階版｜搜尋 / 篩選 / 缺件 / 批次操作 Wireframe</title>
+<style>
+:root{
+  --blue:#1769aa;--blue2:#eaf5ff;--line:#d7dee8;--text:#1f2937;--muted:#64748b;
+  --green:#16a34a;--greenbg:#ecfdf5;--amber:#d97706;--amberbg:#fff7ed;
+  --red:#dc2626;--redbg:#fee2e2;--purple:#7c3aed;--purplebg:#f3e8ff;--soft:#f8fafc
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",Arial,sans-serif;background:#f3f6fa;color:var(--text);font-size:14px}
+.topbar{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:0 28px;position:sticky;top:0;z-index:20}
+.page-title{font-size:21px;font-weight:900}
+.subtitle{font-size:12px;color:var(--muted);margin-top:3px}
+.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.btn{border:1px solid #cbd5e1;background:#fff;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer}
+.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}
+.btn.green{background:var(--green);color:#fff;border-color:var(--green)}
+.btn.amber{background:var(--amber);color:#fff;border-color:var(--amber)}
+.btn.gray{background:#f8fafc;color:#334155}
+.btn.danger{background:#fff;color:var(--red);border-color:#fecaca}
+.btn:disabled{opacity:.55;cursor:not-allowed}
+.content{max-width:1680px;margin:0 auto;padding:22px 28px 44px}
+.note{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.55;margin-bottom:16px}
+.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 2px 8px rgba(15,59,99,.05)}
+.section-title{font-size:15px;font-weight:900;color:#0f3b63;margin:4px 0 12px;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.summary-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.summary-item{background:#fff;border:1px solid #dbeafe;border-radius:12px;padding:12px}
+.summary-item b{display:block;color:#0f3b63;margin-bottom:4px;font-size:12px}
+.summary-item span{font-size:22px;font-weight:900}
+.summary-item small{display:block;color:#64748b;margin-top:4px}
+.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);overflow-x:auto}
+.tab{padding:11px 16px;border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;background:#eef4fa;color:#33536b;font-size:14px;font-weight:800;cursor:pointer;white-space:nowrap}
+.tab.active{background:#fff;color:#0f3b63}
+.panel{display:none;background:#fff;border:1px solid var(--line);border-top:0;border-radius:0 0 16px 16px;padding:18px;margin-bottom:18px}
+.panel.active{display:block}
+.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:12px}
+label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:800}
+.field,.select,textarea{width:100%;border:1px solid #cbd5e1;background:#fff;border-radius:8px;min-height:36px;padding:8px 10px;font-size:14px;font-family:inherit}
+textarea{min-height:82px;resize:vertical}
+.hint{font-size:12px;color:var(--muted);line-height:1.55}
+.pill{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:900;white-space:nowrap}
+.pill.blue{background:var(--blue2);color:var(--blue)}
+.pill.green{background:var(--greenbg);color:#166534}
+.pill.amber{background:var(--amberbg);color:#9a3412}
+.pill.red{background:#fee2e2;color:#991b1b}
+.pill.gray{background:#f1f5f9;color:#475569}
+.pill.purple{background:var(--purplebg);color:#5b21b6}
+.divider{height:1px;background:#e5edf5;margin:18px 0}
+.search-layout{display:grid;grid-template-columns:300px 1fr;gap:16px}
+.filter-box{position:sticky;top:88px;align-self:start}
+.filter-group{border:1px solid #dbe3ee;background:#fbfdff;border-radius:14px;padding:12px;margin-bottom:12px}
+.filter-group h4{margin:0 0 10px;color:#0f3b63;font-size:14px}
+.check-row{display:flex;gap:8px;align-items:flex-start;margin:8px 0;color:#334155;font-size:13px}
+.check-row input{margin-top:2px}
+.toolbar{display:flex;justify-content:space-between;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:12px}
+.bulkbar{display:none;border:1px solid #bfdbfe;background:#eff6ff;border-radius:14px;padding:12px;margin-bottom:12px;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.bulkbar.active{display:flex}
+.table{width:100%;border-collapse:collapse;font-size:13px;background:#fff}
+th{background:#eef4fa;color:#33536b;text-align:left;padding:10px;border:1px solid var(--line);white-space:nowrap}
+td{padding:10px;border:1px solid var(--line);vertical-align:top}
+tr.selected td{background:#eff6ff}
+.doc-name{font-weight:900;color:#0f3b63}
+.doc-meta{font-size:12px;color:#64748b;line-height:1.45;margin-top:4px}
+.link{color:#1769aa;font-weight:900;cursor:pointer;text-decoration:none}
+.link:hover{text-decoration:underline}
+.doc-actions{display:flex;gap:6px;flex-wrap:wrap}
+.missing-layout{display:grid;grid-template-columns:1fr 380px;gap:16px}
+.missing-card{border:1px solid #dbe3ee;background:#fbfdff;border-radius:16px;padding:14px;margin-bottom:12px}
+.missing-card.urgent{border-color:#fed7aa;background:#fffaf3}
+.missing-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}
+.progress{height:10px;background:#e5e7eb;border-radius:999px;overflow:hidden}
+.progress span{display:block;height:100%;background:#1769aa;border-radius:999px}
+.preview-shell{display:grid;grid-template-columns:1fr 380px;gap:16px}
+.file-preview{border:1px solid #cbd5e1;background:#fff;border-radius:14px;min-height:520px;padding:18px;box-shadow:inset 0 0 0 8px #f8fafc}
+.paper-title{text-align:center;font-size:18px;font-weight:900;letter-spacing:.5px;margin:10px 0 16px}
+.paper-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.paper-field{border:1px solid #111;padding:8px;min-height:70px;font-size:12px;white-space:pre-line}
+.paper-long{border:1px solid #111;padding:8px;min-height:120px;font-size:12px;white-space:pre-line;margin-top:10px}
+.side-panel{position:sticky;top:88px;align-self:start}
+.timeline{display:flex;flex-direction:column;gap:8px}
+.t-item{border:1px solid #dbe3ee;background:#fff;border-radius:12px;padding:10px}
+.t-item b{color:#0f3b63}
+.upload-box{border:2px dashed #cbd5e1;background:#f8fafc;border-radius:14px;padding:18px;text-align:center;color:#64748b;margin-bottom:12px}
+.rule-card{border:1px solid #dbe3ee;background:#fbfdff;border-radius:14px;padding:14px;margin-bottom:12px}
+.modal-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:50;align-items:center;justify-content:center;padding:20px}
+.modal-mask.active{display:flex}
+.modal{background:#fff;border-radius:18px;border:1px solid var(--line);box-shadow:0 20px 60px rgba(15,23,42,.22);max-width:820px;width:100%;overflow:hidden}
+.modal-h{padding:16px 18px;background:#f8fafc;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}
+.modal-title{font-weight:900;font-size:18px;color:#0f3b63}
+.modal-b{padding:18px}
+.modal-f{padding:14px 18px;background:#f8fafc;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:10px}
+.close-x{border:0;background:transparent;font-size:22px;cursor:pointer;color:#64748b}
+.toast{position:fixed;right:24px;bottom:24px;background:#0f3b63;color:#fff;border-radius:12px;padding:12px 16px;box-shadow:0 10px 30px rgba(15,23,42,.25);display:none;z-index:60;font-weight:800}
+.toast.active{display:block}
+@media(max-width:1250px){
+  .summary-grid{grid-template-columns:repeat(3,1fr)}
+  .search-layout,.missing-layout,.preview-shell{grid-template-columns:1fr}
+  .filter-box,.side-panel{position:static}
+}
+@media(max-width:760px){
+  .topbar{height:auto;align-items:flex-start;flex-direction:column;padding:14px}
+  .content{padding:14px}
+  .summary-grid,.grid-2,.grid-3,.grid-4,.grid-5,.paper-grid{grid-template-columns:1fr}
+  .actions{width:100%}
+}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <div class="page-title">Document Center｜進階文件中心</div>
+    <div class="subtitle">全域文件查詢、跨 Job 缺件管理、批次操作、預覽下載與回到來源節點；不取代 Document Flow / Execution Center</div>
+  </div>
+  <div class="actions">
+    <button class="btn gray" onclick="showToast('返回主選單')">返回主選單</button>
+    <button class="btn gray" onclick="showToast('開啟 Document Flow')">Document Flow</button>
+    <button class="btn primary" onclick="openUploadModal()">＋上傳文件</button>
+  </div>
+</header>
+
+<main class="content">
+  <div class="note">
+    定位：Document Center 是「文件總管」，不需要先進 Job 才能查文件。它可以從 Job / HBL / Execution 進入，也可以直接用全域搜尋找到文件、缺件、版本與歸檔狀態。
+  </div>
+
+  <section class="card">
+    <div class="section-title">文件總覽 KPI</div>
+    <div class="summary-grid">
+      <div class="summary-item"><b>全部文件</b><span>248</span><small>跨 Job / Shipment / HBL</small></div>
+      <div class="summary-item"><b>缺件</b><span style="color:#dc2626">18</span><small>需追客戶 / Carrier / Vendor</small></div>
+      <div class="summary-item"><b>待確認</b><span style="color:#d97706">32</span><small>Draft / Pending Review</small></div>
+      <div class="summary-item"><b>已歸檔</b><span style="color:#16a34a">175</span><small>Final / Released / Closed</small></div>
+      <div class="summary-item"><b>今日上傳</b><span>12</span><small>含外部回傳附件</small></div>
+      <div class="summary-item"><b>逾期缺件</b><span style="color:#dc2626">5</span><small>影響報關 / 放單</small></div>
+    </div>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="search">全域搜尋 / 篩選</button>
+    <button class="tab" data-tab="missing">缺件管理</button>
+    <button class="tab" data-tab="batch">批次操作</button>
+    <button class="tab" data-tab="preview">文件預覽 / 版本</button>
+    <button class="tab" data-tab="archive">歸檔規則</button>
+    <button class="tab" data-tab="log">操作記錄</button>
+  </nav>
+
+  <section class="panel active" id="search">
+    <div class="search-layout">
+      <aside class="filter-box">
+        <div class="filter-group">
+          <h4>快速搜尋</h4>
+          <label>關鍵字</label>
+          <input class="field" value="FSEJ25040001 MBL" oninput="showToast('Wireframe：搜尋結果更新')">
+          <div class="hint" style="margin-top:8px">可搜尋 Job No.、HBL No.、MBL No.、客戶、Carrier、文件名稱。</div>
+        </div>
+        <div class="filter-group">
+          <h4>文件類型</h4>
+          <label class="check-row"><input type="checkbox" checked> HBL</label>
+          <label class="check-row"><input type="checkbox" checked> MBL</label>
+          <label class="check-row"><input type="checkbox" checked> SI</label>
+          <label class="check-row"><input type="checkbox" checked> 報關文件</label>
+          <label class="check-row"><input type="checkbox"> 拖車 / 進倉文件</label>
+          <label class="check-row"><input type="checkbox"> Invoice / Packing</label>
+        </div>
+        <div class="filter-group">
+          <h4>文件狀態</h4>
+          <label class="check-row"><input type="checkbox" checked> Missing</label>
+          <label class="check-row"><input type="checkbox" checked> Draft</label>
+          <label class="check-row"><input type="checkbox" checked> Pending Review</label>
+          <label class="check-row"><input type="checkbox" checked> Final</label>
+          <label class="check-row"><input type="checkbox"> Archived</label>
+        </div>
+        <div class="filter-group">
+          <h4>來源</h4>
+          <label class="check-row"><input type="checkbox" checked> 系統產生</label>
+          <label class="check-row"><input type="checkbox" checked> 客戶提供</label>
+          <label class="check-row"><input type="checkbox" checked> Carrier / Co-loader</label>
+          <label class="check-row"><input type="checkbox" checked> 報關行</label>
+          <label class="check-row"><input type="checkbox" checked> 車行 / 倉庫</label>
+        </div>
+        <button class="btn primary" style="width:100%" onclick="showToast('已套用篩選')">套用篩選</button>
+      </aside>
+
+      <div>
+        <div class="toolbar">
+          <div>
+            <div class="section-title" style="margin:0">搜尋結果 <span class="pill blue">共 48 筆</span></div>
+            <div class="hint">這裡是全域文件清單，不需要先找到 Job。</div>
+          </div>
+          <div>
+            <button class="btn gray" onclick="toggleSelected(true)">全選本頁</button>
+            <button class="btn gray" onclick="showToast('匯出目前查詢清單')">匯出清單</button>
+          </div>
+        </div>
+
+        <div id="bulkbarSearch" class="bulkbar">
+          <div><b>已選取 <span id="selectedCount">0</span> 筆文件</b><div class="hint">可批次下載、標記已歸檔、建立追件任務或補上標籤。</div></div>
+          <div class="actions">
+            <button class="btn gray" onclick="showToast('已下載 ZIP')">下載 ZIP</button>
+            <button class="btn amber" onclick="showToast('已建立追件任務')">建立追件</button>
+            <button class="btn green" onclick="showToast('已批次標記歸檔')">標記歸檔</button>
+          </div>
+        </div>
+
+        <table class="table" id="docTable">
+          <thead>
+            <tr>
+              <th style="width:42px"><input type="checkbox" onclick="toggleSelected(this.checked)"></th>
+              <th>文件</th>
+              <th>Job / Shipment</th>
+              <th>類型</th>
+              <th>來源</th>
+              <th>狀態</th>
+              <th>最後更新</th>
+              <th>操作</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><input class="rowcheck" type="checkbox" onchange="syncSelected()"></td>
+              <td><div class="doc-name">Final MBL PDF</div><div class="doc-meta">MBL No. COSU123456789｜版本 Final v1</div></td>
+              <td><a class="link" onclick="showToast('開啟 Job')">FSEJ25040001</a><div class="doc-meta">Shipment 1｜FCL</div></td>
+              <td><span class="pill purple">MBL</span></td>
+              <td>Carrier / COSCO</td>
+              <td><span class="pill green">Final</span></td>
+              <td>2026-04-26 10:12</td>
+              <td><div class="doc-actions"><button class="btn gray" onclick="openPreview('Final MBL PDF')">預覽</button><button class="btn gray" onclick="showToast('下載文件')">下載</button><button class="btn gray" onclick="showToast('回到 MBL 節點')">來源節點</button></div></td>
+            </tr>
+            <tr>
+              <td><input class="rowcheck" type="checkbox" onchange="syncSelected()"></td>
+              <td><div class="doc-name">Commercial Invoice</div><div class="doc-meta">客戶提供，用於報關</div></td>
+              <td><a class="link" onclick="showToast('開啟 Job')">FSEJ25040001</a><div class="doc-meta">Customs Execution</div></td>
+              <td><span class="pill amber">報關</span></td>
+              <td>Customer</td>
+              <td><span class="pill amber">Pending Review</span></td>
+              <td>2026-04-26 09:40</td>
+              <td><div class="doc-actions"><button class="btn gray" onclick="openPreview('Commercial Invoice')">預覽</button><button class="btn gray">下載</button><button class="btn gray">來源節點</button></div></td>
+            </tr>
+            <tr>
+              <td><input class="rowcheck" type="checkbox" onchange="syncSelected()"></td>
+              <td><div class="doc-name">Packing List</div><div class="doc-meta">缺件，影響報關送出</div></td>
+              <td><a class="link">FSEJ25040001</a><div class="doc-meta">Customs Execution</div></td>
+              <td><span class="pill amber">報關</span></td>
+              <td>Customer</td>
+              <td><span class="pill red">Missing</span></td>
+              <td>-</td>
+              <td><div class="doc-actions"><button class="btn amber" onclick="openMissingModal()">追件</button><button class="btn gray" onclick="openUploadModal()">補傳</button><button class="btn gray">來源節點</button></div></td>
+            </tr>
+            <tr>
+              <td><input class="rowcheck" type="checkbox" onchange="syncSelected()"></td>
+              <td><div class="doc-name">HBL Draft PDF</div><div class="doc-meta">HBL No. FHSMELEJ2110001｜v2</div></td>
+              <td><a class="link">FSEJ25040001</a><div class="doc-meta">HBL 管理</div></td>
+              <td><span class="pill blue">HBL</span></td>
+              <td>系統產生</td>
+              <td><span class="pill blue">Draft</span></td>
+              <td>2026-04-25 17:20</td>
+              <td><div class="doc-actions"><button class="btn gray">預覽</button><button class="btn gray">下載</button><button class="btn gray">來源節點</button></div></td>
+            </tr>
+            <tr>
+              <td><input class="rowcheck" type="checkbox" onchange="syncSelected()"></td>
+              <td><div class="doc-name">Trucking Order</div><div class="doc-meta">派車單，待車行確認</div></td>
+              <td><a class="link">FSEJ25040002</a><div class="doc-meta">Trucking / Warehouse</div></td>
+              <td><span class="pill gray">作業</span></td>
+              <td>系統產生</td>
+              <td><span class="pill amber">Pending</span></td>
+              <td>2026-04-25 15:08</td>
+              <td><div class="doc-actions"><button class="btn gray">預覽</button><button class="btn gray">下載</button><button class="btn gray">來源節點</button></div></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="missing">
+    <div class="missing-layout">
+      <div>
+        <div class="section-title">缺件管理 Queue <span class="pill red">18 Missing</span></div>
+        <div class="missing-card urgent">
+          <div class="missing-head">
+            <div><div class="doc-name">Packing List</div><div class="doc-meta">Job FSEJ25040001｜出口報關｜影響送關期限 2026-04-27 12:00</div></div>
+            <span class="pill red">逾期風險</span>
+          </div>
+          <div class="divider"></div>
+          <div class="grid-4">
+            <div><label>負責人</label><input class="field" value="OP Tony"></div>
+            <div><label>追件對象</label><input class="field" value="ABC TRADING / Mary"></div>
+            <div><label>期限</label><input class="field" type="datetime-local" value="2026-04-27T12:00"></div>
+            <div><label>狀態</label><select class="select"><option>Waiting Customer</option><option>Received</option><option>Waived</option></select></div>
+          </div>
+          <div style="margin-top:12px;display:flex;justify-content:flex-end;gap:8px"><button class="btn gray">發送追件通知</button><button class="btn primary" onclick="openUploadModal()">補傳文件</button></div>
+        </div>
+
+        <div class="missing-card">
+          <div class="missing-head">
+            <div><div class="doc-name">Draft MBL PDF</div><div class="doc-meta">Job FSEJ25040003｜MBL 管理｜等待 Carrier 回傳</div></div>
+            <span class="pill amber">Waiting Carrier</span>
+          </div>
+          <div class="divider"></div>
+          <div class="grid-4">
+            <div><label>負責人</label><input class="field" value="OP May"></div>
+            <div><label>追件對象</label><input class="field" value="COSCO SI Desk"></div>
+            <div><label>期限</label><input class="field" type="datetime-local" value="2026-04-28T18:00"></div>
+            <div><label>狀態</label><select class="select"><option>Waiting Carrier</option><option>Received</option><option>Need Revise</option></select></div>
+          </div>
+          <div style="margin-top:12px;display:flex;justify-content:flex-end;gap:8px"><button class="btn gray">Email 追件</button><button class="btn primary">上傳 Draft MBL</button></div>
+        </div>
+
+        <div class="missing-card">
+          <div class="missing-head">
+            <div><div class="doc-name">裝櫃照片 / Seal Photo</div><div class="doc-meta">Job FSEJ25040004｜拖車 / 進倉節點｜作業完成後待回傳</div></div>
+            <span class="pill gray">Optional Check</span>
+          </div>
+          <div class="divider"></div>
+          <div class="grid-4">
+            <div><label>負責人</label><input class="field" value="OP Tony"></div>
+            <div><label>追件對象</label><input class="field" value="車行 / Driver"></div>
+            <div><label>期限</label><input class="field" type="datetime-local" value="2026-04-29T15:00"></div>
+            <div><label>狀態</label><select class="select"><option>Waiting Vendor</option><option>Received</option><option>Not Required</option></select></div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="side-panel card" style="margin:0">
+        <div class="section-title">缺件分布</div>
+        <div class="timeline">
+          <div class="t-item"><b>報關文件</b><div class="hint">8 件缺件，3 件逾期風險</div><div class="progress"><span style="width:44%"></span></div></div>
+          <div class="t-item"><b>MBL / Carrier 文件</b><div class="hint">5 件等待外部回傳</div><div class="progress"><span style="width:60%"></span></div></div>
+          <div class="t-item"><b>作業文件</b><div class="hint">3 件等待車行 / 倉庫</div><div class="progress"><span style="width:72%"></span></div></div>
+          <div class="t-item"><b>放單文件</b><div class="hint">2 件 Final / Release Evidence 未歸檔</div><div class="progress"><span style="width:80%"></span></div></div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="panel" id="batch">
+    <div class="section-title">批次操作 Workbench</div>
+    <div class="grid-3">
+      <div class="rule-card">
+        <div class="doc-name">批次下載</div>
+        <div class="hint">依 Job、客戶、日期區間、文件類型打包 ZIP。</div>
+        <div class="divider"></div>
+        <button class="btn primary" onclick="showToast('已建立下載包')">產生 ZIP</button>
+      </div>
+      <div class="rule-card">
+        <div class="doc-name">批次歸檔</div>
+        <div class="hint">將 Final / Released 文件標記 Archived，並鎖定版本。</div>
+        <div class="divider"></div>
+        <button class="btn green" onclick="showToast('已批次歸檔')">標記已歸檔</button>
+      </div>
+      <div class="rule-card">
+        <div class="doc-name">批次追件</div>
+        <div class="hint">對 Missing / Pending 文件建立追件任務，可指定負責人與期限。</div>
+        <div class="divider"></div>
+        <button class="btn amber" onclick="showToast('已批次建立追件任務')">建立追件任務</button>
+      </div>
+    </div>
+    <div class="divider"></div>
+    <table class="table">
+      <thead><tr><th>批次任務</th><th>條件</th><th>影響筆數</th><th>執行人</th><th>狀態</th><th>操作</th></tr></thead>
+      <tbody>
+        <tr><td>下載本週 Final MBL</td><td>Type = MBL, Status = Final, Updated this week</td><td>23</td><td>Mary</td><td><span class="pill green">完成</span></td><td><button class="btn gray">下載 ZIP</button></td></tr>
+        <tr><td>追報關缺件</td><td>Type = Customs, Status = Missing</td><td>8</td><td>Tony</td><td><span class="pill amber">待發送</span></td><td><button class="btn gray">檢視</button></td></tr>
+        <tr><td>結案歸檔</td><td>Job Closed, Final Docs Ready</td><td>15</td><td>System</td><td><span class="pill blue">排程中</span></td><td><button class="btn gray">取消</button></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel" id="preview">
+    <div class="preview-shell">
+      <div>
+        <div class="section-title">文件預覽 / 版本管理</div>
+        <div class="file-preview" id="previewBox">
+          <div class="paper-title">FINAL MASTER BILL OF LADING</div>
+          <div class="paper-grid">
+            <div class="paper-field"><b>Shipper</b>FLY INT'L LOGISTICS CO., LTD.</div>
+            <div class="paper-field"><b>Consignee</b>TO ORDER OF COSCO SHIPPING LINES</div>
+            <div class="paper-field"><b>Vessel / Voyage</b>OOCL BEIJING / 092S</div>
+            <div class="paper-field"><b>POL / POD</b>SHANGHAI / MELBOURNE</div>
+          </div>
+          <div class="paper-long"><b>Cargo</b>BMOU5853097 / CN937420 / 40'HQ
+149 CARTONS / 5,432.5000 KGS / 53.8230 CBM
+LITHIUM ION BATTERIES / ELECTRIC SCOOTER</div>
+        </div>
+      </div>
+      <aside class="side-panel card" style="margin:0">
+        <div class="section-title">文件資訊</div>
+        <div class="grid-2">
+          <div><label>Document ID</label><input class="field" value="DOC-202604-000128" readonly></div>
+          <div><label>版本</label><input class="field" value="Final v1" readonly></div>
+          <div><label>文件類型</label><input class="field" value="MBL" readonly></div>
+          <div><label>狀態</label><input class="field" value="Final / Archived Ready" readonly></div>
+        </div>
+        <div class="divider"></div>
+        <div class="timeline">
+          <div class="t-item"><b>2026-04-26 10:12</b><div class="hint">上傳 Final MBL PDF by OP Tony</div></div>
+          <div class="t-item"><b>2026-04-26 10:20</b><div class="hint">與 Draft MBL 比對完成</div></div>
+          <div class="t-item"><b>2026-04-26 10:35</b><div class="hint">同步 Document Center</div></div>
+        </div>
+        <div class="divider"></div>
+        <div class="actions">
+          <button class="btn gray">下載</button>
+          <button class="btn gray">列印</button>
+          <button class="btn primary">回到來源節點</button>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="panel" id="archive">
+    <div class="section-title">歸檔規則 / Document Center 與其他模組分工</div>
+    <table class="table">
+      <thead><tr><th>文件類型</th><th>來源操作頁</th><th>進入 Document Center 時機</th><th>歸檔條件</th><th>是否可在 Center 修改內容</th></tr></thead>
+      <tbody>
+        <tr><td>HBL</td><td>Job → HBL 管理</td><td>Draft 產生時同步索引；Issued / Released 後歸檔</td><td>Released 或 Job Closed</td><td>否，需回 HBL 管理改版</td></tr>
+        <tr><td>SI</td><td>Execution Center → SI 發送</td><td>SI Sent 後產生記錄</td><td>MBL Draft 收到並比對完成</td><td>否，需回 SI 節點</td></tr>
+        <tr><td>MBL</td><td>Execution Center → MBL 管理</td><td>Draft / Final 上傳時同步</td><td>Final Received + Release Evidence 完成</td><td>否，只能補傳附件 / 摘要欄位</td></tr>
+        <tr><td>報關文件</td><td>Execution Center → 出口報關</td><td>客戶文件收到或報關行回傳時同步</td><td>已放行 + 回傳文件齊全</td><td>否，正式送關值回報關節點</td></tr>
+        <tr><td>拖車 / 進倉</td><td>Execution Center → 拖車 / 進倉</td><td>派車單、照片、收據上傳時同步</td><td>作業完成 + 附件齊全</td><td>否，只做補傳 / 標籤</td></tr>
+      </tbody>
+    </table>
+    <div class="divider"></div>
+    <div class="note">
+      設計原則：Document Center 可以補傳附件、加標籤、批次下載、標記歸檔，但「正式資料修改」必須回到來源節點，避免文件中心變成第二個操作中心。
+    </div>
+  </section>
+
+  <section class="panel" id="log">
+    <div class="section-title">操作記錄 / Audit Log</div>
+    <table class="table">
+      <thead><tr><th>時間</th><th>使用者</th><th>動作</th><th>文件</th><th>備註</th></tr></thead>
+      <tbody>
+        <tr><td>2026-04-26 10:35</td><td>OP Tony</td><td>同步歸檔</td><td>Final MBL PDF</td><td>從 MBL 管理節點同步</td></tr>
+        <tr><td>2026-04-26 10:20</td><td>OP Tony</td><td>比對完成</td><td>Draft MBL PDF</td><td>Vessel / POL / POD / 件重尺一致</td></tr>
+        <tr><td>2026-04-26 09:40</td><td>Mary</td><td>上傳</td><td>Commercial Invoice</td><td>客戶 Email 附件</td></tr>
+        <tr><td>2026-04-26 09:15</td><td>System</td><td>建立缺件提醒</td><td>Packing List</td><td>出口報關節點缺件</td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+
+<div class="modal-mask" id="uploadModal">
+  <div class="modal">
+    <div class="modal-h"><div class="modal-title">上傳 / 補傳文件</div><button class="close-x" onclick="closeModals()">×</button></div>
+    <div class="modal-b">
+      <div class="grid-3">
+        <div><label>關聯 Job</label><input class="field" value="FSEJ25040001"></div>
+        <div><label>文件類型</label><select class="select"><option>Packing List</option><option>MBL</option><option>HBL</option><option>Customs</option></select></div>
+        <div><label>來源節點</label><select class="select"><option>出口報關</option><option>MBL 管理</option><option>HBL 管理</option><option>拖車 / 進倉</option></select></div>
+      </div>
+      <div class="divider"></div>
+      <div class="upload-box">拖曳檔案至此，或點擊選擇檔案<br><button class="btn gray" style="margin-top:10px">選擇檔案</button></div>
+      <label>備註</label><textarea placeholder="例如：客戶補傳 Packing List，供本次報關使用。"></textarea>
+    </div>
+    <div class="modal-f"><button class="btn gray" onclick="closeModals()">取消</button><button class="btn primary" onclick="closeModals();showToast('文件已上傳並同步缺件狀態')">上傳並更新狀態</button></div>
+  </div>
+</div>
+
+<div class="modal-mask" id="missingModal">
+  <div class="modal">
+    <div class="modal-h"><div class="modal-title">建立追件任務</div><button class="close-x" onclick="closeModals()">×</button></div>
+    <div class="modal-b">
+      <div class="grid-2">
+        <div><label>追件文件</label><input class="field" value="Packing List"></div>
+        <div><label>追件對象</label><input class="field" value="ABC TRADING / Mary"></div>
+        <div><label>負責人</label><input class="field" value="OP Tony"></div>
+        <div><label>期限</label><input class="field" type="datetime-local" value="2026-04-27T12:00"></div>
+      </div>
+      <div class="divider"></div>
+      <label>追件訊息範本</label>
+      <textarea>請協助提供本票出口報關所需 Packing List，因報關截止時間接近，煩請於期限前回傳，謝謝。</textarea>
+    </div>
+    <div class="modal-f"><button class="btn gray" onclick="closeModals()">取消</button><button class="btn amber" onclick="closeModals();showToast('追件任務已建立')">建立追件</button></div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+const tabs=document.querySelectorAll('.tab');
+const panels=document.querySelectorAll('.panel');
+tabs.forEach(tab=>tab.addEventListener('click',()=>{
+  tabs.forEach(t=>t.classList.remove('active'));
+  panels.forEach(p=>p.classList.remove('active'));
+  tab.classList.add('active');
+  document.getElementById(tab.dataset.tab).classList.add('active');
+}));
+function showToast(msg){
+  const t=document.getElementById('toast');
+  t.textContent=msg;
+  t.classList.add('active');
+  setTimeout(()=>t.classList.remove('active'),1800);
+}
+function syncSelected(){
+  const checks=[...document.querySelectorAll('.rowcheck')];
+  const selected=checks.filter(c=>c.checked);
+  checks.forEach(c=>c.closest('tr').classList.toggle('selected',c.checked));
+  document.getElementById('selectedCount').textContent=selected.length;
+  document.getElementById('bulkbarSearch').classList.toggle('active',selected.length>0);
+}
+function toggleSelected(checked){
+  document.querySelectorAll('.rowcheck').forEach(c=>c.checked=checked);
+  syncSelected();
+}
+function openUploadModal(){document.getElementById('uploadModal').classList.add('active')}
+function openMissingModal(){document.getElementById('missingModal').classList.add('active')}
+function closeModals(){document.querySelectorAll('.modal-mask').forEach(m=>m.classList.remove('active'))}
+function openPreview(name){
+  document.querySelector('[data-tab="preview"]').click();
+  document.querySelector('#previewBox .paper-title').textContent=name.toUpperCase();
+}
+</script>
+</body>
+</html>

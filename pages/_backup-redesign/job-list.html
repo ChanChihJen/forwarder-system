@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Job 管理</title><link rel="stylesheet" href="../assets/app.css"></head>
+  <body data-title="Job 管理" data-subtitle="來源：doc/2-0.job-wireframe-ocean-air-dual-mode-full.html，Job 列表提供進入 Execution、Document、AP/AR 的路徑">
+    <div data-shell>
+      <section class="page-head"><div><h2 class="page-title">Job List</h2><p class="page-desc">Job 是作業主體，保留 Shipment、Routing、Cargo、HBL、Execution 進度、費用摘要與文件摘要。</p></div><a class="btn primary" href="job-detail.html">新增 Job</a></section>
+      <section class="kpi-grid"><div class="kpi"><b>Draft</b><strong>6</strong><small>待補資料</small></div><div class="kpi"><b>In Execution</b><strong>18</strong><small>作業中</small></div><div class="kpi"><b>Pending Document</b><strong>9</strong><small>缺件或待確認</small></div><div class="kpi"><b>Closed</b><strong>32</strong><small>本月結案</small></div></section>
+      <section class="card"><div class="card-head"><h3 class="card-title">Job 清單</h3><div class="actions"><button class="btn gray sm" data-toast="已套用 Job 篩選">篩選</button><button class="btn gray sm" data-toast="已匯出 Job 清單">匯出</button></div></div><div class="card-body">
+        <div class="filters"><div><label>搜尋</label><input class="field" placeholder="Job No. / Booking / HBL / Customer"></div><div><label>Mode</label><select class="select"><option>All</option><option>Ocean</option><option>Air</option></select></div><div><label>Status</label><select class="select"><option>All</option><option>In Execution</option><option>Closed</option></select></div><div><label>OP</label><select class="select"><option>All</option><option>TONY</option></select></div><button class="btn primary" data-toast="搜尋完成">搜尋</button></div>
+        <div class="table-wrap"><table class="table"><thead><tr><th>Job No.</th><th>Customer</th><th>Mode</th><th>Shipment</th><th>Execution</th><th>文件</th><th>費用</th><th>狀態</th><th>入口</th></tr></thead><tbody>
+          <tr data-href="job-detail.html"><td><b>FSEJ25040001</b><div class="hint">From BKG-2504-0008</div></td><td>ABC TRADING</td><td><span class="pill blue">Ocean FCL</span></td><td>KHH to LAX<br>1 x 40'HQ</td><td>SI Sent / Customs Waiting</td><td><span class="pill amber">2 Missing</span></td><td>GP 18.4%</td><td><span class="pill blue">In Execution</span></td><td><a class="btn sm soft" href="job-detail.html">查看</a></td></tr>
+          <tr data-href="job-detail.html"><td><b>FSAJ25040009</b></td><td>Metro Retail</td><td><span class="pill purple">Air</span></td><td>TPE to SIN<br>620 CW</td><td>Flight Confirmed</td><td><span class="pill green">Ready</span></td><td>GP 14.2%</td><td><span class="pill green">Active</span></td><td><a class="btn sm soft" href="job-detail.html">查看</a></td></tr>
+          <tr data-href="job-detail.html"><td><b>FSEJ25040014</b></td><td>Green Ocean Foods</td><td><span class="pill blue">Ocean LCL</span></td><td>TXG to RTM<br>18.4 CBM</td><td>Draft HBL</td><td><span class="pill amber">Pending Review</span></td><td>Draft</td><td><span class="pill gray">Draft</span></td><td><a class="btn sm soft" href="job-detail.html">查看</a></td></tr>
+          <tr data-href="job-detail.html"><td><b>FSEJ25040021</b></td><td>Bright Living</td><td><span class="pill blue">Ocean FCL</span></td><td>KHH to SYD<br>1 x 20'TK</td><td>On Board</td><td><span class="pill green">Final</span></td><td>Approved</td><td><span class="pill green">Closed</span></td><td><a class="btn sm soft" href="job-detail.html">查看</a></td></tr>
+        </tbody></table></div>
+      </div></section>
+    </div>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>

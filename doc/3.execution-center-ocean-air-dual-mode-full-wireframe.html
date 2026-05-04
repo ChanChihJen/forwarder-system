@@ -1,0 +1,528 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Execution Center｜Ocean + Air 雙模式完整版</title>
+<style>
+:root{--blue:#1769aa;--green:#16a34a;--line:#d7dee8;--muted:#64748b;--bg:#f3f6fa;--text:#1f2937}
+*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",Arial,sans-serif;background:var(--bg);color:var(--text)}
+.shell-top{height:74px;background:#fff;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;position:sticky;top:0;z-index:100}
+.title{font-size:22px;font-weight:900;color:#0f3b63}.subtitle{font-size:12px;color:var(--muted);margin-top:4px}
+.mode-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.mode-btn{border:1px solid #cbd5e1;background:#fff;border-radius:999px;padding:10px 16px;font-weight:900;cursor:pointer;color:#334155}.mode-btn.active.ocean{background:#1769aa;color:#fff;border-color:#1769aa}.mode-btn.active.air{background:#15803d;color:#fff;border-color:#15803d}
+.shell-note{max-width:1600px;margin:18px auto 0;background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.55}
+.mode-wrap{max-width:1680px;margin:14px auto 44px;padding:0 18px}.mode-panel{display:none}.mode-panel.active{display:block}
+iframe{width:100%;height:calc(100vh - 130px);min-height:980px;border:1px solid var(--line);border-radius:16px;background:#fff;box-shadow:0 2px 8px rgba(15,59,99,.05)}
+.badge{display:inline-flex;padding:4px 9px;border-radius:999px;font-size:12px;font-weight:900;background:#eef4fa;color:#33536b;margin-left:8px}
+@media(max-width:760px){.shell-top{height:auto;padding:14px;align-items:flex-start;gap:12px;flex-direction:column}.mode-actions{width:100%}.mode-btn{flex:1}iframe{height:1100px}}
+</style>
+</head>
+<body>
+<header class="shell-top">
+  <div><div class="title">Execution Center｜Ocean + Air 雙模式完整版</div><div class="subtitle">Ocean 完全使用資料來源中的 execution-center-full-flow-wireframe.html；Air 補齊每個頁籤的操作示範。</div></div>
+  <div class="mode-actions"><button id="btnOcean" class="mode-btn ocean active" onclick="switchMode('ocean')">Ocean 海運出口 <span class="badge">原始完整版</span></button><button id="btnAir" class="mode-btn air" onclick="switchMode('air')">Air 空運出口 <span class="badge">操作完整版</span></button></div>
+</header>
+<div class="shell-note">設計定位：同一個 Execution Center 依 Transport Mode 切換流程模板。Ocean 保留既有 SI / MBL / 報關 / 拖車 / On Board 完整操作；Air 則對應 Space / HAWB / 進倉 / 報關 / Security / MAWB / Flight / POD。</div>
+<div class="mode-wrap">
+  <section id="panelOcean" class="mode-panel active"><iframe title="Ocean Execution Center" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;zh-Hant&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;title&gt;Execution Center｜SI + MBL + 出口報關 + 拖車進倉 + On Board Wireframe&lt;/title&gt;
+&lt;style&gt;
+:root{--blue:#1769aa;--blue2:#eaf5ff;--line:#d7dee8;--text:#1f2937;--muted:#64748b;--green:#16a34a;--greenbg:#ecfdf5;--amber:#d97706;--amberbg:#fff7ed;--red:#dc2626;--redbg:#fee2e2;--purple:#7c3aed;--purplebg:#f3e8ff;--soft:#f8fafc}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans TC&quot;,Arial,sans-serif;background:#f3f6fa;color:var(--text);font-size:14px}.topbar{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:0 28px;position:sticky;top:0;z-index:20}.page-title{font-size:21px;font-weight:900}.subtitle{font-size:12px;color:var(--muted);margin-top:3px}.actions{display:flex;gap:10px;align-items:center}.btn{border:1px solid #cbd5e1;background:#fff;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer}.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}.btn.green{background:var(--green);color:#fff;border-color:var(--green)}.btn.amber{background:var(--amber);color:#fff;border-color:var(--amber)}.btn.gray{background:#f8fafc;color:#334155}.btn.danger{background:#fff;color:var(--red);border-color:#fecaca}.btn:disabled{opacity:.5;cursor:not-allowed}.content{max-width:1600px;margin:0 auto;padding:22px 28px 44px}.note{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.55;margin-bottom:16px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 2px 8px rgba(15,59,99,.05)}.section-title{font-size:15px;font-weight:900;color:#0f3b63;margin:4px 0 12px;display:flex;justify-content:space-between;align-items:center;gap:12px}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px 18px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px 18px}.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.layout{display:grid;grid-template-columns:320px 1fr;gap:16px}.field-wrap{border-radius:12px;padding:10px;border:1px solid transparent}.field-wrap.required{border-left:4px solid var(--blue);background:var(--blue2)}label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:800}.field,.select,textarea{width:100%;border:1px solid #cbd5e1;background:#fff;border-radius:8px;min-height:36px;padding:8px 10px;font-size:14px;font-family:inherit}textarea{min-height:82px;resize:vertical}.hint{font-size:12px;color:var(--muted);line-height:1.55}.pill{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:900;white-space:nowrap}.pill.blue{background:var(--blue2);color:var(--blue)}.pill.green{background:var(--greenbg);color:#166534}.pill.amber{background:var(--amberbg);color:#9a3412}.pill.red{background:#fee2e2;color:#991b1b}.pill.gray{background:#f1f5f9;color:#475569}.pill.purple{background:var(--purplebg);color:#5b21b6}.divider{height:1px;background:#e5edf5;margin:18px 0}.summary-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.summary-item{background:#fff;border:1px solid #dbeafe;border-radius:12px;padding:10px}.summary-item b{display:block;color:#0f3b63;margin-bottom:4px;font-size:12px}.summary-item span{font-size:14px;font-weight:800}.sidebar{position:sticky;top:88px;align-self:start}.timeline{display:flex;flex-direction:column;gap:9px}.step{border:1px solid #dbe3ee;background:#fff;border-radius:14px;padding:12px;cursor:pointer}.step.active{border-color:var(--blue);background:var(--blue2);outline:2px solid rgba(23,105,170,.18)}.step.done{border-color:#86efac;background:#ecfdf5}.step.warn{border-color:#fed7aa;background:#fff7ed}.step.lock{background:#f8fafc;color:#64748b}.step-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.step-title{font-weight:900;color:#0f3b63}.step-desc{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.45}.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);overflow-x:auto;margin-bottom:0}.tab{padding:11px 16px;border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;background:#eef4fa;color:#33536b;font-size:14px;font-weight:800;cursor:pointer;white-space:nowrap}.tab.active{background:#fff;color:#0f3b63}.panel{display:none;background:#fff;border:1px solid var(--line);border-top:0;border-radius:0 0 16px 16px;padding:18px;margin-bottom:18px}.panel.active{display:block}.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.flow-step{border:1px solid #cbd5e1;background:#fff;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:900;color:#33536b}.flow-step.done{background:#ecfdf5;border-color:#86efac;color:#166534}.flow-step.active{background:#1769aa;border-color:#1769aa;color:#fff}.flow-step.warn{background:#fff7ed;border-color:#fed7aa;color:#9a3412}.arrow{color:#94a3b8;font-weight:900}.main-split{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.box-title{font-size:16px;font-weight:900;color:#0f3b63;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:10px}.subcard{border:1px solid #dbe3ee;border-radius:16px;background:#fbfdff;padding:14px;margin-bottom:14px}.table{width:100%;border-collapse:collapse;font-size:13px;background:#fff}th{background:#eef4fa;color:#33536b;text-align:left;padding:10px;border:1px solid var(--line)}td{padding:9px 10px;border:1px solid var(--line);vertical-align:top}.num{text-align:right}.source-line{display:flex;justify-content:space-between;gap:12px;border:1px dashed #93c5fd;background:#eff6ff;border-radius:12px;padding:10px;margin-bottom:10px}.source-line b{color:#0f3b63}.doc-card{border:1px solid #dbe3ee;background:#fff;border-radius:14px;padding:12px;margin-bottom:10px}.doc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.doc-name{font-weight:900;color:#0f3b63}.doc-meta{font-size:12px;color:#64748b;margin-top:4px;line-height:1.4}.upload-box{border:2px dashed #cbd5e1;background:#f8fafc;border-radius:14px;padding:18px;text-align:center;color:#64748b;margin-bottom:12px}.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.check-item{border:1px solid #dbe3ee;background:#fff;border-radius:12px;padding:10px;display:flex;gap:8px;align-items:flex-start}.check-item input{margin-top:2px}.logline{background:#fbfdff;border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px;line-height:1.55}.preview{border:1px solid #cbd5e1;background:#fff;border-radius:14px;min-height:460px;padding:18px;box-shadow:inset 0 0 0 8px #f8fafc}.paper-title{text-align:center;font-size:18px;font-weight:900;letter-spacing:.5px;margin:10px 0 16px}.paper-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.paper-field{border:1px solid #111;padding:8px;min-height:70px;font-size:12px;white-space:pre-line}.paper-field b{display:block;margin-bottom:4px}.paper-long{border:1px solid #111;padding:8px;min-height:120px;font-size:12px;white-space:pre-line;margin-top:10px}.link-banner{border:1px solid #bbf7d0;background:#ecfdf5;border-radius:14px;padding:12px;margin-bottom:14px;display:flex;justify-content:space-between;gap:12px;align-items:center}.alert{border:1px solid #fed7aa;background:#fff7ed;color:#9a3412;border-radius:14px;padding:12px;margin-bottom:14px;line-height:1.55}.modal-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:50;align-items:center;justify-content:center;padding:20px}.modal-mask.active{display:flex}.modal{background:#fff;border-radius:18px;border:1px solid var(--line);box-shadow:0 20px 60px rgba(15,23,42,.22);max-width:760px;width:100%;overflow:hidden}.modal-h{padding:16px 18px;background:#f8fafc;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.modal-title{font-weight:900;font-size:18px;color:#0f3b63}.modal-b{padding:18px}.modal-f{padding:14px 18px;background:#f8fafc;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:10px}.close-x{border:0;background:transparent;font-size:22px;cursor:pointer;color:#64748b}.toast{position:fixed;right:24px;bottom:24px;background:#0f3b63;color:#fff;border-radius:12px;padding:12px 16px;box-shadow:0 10px 30px rgba(15,23,42,.25);display:none;z-index:60;font-weight:800}.toast.active{display:block}@media(max-width:1250px){.layout,.main-split{grid-template-columns:1fr}.sidebar{position:static}.summary-grid,.grid-5{grid-template-columns:repeat(3,1fr)}}@media(max-width:760px){.topbar{height:auto;align-items:flex-start;flex-direction:column;padding:14px}.content{padding:14px}.summary-grid,.grid-2,.grid-3,.grid-4,.grid-5,.checklist{grid-template-columns:1fr}.actions{flex-wrap:wrap}.paper-grid{grid-template-columns:1fr}}
+.doc-flow-callout{border:1px solid #bbf7d0;background:#ecfdf5;border-radius:14px;padding:12px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;gap:12px}.doc-flow-callout b{color:#0f3b63}.doc-flow-callout .hint{margin-top:4px}.doc-flow-callout.purple{border-color:#ddd6fe;background:#f5f3ff}.mini-link{display:inline-block;margin-top:8px;color:#1769aa;font-weight:900;font-size:12px;cursor:pointer;text-decoration:none}.mini-link:hover{text-decoration:underline}.doc-flow-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}.doc-flow-node{background:#fff;border:1px solid #dbe3ee;border-radius:14px;padding:12px}.doc-flow-node strong{display:block;color:#0f3b63;margin-bottom:6px}.doc-flow-node small{color:#64748b;line-height:1.45}.doc-flow-actions{display:flex;gap:8px;flex-wrap:wrap;align-items:center}@media(max-width:1050px){.doc-flow-grid{grid-template-columns:1fr 1fr}}@media(max-width:720px){.doc-flow-callout{align-items:flex-start;flex-direction:column}.doc-flow-grid{grid-template-columns:1fr}}&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;header class=&quot;topbar&quot;&gt;
+  &lt;div&gt;&lt;div class=&quot;page-title&quot;&gt;Execution Center｜SI + MBL + 出口報關 + 拖車進倉 + On Board&lt;/div&gt;&lt;div class=&quot;subtitle&quot;&gt;Execution Center 內整合文件上游、外部 MBL、報關、拖車/進倉與上船確認；Document Center 僅作查詢與下載。&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;actions&quot;&gt;&lt;button class=&quot;btn&quot;&gt;返回 Execution Center&lt;/button&gt;&lt;button class=&quot;btn gray&quot;&gt;開啟 Job&lt;/button&gt;&lt;button class=&quot;btn&quot; onclick=&quot;openDocumentFlow()&quot;&gt;Document Flow&lt;/button&gt;&lt;button class=&quot;btn primary&quot;&gt;儲存&lt;/button&gt;&lt;/div&gt;
+&lt;/header&gt;
+&lt;main class=&quot;content&quot;&gt;
+  &lt;div class=&quot;note&quot;&gt;設計原則：本頁不是獨立新模組，而是 Execution Center 裡的「SI / MBL 節點詳情」。使用者從 Execution Timeline 點擊 SI 或 MBL 進入此頁；MBL PDF 最後可同步到 Document Center。&lt;/div&gt;
+
+  &lt;section class=&quot;card&quot;&gt;
+    &lt;div class=&quot;section-title&quot;&gt;Job / Shipment Summary&lt;/div&gt;
+    &lt;div class=&quot;summary-grid&quot;&gt;
+      &lt;div class=&quot;summary-item&quot;&gt;&lt;b&gt;Job No.&lt;/b&gt;&lt;span&gt;FSEJ25040001&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;summary-item&quot;&gt;&lt;b&gt;Shipment&lt;/b&gt;&lt;span&gt;Shipment 1｜FCL&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;summary-item&quot;&gt;&lt;b&gt;Carrier&lt;/b&gt;&lt;span&gt;COSCO&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;summary-item&quot;&gt;&lt;b&gt;Vessel / Voyage&lt;/b&gt;&lt;span&gt;OOCL BEIJING / 092S&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;summary-item&quot;&gt;&lt;b&gt;POL → POD&lt;/b&gt;&lt;span&gt;SHANGHAI → MELBOURNE&lt;/span&gt;&lt;/div&gt;
+      &lt;div class=&quot;summary-item&quot;&gt;&lt;b&gt;ETD / ETA&lt;/b&gt;&lt;span&gt;2021-10-30 / 2021-11-10&lt;/span&gt;&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;div class=&quot;layout&quot;&gt;
+    &lt;aside class=&quot;sidebar&quot;&gt;
+      &lt;section class=&quot;card&quot;&gt;
+        &lt;div class=&quot;section-title&quot;&gt;Execution Timeline&lt;/div&gt;
+        &lt;div class=&quot;doc-flow-callout purple&quot;&gt;
+          &lt;div&gt;&lt;b&gt;文件流程追蹤&lt;/b&gt;&lt;div class=&quot;hint&quot;&gt;從 SI、MBL、報關到 On Board，查看文件來源、狀態與依賴關係。&lt;/div&gt;&lt;/div&gt;
+          &lt;button class=&quot;btn primary&quot; onclick=&quot;openDocumentFlow()&quot;&gt;Document Flow&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;timeline&quot;&gt;
+          &lt;div class=&quot;step done&quot;&gt;&lt;div class=&quot;step-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;step-title&quot;&gt;1. 訂艙確認 / SO&lt;/div&gt;&lt;div class=&quot;step-desc&quot;&gt;SO25040001 已取得&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill green&quot;&gt;Done&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;div class=&quot;step active&quot; onclick=&quot;openTab('si')&quot;&gt;&lt;div class=&quot;step-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;step-title&quot;&gt;2. SI 發送&lt;/div&gt;&lt;div class=&quot;step-desc&quot;&gt;目前 Draft，可發送給 Carrier / Co-loader&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill blue&quot;&gt;Active&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;div class=&quot;step warn&quot; onclick=&quot;openTab('mbl')&quot;&gt;&lt;div class=&quot;step-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;step-title&quot;&gt;3. MBL Draft / Final&lt;/div&gt;&lt;div class=&quot;step-desc&quot;&gt;等待 Draft MBL 回覆&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill amber&quot;&gt;Waiting&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;div class=&quot;step warn&quot; onclick=&quot;openTab('customs')&quot;&gt;&lt;div class=&quot;step-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;step-title&quot;&gt;4. 出口報關&lt;/div&gt;&lt;div class=&quot;step-desc&quot;&gt;報關資料準備中，待送關&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill amber&quot;&gt;Open&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;div class=&quot;step&quot; onclick=&quot;openTab('trucking')&quot;&gt;&lt;div class=&quot;step-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;step-title&quot;&gt;5. 拖車 / 進倉&lt;/div&gt;&lt;div class=&quot;step-desc&quot;&gt;可安排車行 / 倉庫作業&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill gray&quot;&gt;Todo&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+          &lt;div class=&quot;step lock&quot; onclick=&quot;openTab('onboard')&quot;&gt;&lt;div class=&quot;step-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;step-title&quot;&gt;6. On Board&lt;/div&gt;&lt;div class=&quot;step-desc&quot;&gt;待船公司 / MBL 回覆確認&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill gray&quot;&gt;Locked&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+      &lt;section class=&quot;card&quot;&gt;
+        &lt;div class=&quot;section-title&quot;&gt;目前待辦&lt;/div&gt;
+        &lt;div class=&quot;logline&quot;&gt;確認 SI 是否採用 HBL Party 資料或另行 Override。&lt;/div&gt;
+        &lt;div class=&quot;logline&quot;&gt;SI 發送後，等待 Carrier 回傳 Draft MBL PDF。&lt;/div&gt;
+        &lt;div class=&quot;logline&quot;&gt;出口報關資料尚未送關；拖車與倉庫作業待安排。&lt;/div&gt;
+      &lt;/section&gt;
+    &lt;/aside&gt;
+
+    &lt;main&gt;
+      &lt;section class=&quot;card&quot;&gt;
+        &lt;div class=&quot;section-title&quot;&gt;Execution 狀態流程&lt;/div&gt;
+        &lt;div class=&quot;flow&quot;&gt;
+          &lt;span class=&quot;flow-step done&quot;&gt;SO Confirmed&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;
+          &lt;span class=&quot;flow-step active&quot;&gt;SI Sent&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;
+          &lt;span class=&quot;flow-step warn&quot;&gt;MBL Draft&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;
+          &lt;span class=&quot;flow-step warn&quot;&gt;Customs Open&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;
+          &lt;span class=&quot;flow-step&quot;&gt;Truck / Warehouse&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;
+          &lt;span class=&quot;flow-step&quot;&gt;On Board&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div style=&quot;margin-top:12px;text-align:right&quot;&gt;&lt;button class=&quot;btn gray&quot; onclick=&quot;openDocumentFlow()&quot;&gt;查看對應 Document Flow&lt;/button&gt;&lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;nav class=&quot;tabs&quot;&gt;
+        &lt;button class=&quot;tab active&quot; data-tab=&quot;si&quot; onclick=&quot;openTab('si')&quot;&gt;SI 發送&lt;/button&gt;
+        &lt;button class=&quot;tab&quot; data-tab=&quot;mbl&quot; onclick=&quot;openTab('mbl')&quot;&gt;MBL 管理&lt;/button&gt;
+        &lt;button class=&quot;tab&quot; data-tab=&quot;customs&quot; onclick=&quot;openTab('customs')&quot;&gt;出口報關&lt;/button&gt;
+        &lt;button class=&quot;tab&quot; data-tab=&quot;trucking&quot; onclick=&quot;openTab('trucking')&quot;&gt;拖車 / 進倉&lt;/button&gt;
+        &lt;button class=&quot;tab&quot; data-tab=&quot;onboard&quot; onclick=&quot;openTab('onboard')&quot;&gt;On Board&lt;/button&gt;
+        &lt;button class=&quot;tab&quot; data-tab=&quot;source&quot; onclick=&quot;openTab('source')&quot;&gt;資料來源比對&lt;/button&gt;
+        &lt;button class=&quot;tab&quot; data-tab=&quot;docs&quot; onclick=&quot;openTab('docs')&quot;&gt;文件與附件&lt;/button&gt;
+        &lt;button class=&quot;tab&quot; data-tab=&quot;log&quot; onclick=&quot;openTab('log')&quot;&gt;操作記錄&lt;/button&gt;
+      &lt;/nav&gt;
+
+      &lt;section class=&quot;panel active&quot; id=&quot;si&quot;&gt;
+        &lt;div class=&quot;main-split&quot;&gt;
+          &lt;div&gt;
+            &lt;div class=&quot;box-title&quot;&gt;SI 編輯 / 發送 &lt;span class=&quot;pill blue&quot;&gt;Draft&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;link-banner&quot;&gt;&lt;div&gt;&lt;b&gt;資料帶入來源：&lt;/b&gt;Job + Shipment + Cargo + HBL&lt;div class=&quot;hint&quot;&gt;SI 是 Document Flow 的第一個文件產生節點。&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;doc-flow-actions&quot;&gt;&lt;button class=&quot;btn gray&quot; onclick=&quot;openSourceModal()&quot;&gt;檢查來源&lt;/button&gt;&lt;button class=&quot;btn primary&quot; onclick=&quot;openDocumentFlow('si')&quot;&gt;看 SI 文件流程&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;grid-3&quot;&gt;
+              &lt;div class=&quot;field-wrap required&quot;&gt;&lt;label&gt;SI To *&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;COSCO - SI Desk&lt;/option&gt;&lt;option&gt;Co-loader / Agent&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+              &lt;div class=&quot;field-wrap required&quot;&gt;&lt;label&gt;MBL Type *&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;Carrier MBL&lt;/option&gt;&lt;option&gt;Co-loader MBL&lt;/option&gt;&lt;option&gt;NVOCC MBL&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;SI Deadline&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;datetime-local&quot; value=&quot;2021-10-28T12:00&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;grid-2&quot;&gt;
+              &lt;div&gt;&lt;label&gt;Shipper on MBL / SI&lt;/label&gt;&lt;textarea&gt;FLY INT'L LOGISTICS CO., LTD.
+19F, NO. 90, SEC. 2, NANKING E. RD., TAIPEI, TAIWAN&lt;/textarea&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Consignee on MBL / SI&lt;/label&gt;&lt;textarea&gt;TO ORDER OF COSCO SHIPPING LINES&lt;/textarea&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Notify Party&lt;/label&gt;&lt;textarea&gt;ASEA360 CONSOLIDATION PTY LTD
+LEVEL 1, 4 AVIATION PLACE TULLAMARINE VIC 3043&lt;/textarea&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Also Notify / Delivery Agent&lt;/label&gt;&lt;textarea&gt;ASEA360 CONSOLIDATION PTY LTD
+TEL: +613 8346 0166&lt;/textarea&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;grid-4&quot;&gt;
+              &lt;div&gt;&lt;label&gt;Vessel&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;OOCL BEIJING&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Voyage&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;092S&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;POL&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;SHANGHAI&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;POD&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;MELBOURNE&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;On Board Date&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;date&quot; value=&quot;2021-10-30&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Freight Term&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;FREIGHT PREPAID&lt;/option&gt;&lt;option&gt;FREIGHT COLLECT&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;No. of Original&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;THREE (3)&lt;/option&gt;&lt;option&gt;ONE (1)&lt;/option&gt;&lt;option&gt;SEAWAY BILL&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Release Type&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;Original B/L&lt;/option&gt;&lt;option&gt;Telex Release&lt;/option&gt;&lt;option&gt;Surrender&lt;/option&gt;&lt;option&gt;Sea Waybill&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;
+            &lt;div&gt;&lt;label&gt;Goods Description / Marks / Container&lt;/label&gt;&lt;textarea style=&quot;min-height:140px&quot;&gt;Container No.: BMOU5853097
+Seal No.: CN937420
+1 X 40'HQ / 149 CARTONS / 5,432.5000 KGS / 53.8230 CBM
+
+Marks: UBCO
+Description: LITHIUM ION BATTERIES / ELECTRIC SCOOTER&lt;/textarea&gt;&lt;/div&gt;
+            &lt;div style=&quot;margin-top:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap&quot;&gt;
+              &lt;div class=&quot;hint&quot;&gt;SI 發送後不代表 MBL 完成；需等待 Carrier / Co-loader 回傳 Draft MBL。&lt;/div&gt;
+              &lt;div&gt;&lt;button class=&quot;btn gray&quot;&gt;儲存 Draft&lt;/button&gt; &lt;button class=&quot;btn&quot;&gt;匯出 SI&lt;/button&gt; &lt;button class=&quot;btn green&quot; onclick=&quot;showToast('SI 已標記為 Sent，等待 Draft MBL 回覆')&quot;&gt;標記 SI 已送出&lt;/button&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;aside&gt;
+            &lt;div class=&quot;box-title&quot;&gt;SI 預覽&lt;/div&gt;
+            &lt;div class=&quot;preview&quot;&gt;
+              &lt;div class=&quot;paper-title&quot;&gt;SHIPPING INSTRUCTION&lt;/div&gt;
+              &lt;div class=&quot;paper-grid&quot;&gt;
+                &lt;div class=&quot;paper-field&quot;&gt;&lt;b&gt;Shipper&lt;/b&gt;FLY INT'L LOGISTICS CO., LTD.
+19F, NO. 90, SEC. 2, NANKING E. RD.&lt;/div&gt;
+                &lt;div class=&quot;paper-field&quot;&gt;&lt;b&gt;Consignee&lt;/b&gt;TO ORDER OF COSCO SHIPPING LINES&lt;/div&gt;
+                &lt;div class=&quot;paper-field&quot;&gt;&lt;b&gt;Notify&lt;/b&gt;ASEA360 CONSOLIDATION PTY LTD&lt;/div&gt;
+                &lt;div class=&quot;paper-field&quot;&gt;&lt;b&gt;Vessel / Voyage&lt;/b&gt;OOCL BEIJING / 092S
+POL: SHANGHAI
+POD: MELBOURNE&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;paper-long&quot;&gt;&lt;b&gt;Cargo&lt;/b&gt;BMOU5853097 / CN937420 / 40'HQ
+149 CARTONS / 5,432.5000 KGS / 53.8230 CBM
+LITHIUM ION BATTERIES / ELECTRIC SCOOTER&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/aside&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;section class=&quot;panel&quot; id=&quot;mbl&quot;&gt;
+        &lt;div class=&quot;main-split&quot;&gt;
+          &lt;div&gt;
+            &lt;div class=&quot;box-title&quot;&gt;MBL 管理 &lt;span class=&quot;pill amber&quot;&gt;等待 Draft&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;alert&quot;&gt;MBL 通常由 Carrier / Co-loader 回傳 PDF 或紙本掃描。系統不一定產生 MBL 正本，但必須管理 MBL No.、狀態、Draft 確認與 Final 檔案。&lt;/div&gt;
+            &lt;div class=&quot;grid-4&quot;&gt;
+              &lt;div&gt;&lt;label&gt;MBL No.&lt;/label&gt;&lt;input class=&quot;field&quot; placeholder=&quot;待 Carrier 提供&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;MBL Provider&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;COSCO&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;MBL Status&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;Waiting Draft&lt;/option&gt;&lt;option&gt;Draft Received&lt;/option&gt;&lt;option&gt;Confirmed&lt;/option&gt;&lt;option&gt;Final Received&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Matched Shipment&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;Shipment 1｜FCL&quot; readonly&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;grid-2&quot;&gt;
+              &lt;div class=&quot;subcard&quot;&gt;
+                &lt;div class=&quot;box-title&quot;&gt;Draft MBL&lt;/div&gt;
+                &lt;div class=&quot;upload-box&quot;&gt;拖放或上傳 Draft MBL PDF&lt;br&gt;&lt;button class=&quot;btn gray&quot; style=&quot;margin-top:10px&quot;&gt;選擇檔案&lt;/button&gt;&lt;/div&gt;
+                &lt;div class=&quot;checklist&quot;&gt;
+                  &lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; &lt;span&gt;MBL No. 正確&lt;/span&gt;&lt;/label&gt;
+                  &lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; &lt;span&gt;Vessel / Voyage 正確&lt;/span&gt;&lt;/label&gt;
+                  &lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; &lt;span&gt;POL / POD 正確&lt;/span&gt;&lt;/label&gt;
+                  &lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; &lt;span&gt;件重尺正確&lt;/span&gt;&lt;/label&gt;
+                &lt;/div&gt;
+                &lt;div style=&quot;margin-top:12px;text-align:right&quot;&gt;&lt;button class=&quot;btn green&quot; onclick=&quot;showToast('Draft MBL 已確認')&quot;&gt;標記 Draft 已確認&lt;/button&gt;&lt;/div&gt;
+              &lt;/div&gt;
+              &lt;div class=&quot;subcard&quot;&gt;
+                &lt;div class=&quot;box-title&quot;&gt;Final MBL&lt;/div&gt;
+                &lt;div class=&quot;upload-box&quot;&gt;上傳 Final MBL / Original Scan / Telex Release&lt;br&gt;&lt;button class=&quot;btn gray&quot; style=&quot;margin-top:10px&quot;&gt;選擇檔案&lt;/button&gt;&lt;/div&gt;
+                &lt;div class=&quot;grid-2&quot;&gt;
+                  &lt;div&gt;&lt;label&gt;Release Type&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;Original&lt;/option&gt;&lt;option&gt;Telex Release&lt;/option&gt;&lt;option&gt;Surrender&lt;/option&gt;&lt;option&gt;Sea Waybill&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+                  &lt;div&gt;&lt;label&gt;Received Date&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;date&quot;&gt;&lt;/div&gt;
+                &lt;/div&gt;
+                &lt;div style=&quot;margin-top:12px;text-align:right&quot;&gt;&lt;button class=&quot;btn primary&quot; onclick=&quot;showToast('Final MBL 已收到，已同步到 Document Center')&quot;&gt;標記 Final 已收到&lt;/button&gt;&lt;/div&gt;
+              &lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;aside&gt;
+            &lt;div class=&quot;box-title&quot;&gt;MBL 文件清單&lt;/div&gt;
+            &lt;div class=&quot;doc-flow-callout&quot;&gt;
+              &lt;div&gt;&lt;b&gt;MBL 文件流程&lt;/b&gt;&lt;div class=&quot;hint&quot;&gt;查看 Draft MBL → Confirmed → Final MBL → Document Center 的狀態。&lt;/div&gt;&lt;/div&gt;
+              &lt;button class=&quot;btn primary&quot; onclick=&quot;openDocumentFlow('mbl')&quot;&gt;開啟&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;doc-card&quot;&gt;&lt;div class=&quot;doc-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;Draft MBL PDF&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;尚未上傳｜來源：Carrier&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill gray&quot;&gt;Missing&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;doc-card&quot;&gt;&lt;div class=&quot;doc-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;Final MBL PDF&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;尚未上傳｜同步到 Document Center&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill gray&quot;&gt;Missing&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;doc-card&quot;&gt;&lt;div class=&quot;doc-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;Telex / Surrender Evidence&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;依放單類型選擇性上傳&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill amber&quot;&gt;Optional&lt;/span&gt;&lt;/div&gt;&lt;a class=&quot;mini-link&quot; onclick=&quot;openDocumentFlow('mbl')&quot;&gt;查看完整文件流程 →&lt;/a&gt;&lt;/div&gt;
+          &lt;/aside&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;section class=&quot;panel&quot; id=&quot;customs&quot;&gt;
+        &lt;div class=&quot;main-split&quot;&gt;
+          &lt;div&gt;
+            &lt;div class=&quot;box-title&quot;&gt;出口報關 / Customs Declaration &lt;span class=&quot;pill amber&quot;&gt;資料準備中&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;alert&quot;&gt;出口報關是 Execution 的操作節點。系統管理報關資料、報關行、送關狀態、放行結果與附件；報關單本身通常由報關行回傳 PDF / 截圖 / 文件檔。&lt;/div&gt;
+            &lt;div class=&quot;grid-4&quot;&gt;
+              &lt;div class=&quot;field-wrap required&quot;&gt;&lt;label&gt;報關類型 *&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;一般出口報關&lt;/option&gt;&lt;option&gt;轉口 / Re-export&lt;/option&gt;&lt;option&gt;保稅 / Bonded&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+              &lt;div class=&quot;field-wrap required&quot;&gt;&lt;label&gt;報關行 *&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;ABC CUSTOMS BROKER&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;報關狀態&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;資料準備中&lt;/option&gt;&lt;option&gt;已送報關行&lt;/option&gt;&lt;option&gt;已送關&lt;/option&gt;&lt;option&gt;已放行&lt;/option&gt;&lt;option&gt;查驗 / 異常&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;報關截止&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;datetime-local&quot; value=&quot;2021-10-29T12:00&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;出口國 / 地區&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;CHINA&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;申報港口&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;SHANGHAI&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;報關單號&lt;/label&gt;&lt;input class=&quot;field&quot; placeholder=&quot;報關行回覆後填入&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;放行日期&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;date&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;grid-2&quot;&gt;
+              &lt;div&gt;&lt;label&gt;Shipper / Exporter&lt;/label&gt;&lt;textarea&gt;WUXI YADEA EXPORT-IMPORT CO.,LTD
+DONGSHENG ROAD, DACHENG INDUSTRIAL ZONE, WUXI, CHINA&lt;/textarea&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Consignee / Buyer&lt;/label&gt;&lt;textarea&gt;UBCO AUSTRALIA
+UNIT 15, 238 GOVERNOR RD, BRAESIDE 3195, MELBOURNE, VIC&lt;/textarea&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Commodity / 貨名&lt;/label&gt;&lt;textarea&gt;LITHIUM ION BATTERIES
+ELECTRIC SCOOTER&lt;/textarea&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;申報備註&lt;/label&gt;&lt;textarea&gt;需確認鋰電池相關出口文件是否齊全；若需 MSDS / UN38.3，請上傳附件。&lt;/textarea&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;table&quot;&gt;
+              &lt;thead&gt;&lt;tr&gt;&lt;th&gt;資料項目&lt;/th&gt;&lt;th&gt;Job / Cargo 來源&lt;/th&gt;&lt;th&gt;報關用值&lt;/th&gt;&lt;th&gt;檢查&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;&lt;td&gt;件數&lt;/td&gt;&lt;td&gt;149 CARTONS&lt;/td&gt;&lt;td&gt;&lt;input class=&quot;field&quot; value=&quot;149 CARTONS&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill green&quot;&gt;一致&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;重量&lt;/td&gt;&lt;td&gt;5,432.5000 KGS&lt;/td&gt;&lt;td&gt;&lt;input class=&quot;field&quot; value=&quot;5432.5 KGS&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill green&quot;&gt;一致&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;CBM&lt;/td&gt;&lt;td&gt;53.8230&lt;/td&gt;&lt;td&gt;&lt;input class=&quot;field&quot; value=&quot;53.8230&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill green&quot;&gt;一致&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;櫃號 / 封條&lt;/td&gt;&lt;td&gt;BMOU5853097 / CN937420&lt;/td&gt;&lt;td&gt;&lt;input class=&quot;field&quot; value=&quot;BMOU5853097 / CN937420&quot;&gt;&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill green&quot;&gt;一致&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div style=&quot;margin-top:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap&quot;&gt;
+              &lt;div class=&quot;hint&quot;&gt;報關資料可從 Cargo / HBL 帶入，但送關值需保留當下快照，避免後續 HBL 改版影響已送關資料。&lt;/div&gt;
+              &lt;div&gt;&lt;button class=&quot;btn gray&quot;&gt;儲存報關資料&lt;/button&gt; &lt;button class=&quot;btn&quot;&gt;匯出報關資料包&lt;/button&gt; &lt;button class=&quot;btn green&quot; onclick=&quot;showToast('已標記報關資料送出')&quot;&gt;標記已送報關行&lt;/button&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;aside&gt;
+            &lt;div class=&quot;box-title&quot;&gt;報關附件 / 檢查&lt;/div&gt;
+            &lt;div class=&quot;doc-flow-callout&quot;&gt;
+              &lt;div&gt;&lt;b&gt;報關文件流程&lt;/b&gt;&lt;div class=&quot;hint&quot;&gt;追蹤 Invoice / Packing、報關資料包、放行文件與送關狀態。&lt;/div&gt;&lt;/div&gt;
+              &lt;button class=&quot;btn primary&quot; onclick=&quot;openDocumentFlow('customs')&quot;&gt;開啟&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;doc-card&quot;&gt;&lt;div class=&quot;doc-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;Commercial Invoice&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;客戶提供｜供報關使用&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill green&quot;&gt;Ready&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;doc-card&quot;&gt;&lt;div class=&quot;doc-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;Packing List&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;客戶提供｜供報關使用&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill green&quot;&gt;Ready&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;doc-card&quot;&gt;&lt;div class=&quot;doc-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;報關放行文件&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;報關行回傳後上傳&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill gray&quot;&gt;Missing&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;upload-box&quot;&gt;上傳報關相關文件&lt;br&gt;&lt;button class=&quot;btn gray&quot; style=&quot;margin-top:10px&quot;&gt;選擇檔案&lt;/button&gt;&lt;/div&gt;
+            &lt;div class=&quot;checklist&quot;&gt;
+              &lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot; checked&gt; &lt;span&gt;Invoice / Packing 已收到&lt;/span&gt;&lt;/label&gt;
+              &lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; &lt;span&gt;特殊文件已確認&lt;/span&gt;&lt;/label&gt;
+              &lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; &lt;span&gt;已送報關行&lt;/span&gt;&lt;/label&gt;
+              &lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; &lt;span&gt;已放行&lt;/span&gt;&lt;/label&gt;
+            &lt;/div&gt;
+          &lt;/aside&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;section class=&quot;panel&quot; id=&quot;trucking&quot;&gt;
+        &lt;div class=&quot;main-split&quot;&gt;
+          &lt;div&gt;
+            &lt;div class=&quot;box-title&quot;&gt;拖車 / 進倉 / 裝櫃作業 &lt;span class=&quot;pill gray&quot;&gt;待安排&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;link-banner&quot;&gt;&lt;div&gt;&lt;b&gt;設計重點：&lt;/b&gt;FCL 管理拖車、提櫃、裝櫃、還櫃；LCL 管理 CFS 進倉與倉庫收貨。此頁用同一節點支援兩種情境。&lt;/div&gt;&lt;button class=&quot;btn gray&quot;&gt;依 Shipment Type 切換欄位&lt;/button&gt;&lt;/div&gt;
+            &lt;div class=&quot;grid-4&quot;&gt;
+              &lt;div class=&quot;field-wrap required&quot;&gt;&lt;label&gt;作業類型 *&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;FCL 拖車 / 裝櫃&lt;/option&gt;&lt;option&gt;LCL 進倉 / CFS&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+              &lt;div class=&quot;field-wrap required&quot;&gt;&lt;label&gt;車行 / 倉庫 *&lt;/label&gt;&lt;input class=&quot;field&quot; placeholder=&quot;選擇 Vendor / Warehouse&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;作業狀態&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;待安排&lt;/option&gt;&lt;option&gt;已派車&lt;/option&gt;&lt;option&gt;已提櫃&lt;/option&gt;&lt;option&gt;已裝櫃&lt;/option&gt;&lt;option&gt;已還櫃 / 已進倉&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Cut-off&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;datetime-local&quot; value=&quot;2021-10-29T18:00&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Pickup / 提櫃時間&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;datetime-local&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Loading / 進倉時間&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;datetime-local&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Return CY / CFS&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;SHANGHAI CY&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;完成時間&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;datetime-local&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;grid-2&quot;&gt;
+              &lt;div&gt;&lt;label&gt;Pickup Address / 裝貨地&lt;/label&gt;&lt;textarea&gt;WUXI YADEA FACTORY
+DACHENG INDUSTRIAL ZONE, ANZHEN TOWN, WUXI CITY, CHINA&lt;/textarea&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Return / CFS Address&lt;/label&gt;&lt;textarea&gt;SHANGHAI CY / CFS
+依 SO 指定場站辦理&lt;/textarea&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;司機 / 聯絡資料&lt;/label&gt;&lt;textarea&gt;Driver: 待安排
+Mobile: 待安排
+Truck Plate: 待安排&lt;/textarea&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;作業備註&lt;/label&gt;&lt;textarea&gt;需確認貨已備妥、是否需監裝照片、封條號碼是否與 Cargo 資料一致。&lt;/textarea&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;table&quot;&gt;
+              &lt;thead&gt;&lt;tr&gt;&lt;th&gt;Container / Cargo&lt;/th&gt;&lt;th&gt;Seal&lt;/th&gt;&lt;th&gt;Size / Type&lt;/th&gt;&lt;th&gt;PKG&lt;/th&gt;&lt;th&gt;Weight&lt;/th&gt;&lt;th&gt;CBM&lt;/th&gt;&lt;th&gt;作業狀態&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+              &lt;tbody&gt;&lt;tr&gt;&lt;td&gt;BMOU5853097&lt;/td&gt;&lt;td&gt;CN937420&lt;/td&gt;&lt;td&gt;40'HQ&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;149 CTNS&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;5,432.5&lt;/td&gt;&lt;td class=&quot;num&quot;&gt;53.823&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill gray&quot;&gt;待裝櫃&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;
+            &lt;/table&gt;
+            &lt;div style=&quot;margin-top:14px;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap&quot;&gt;
+              &lt;div class=&quot;hint&quot;&gt;拖車 / 進倉完成後可回寫 Cargo 的櫃號、封條、進倉狀態，但不應覆蓋已確認的 HBL 文件版本。&lt;/div&gt;
+              &lt;div&gt;&lt;button class=&quot;btn gray&quot;&gt;儲存安排&lt;/button&gt; &lt;button class=&quot;btn green&quot; onclick=&quot;showToast('已標記拖車 / 進倉完成')&quot;&gt;標記作業完成&lt;/button&gt;&lt;/div&gt;
+            &lt;/div&gt;
+          &lt;/div&gt;
+          &lt;aside&gt;
+            &lt;div class=&quot;box-title&quot;&gt;作業附件 / 提醒&lt;/div&gt;
+            &lt;div class=&quot;doc-flow-callout&quot;&gt;
+              &lt;div&gt;&lt;b&gt;拖車 / 進倉文件流程&lt;/b&gt;&lt;div class=&quot;hint&quot;&gt;追蹤 SO 場站資料、派車單、裝櫃照片與進倉收據。&lt;/div&gt;&lt;/div&gt;
+              &lt;button class=&quot;btn primary&quot; onclick=&quot;openDocumentFlow('operation')&quot;&gt;開啟&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;doc-card&quot;&gt;&lt;div class=&quot;doc-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;SO / 場站資訊&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;由訂艙確認帶入&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill green&quot;&gt;Ready&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;doc-card&quot;&gt;&lt;div class=&quot;doc-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;派車單 / Trucking Order&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;可匯出給車行&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill blue&quot;&gt;Draft&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;doc-card&quot;&gt;&lt;div class=&quot;doc-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;裝櫃照片 / 進倉收據&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;作業完成後上傳&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill gray&quot;&gt;Missing&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;upload-box&quot;&gt;上傳裝櫃照片 / 收據 / 場站證明&lt;br&gt;&lt;button class=&quot;btn gray&quot; style=&quot;margin-top:10px&quot;&gt;選擇檔案&lt;/button&gt;&lt;/div&gt;
+            &lt;div class=&quot;logline&quot;&gt;若出口報關尚未放行，On Board 不應標記完成。&lt;/div&gt;
+            &lt;div class=&quot;logline&quot;&gt;若櫃號 / 封條與 Cargo 不一致，需產生異常提醒。&lt;/div&gt;
+          &lt;/aside&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;section class=&quot;panel&quot; id=&quot;onboard&quot;&gt;
+        &lt;div class=&quot;main-split&quot;&gt;
+          &lt;div&gt;
+            &lt;div class=&quot;box-title&quot;&gt;On Board / 上船確認 &lt;span class=&quot;pill gray&quot;&gt;待確認&lt;/span&gt;&lt;/div&gt;
+            &lt;div class=&quot;alert&quot;&gt;On Board 通常依 Carrier / Co-loader / MBL 或船公司通知確認。此節點會影響 HBL On Board Date、MBL Final、文件放單與後續結案。&lt;/div&gt;
+            &lt;div class=&quot;grid-4&quot;&gt;
+              &lt;div class=&quot;field-wrap required&quot;&gt;&lt;label&gt;On Board Status *&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;待確認&lt;/option&gt;&lt;option&gt;已上船&lt;/option&gt;&lt;option&gt;延船&lt;/option&gt;&lt;option&gt;取消 / Roll Over&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+              &lt;div class=&quot;field-wrap required&quot;&gt;&lt;label&gt;On Board Date *&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;date&quot; value=&quot;2021-10-30&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;確認來源&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;Carrier Notice&lt;/option&gt;&lt;option&gt;MBL Draft / Final&lt;/option&gt;&lt;option&gt;Co-loader Confirmation&lt;/option&gt;&lt;option&gt;船公司網站&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;確認人員&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;TONY&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Actual Vessel&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;OOCL BEIJING&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Actual Voyage&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;092S&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;Actual ETD&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;date&quot; value=&quot;2021-10-30&quot;&gt;&lt;/div&gt;
+              &lt;div&gt;&lt;label&gt;ETA&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;date&quot; value=&quot;2021-11-10&quot;&gt;&lt;/div&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;
+            &lt;div class=&quot;section-title&quot;&gt;完成前檢查&lt;/div&gt;
+            &lt;div class=&quot;checklist&quot;&gt;
+              &lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; &lt;span&gt;出口報關已放行&lt;/span&gt;&lt;/label&gt;
+              &lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; &lt;span&gt;拖車 / 進倉已完成&lt;/span&gt;&lt;/label&gt;
+              &lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; &lt;span&gt;MBL Draft / Final 已取得或已確認來源&lt;/span&gt;&lt;/label&gt;
+              &lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; &lt;span&gt;HBL On Board Date 可同步&lt;/span&gt;&lt;/label&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;
+            &lt;table class=&quot;table&quot;&gt;
+              &lt;thead&gt;&lt;tr&gt;&lt;th&gt;影響項目&lt;/th&gt;&lt;th&gt;目前狀態&lt;/th&gt;&lt;th&gt;同步方式&lt;/th&gt;&lt;th&gt;操作&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+              &lt;tbody&gt;
+                &lt;tr&gt;&lt;td&gt;HBL On Board Date&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill blue&quot;&gt;待同步&lt;/span&gt;&lt;/td&gt;&lt;td&gt;同步到 HBL 目前版本；若已確認需建立版本&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;btn gray&quot;&gt;同步到 HBL&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;MBL Final&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill gray&quot;&gt;待上傳&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Final MBL 收到後同步 Document Center&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;btn gray&quot; onclick=&quot;openTab('mbl')&quot;&gt;前往 MBL&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+                &lt;tr&gt;&lt;td&gt;Execution Status&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill gray&quot;&gt;未完成&lt;/span&gt;&lt;/td&gt;&lt;td&gt;上船確認後改為 On Board Completed&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;btn green&quot; onclick=&quot;showToast('已標記 On Board 完成')&quot;&gt;標記完成&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;
+              &lt;/tbody&gt;
+            &lt;/table&gt;
+          &lt;/div&gt;
+          &lt;aside&gt;
+            &lt;div class=&quot;box-title&quot;&gt;On Board 證明 / 異常&lt;/div&gt;
+            &lt;div class=&quot;doc-flow-callout&quot;&gt;
+              &lt;div&gt;&lt;b&gt;On Board 文件流程&lt;/b&gt;&lt;div class=&quot;hint&quot;&gt;確認 On Board Notice / MBL On Board Date 後，同步 HBL 與文件完成狀態。&lt;/div&gt;&lt;/div&gt;
+              &lt;button class=&quot;btn primary&quot; onclick=&quot;openDocumentFlow('onboard')&quot;&gt;開啟&lt;/button&gt;
+            &lt;/div&gt;
+            &lt;div class=&quot;doc-card&quot;&gt;&lt;div class=&quot;doc-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;Carrier On Board Notice&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;由船公司 / Co-loader 回傳&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill gray&quot;&gt;Missing&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;doc-card&quot;&gt;&lt;div class=&quot;doc-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;MBL with On Board Date&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;可作為最終確認來源&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill amber&quot;&gt;Waiting&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+            &lt;div class=&quot;upload-box&quot;&gt;上傳上船證明 / 船公司通知 / MBL&lt;br&gt;&lt;button class=&quot;btn gray&quot; style=&quot;margin-top:10px&quot;&gt;選擇檔案&lt;/button&gt;&lt;/div&gt;
+            &lt;div class=&quot;logline&quot;&gt;&lt;b&gt;Roll Over&lt;/b&gt;&lt;br&gt;若船名 / 航次 / ETD 改變，需回寫 Shipment Routing，並提醒 HBL / MBL 是否需改版。&lt;/div&gt;
+            &lt;div class=&quot;logline&quot;&gt;&lt;b&gt;Late SI / Late Gate&lt;/b&gt;&lt;br&gt;若晚送 SI 或晚還櫃，應在操作記錄留下原因。&lt;/div&gt;
+          &lt;/aside&gt;
+        &lt;/div&gt;
+      &lt;/section&gt;
+
+      &lt;section class=&quot;panel&quot; id=&quot;source&quot;&gt;
+        &lt;div class=&quot;section-title&quot;&gt;資料來源比對&lt;/div&gt;
+        &lt;div class=&quot;source-line&quot;&gt;&lt;div&gt;&lt;b&gt;目的：&lt;/b&gt;讓 OP 確認 SI 用的是 Job / HBL / Cargo 哪一份資料，避免重複輸入與文件不一致。&lt;/div&gt;&lt;button class=&quot;btn gray&quot;&gt;重新比對&lt;/button&gt;&lt;/div&gt;
+        &lt;table class=&quot;table&quot;&gt;
+          &lt;thead&gt;&lt;tr&gt;&lt;th&gt;欄位&lt;/th&gt;&lt;th&gt;Job / Shipment&lt;/th&gt;&lt;th&gt;HBL&lt;/th&gt;&lt;th&gt;SI 目前值&lt;/th&gt;&lt;th&gt;建議&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;&lt;td&gt;Vessel / Voyage&lt;/td&gt;&lt;td&gt;OOCL BEIJING / 092S&lt;/td&gt;&lt;td&gt;OOCL BEIJING / 092S&lt;/td&gt;&lt;td&gt;OOCL BEIJING / 092S&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill green&quot;&gt;一致&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;Shipper&lt;/td&gt;&lt;td&gt;WUXI YADEA&lt;/td&gt;&lt;td&gt;WUXI YADEA&lt;/td&gt;&lt;td&gt;FLY INT'L LOGISTICS&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill amber&quot;&gt;MBL 可用 Forwarder&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;Consignee&lt;/td&gt;&lt;td&gt;UBCO AUSTRALIA&lt;/td&gt;&lt;td&gt;UBCO AUSTRALIA&lt;/td&gt;&lt;td&gt;TO ORDER OF COSCO&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill amber&quot;&gt;依 MBL 指示&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;Cargo&lt;/td&gt;&lt;td&gt;149 CTNS / 5432.5 KGS / 53.823 CBM&lt;/td&gt;&lt;td&gt;相同&lt;/td&gt;&lt;td&gt;相同&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill green&quot;&gt;一致&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/section&gt;
+
+      &lt;section class=&quot;panel&quot; id=&quot;docs&quot;&gt;
+        &lt;div class=&quot;section-title&quot;&gt;文件與附件 &lt;button class=&quot;btn primary&quot; onclick=&quot;openDocumentFlow()&quot;&gt;開啟 Document Flow&lt;/button&gt;&lt;/div&gt;
+        &lt;div class=&quot;doc-flow-callout purple&quot;&gt;
+          &lt;div&gt;&lt;b&gt;Document Flow 是文件流程總覽&lt;/b&gt;&lt;div class=&quot;hint&quot;&gt;這裡仍保留附件清單；若要看文件從哪裡來、在哪個 Execution 節點產生、誰確認、目前卡在哪裡，請進入 Document Flow。&lt;/div&gt;&lt;/div&gt;
+          &lt;button class=&quot;btn primary&quot; onclick=&quot;openDocumentFlow()&quot;&gt;查看完整文件流程&lt;/button&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;doc-flow-grid&quot;&gt;
+          &lt;div class=&quot;doc-flow-node&quot;&gt;&lt;strong&gt;SI&lt;/strong&gt;&lt;small&gt;系統由 Job / Shipment / Cargo / HBL 帶入後產生，送給 Carrier / Co-loader。&lt;/small&gt;&lt;/div&gt;
+          &lt;div class=&quot;doc-flow-node&quot;&gt;&lt;strong&gt;MBL&lt;/strong&gt;&lt;small&gt;由 Carrier / Co-loader 回傳 Draft / Final，系統管理狀態與附件。&lt;/small&gt;&lt;/div&gt;
+          &lt;div class=&quot;doc-flow-node&quot;&gt;&lt;strong&gt;報關&lt;/strong&gt;&lt;small&gt;由 Invoice / Packing / Cargo 形成報關資料包，送報關行後追蹤放行。&lt;/small&gt;&lt;/div&gt;
+          &lt;div class=&quot;doc-flow-node&quot;&gt;&lt;strong&gt;On Board&lt;/strong&gt;&lt;small&gt;依 Carrier Notice / MBL 確認實際上船，回寫 HBL / 文件完成狀態。&lt;/small&gt;&lt;/div&gt;
+        &lt;/div&gt;
+        &lt;table class=&quot;table&quot;&gt;
+          &lt;thead&gt;&lt;tr&gt;&lt;th&gt;文件類型&lt;/th&gt;&lt;th&gt;來源&lt;/th&gt;&lt;th&gt;狀態&lt;/th&gt;&lt;th&gt;同步位置&lt;/th&gt;&lt;th&gt;操作&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;
+          &lt;tbody&gt;
+            &lt;tr&gt;&lt;td&gt;SI Export PDF&lt;/td&gt;&lt;td&gt;系統匯出&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill blue&quot;&gt;Draft&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Execution / Document Center&lt;/td&gt;&lt;td&gt;預覽 / 下載 / Email&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;Draft MBL&lt;/td&gt;&lt;td&gt;Carrier / Co-loader&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill gray&quot;&gt;待上傳&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Document Center - MBL&lt;/td&gt;&lt;td&gt;上傳&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;Final MBL&lt;/td&gt;&lt;td&gt;Carrier / Co-loader&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill gray&quot;&gt;待上傳&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Document Center - MBL&lt;/td&gt;&lt;td&gt;上傳&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;放單證明&lt;/td&gt;&lt;td&gt;Carrier / Agent&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill amber&quot;&gt;選擇性&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Document Center - Release&lt;/td&gt;&lt;td&gt;上傳&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;報關資料包 / 放行文件&lt;/td&gt;&lt;td&gt;報關行 / OP&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill amber&quot;&gt;準備中&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Document Center - Customs&lt;/td&gt;&lt;td&gt;上傳 / 下載&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;派車單 / 進倉收據&lt;/td&gt;&lt;td&gt;車行 / 倉庫&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill gray&quot;&gt;待作業&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Document Center - Operation&lt;/td&gt;&lt;td&gt;上傳&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;On Board Notice&lt;/td&gt;&lt;td&gt;Carrier / Co-loader&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill gray&quot;&gt;待確認&lt;/span&gt;&lt;/td&gt;&lt;td&gt;Document Center - Operation&lt;/td&gt;&lt;td&gt;上傳&lt;/td&gt;&lt;/tr&gt;
+          &lt;/tbody&gt;
+        &lt;/table&gt;
+      &lt;/section&gt;
+
+      &lt;section class=&quot;panel&quot; id=&quot;log&quot;&gt;
+        &lt;div class=&quot;section-title&quot;&gt;操作記錄 / Audit Log&lt;/div&gt;
+        &lt;div class=&quot;logline&quot;&gt;&lt;b&gt;2026-04-26 14:20｜TONY&lt;/b&gt;&lt;br&gt;由 Execution Timeline 進入 SI / MBL 整合頁。&lt;/div&gt;
+        &lt;div class=&quot;logline&quot;&gt;&lt;b&gt;2026-04-26 14:25｜TONY&lt;/b&gt;&lt;br&gt;從 Job / Shipment / HBL / Cargo 帶入 SI Draft。&lt;/div&gt;
+        &lt;div class=&quot;logline&quot;&gt;&lt;b&gt;2026-04-26 14:30｜系統&lt;/b&gt;&lt;br&gt;提醒：Draft MBL 尚未上傳。&lt;/div&gt;
+        &lt;div class=&quot;logline&quot;&gt;&lt;b&gt;2026-04-26 14:35｜TONY&lt;/b&gt;&lt;br&gt;建立出口報關資料草稿，待確認 Invoice / Packing List。&lt;/div&gt;
+        &lt;div class=&quot;logline&quot;&gt;&lt;b&gt;2026-04-26 14:40｜系統&lt;/b&gt;&lt;br&gt;提醒：拖車 / 進倉尚未安排，On Board 仍為待確認。&lt;/div&gt;
+      &lt;/section&gt;
+    &lt;/main&gt;
+  &lt;/div&gt;
+&lt;/main&gt;
+
+&lt;div class=&quot;modal-mask&quot; id=&quot;sourceModal&quot;&gt;
+  &lt;div class=&quot;modal&quot;&gt;
+    &lt;div class=&quot;modal-h&quot;&gt;&lt;div class=&quot;modal-title&quot;&gt;確認 SI 資料來源&lt;/div&gt;&lt;button class=&quot;close-x&quot; onclick=&quot;closeSourceModal()&quot;&gt;×&lt;/button&gt;&lt;/div&gt;
+    &lt;div class=&quot;modal-b&quot;&gt;
+      &lt;div class=&quot;note&quot; style=&quot;margin-bottom:14px&quot;&gt;SI 可從 HBL / Cargo / Shipment 帶入，但 MBL 上的 Shipper / Consignee 可能與 HBL 不同，因此允許 Override，並留下紀錄。&lt;/div&gt;
+      &lt;table class=&quot;table&quot;&gt;&lt;tr&gt;&lt;th&gt;資料來源&lt;/th&gt;&lt;th&gt;用途&lt;/th&gt;&lt;th&gt;處理方式&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Shipment&lt;/td&gt;&lt;td&gt;Vessel / Voyage / POL / POD&lt;/td&gt;&lt;td&gt;預設帶入&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Cargo&lt;/td&gt;&lt;td&gt;Container / Seal / 件重尺&lt;/td&gt;&lt;td&gt;預設帶入&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;HBL&lt;/td&gt;&lt;td&gt;Cargo description / Marks&lt;/td&gt;&lt;td&gt;可帶入&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;SI Override&lt;/td&gt;&lt;td&gt;MBL Party / 放單條件&lt;/td&gt;&lt;td&gt;人工調整並留紀錄&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;modal-f&quot;&gt;&lt;button class=&quot;btn&quot; onclick=&quot;closeSourceModal()&quot;&gt;關閉&lt;/button&gt;&lt;button class=&quot;btn primary&quot; onclick=&quot;closeSourceModal();openTab('source')&quot;&gt;前往資料來源比對&lt;/button&gt;&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;toast&quot; id=&quot;toast&quot;&gt;已更新&lt;/div&gt;
+&lt;script&gt;
+function openTab(id){document.querySelectorAll('.tab').forEach(t=&gt;t.classList.toggle('active',t.dataset.tab===id));document.querySelectorAll('.panel').forEach(p=&gt;p.classList.toggle('active',p.id===id));}
+function openSourceModal(){document.getElementById('sourceModal').classList.add('active')}
+function closeSourceModal(){document.getElementById('sourceModal').classList.remove('active')}
+function openDocumentFlow(focus){
+  const suffix = focus ? ('#' + focus) : '';
+  try{ window.open('document-flow-wireframe.html' + suffix, '_blank'); }
+  catch(e){ showToast('請開啟 document-flow-wireframe.html 查看 Document Flow'); }
+}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('active');setTimeout(()=&gt;t.classList.remove('active'),2600)}
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></section>
+  <section id="panelAir" class="mode-panel"><iframe title="Air Execution Center" srcdoc="&lt;!doctype html&gt;
+&lt;html lang=&quot;zh-Hant&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;
+&lt;title&gt;Air Export Execution Center｜空運出口執行中心 Wireframe&lt;/title&gt;
+&lt;style&gt;
+:root{--blue:#1769aa;--blue2:#eaf5ff;--line:#d7dee8;--text:#1f2937;--muted:#64748b;--green:#16a34a;--greenbg:#ecfdf5;--amber:#d97706;--amberbg:#fff7ed;--red:#dc2626;--redbg:#fee2e2;--purple:#7c3aed;--purplebg:#f3e8ff;--soft:#f8fafc}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans TC&quot;,Arial,sans-serif;background:#f3f6fa;color:var(--text);font-size:14px}.topbar{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:0 28px;position:sticky;top:0;z-index:20}.page-title{font-size:21px;font-weight:900}.subtitle{font-size:12px;color:var(--muted);margin-top:3px}.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.btn{border:1px solid #cbd5e1;background:#fff;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer}.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}.btn.green{background:var(--green);color:#fff;border-color:var(--green)}.btn.amber{background:var(--amber);color:#fff;border-color:var(--amber)}.btn.gray{background:#f8fafc;color:#334155}.btn.danger{background:#fff;color:var(--red);border-color:#fecaca}.content{max-width:1660px;margin:0 auto;padding:22px 28px 44px}.note{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.55;margin-bottom:16px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 2px 8px rgba(15,59,99,.05)}.section-title{font-size:15px;font-weight:900;color:#0f3b63;margin:4px 0 12px;display:flex;justify-content:space-between;align-items:center;gap:12px}.summary-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.summary-item{background:#fff;border:1px solid #dbeafe;border-radius:12px;padding:10px}.summary-item b{display:block;color:#0f3b63;margin-bottom:4px;font-size:12px}.summary-item span{font-size:14px;font-weight:900}.layout{display:grid;grid-template-columns:330px 1fr;gap:16px}.sidebar{position:sticky;top:88px;align-self:start}.timeline{display:flex;flex-direction:column;gap:9px}.step{border:1px solid #dbe3ee;background:#fff;border-radius:14px;padding:12px;cursor:pointer}.step.active{border-color:var(--blue);background:var(--blue2);outline:2px solid rgba(23,105,170,.18)}.step.done{border-color:#86efac;background:#ecfdf5}.step.warn{border-color:#fed7aa;background:#fff7ed}.step.lock{background:#f8fafc;color:#64748b}.step-head{display:flex;justify-content:space-between;gap:8px;align-items:flex-start}.step-title{font-weight:900;color:#0f3b63}.step-desc{font-size:12px;color:var(--muted);margin-top:5px;line-height:1.45}.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);overflow-x:auto;margin-bottom:0}.tab{padding:11px 16px;border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;background:#eef4fa;color:#33536b;font-size:14px;font-weight:800;cursor:pointer;white-space:nowrap}.tab.active{background:#fff;color:#0f3b63}.panel{display:none;background:#fff;border:1px solid var(--line);border-top:0;border-radius:0 0 16px 16px;padding:18px;margin-bottom:18px}.panel.active{display:block}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.field-wrap{border-radius:12px;padding:10px;border:1px solid transparent}.field-wrap.required{border-left:4px solid var(--blue);background:var(--blue2)}label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:800}.field,.select,textarea{width:100%;border:1px solid #cbd5e1;background:#fff;border-radius:8px;min-height:36px;padding:8px 10px;font-size:14px;font-family:inherit}textarea{min-height:82px;resize:vertical}.hint{font-size:12px;color:var(--muted);line-height:1.55}.pill{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:900;white-space:nowrap}.pill.blue{background:var(--blue2);color:var(--blue)}.pill.green{background:var(--greenbg);color:#166534}.pill.amber{background:var(--amberbg);color:#9a3412}.pill.red{background:#fee2e2;color:#991b1b}.pill.gray{background:#f1f5f9;color:#475569}.pill.purple{background:var(--purplebg);color:#5b21b6}.divider{height:1px;background:#e5edf5;margin:18px 0}.flow{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.flow-step{border:1px solid #cbd5e1;background:#fff;border-radius:999px;padding:8px 12px;font-size:13px;font-weight:900;color:#33536b}.flow-step.done{background:#ecfdf5;border-color:#86efac;color:#166534}.flow-step.active{background:#1769aa;border-color:#1769aa;color:#fff}.flow-step.warn{background:#fff7ed;border-color:#fed7aa;color:#9a3412}.arrow{color:#94a3b8;font-weight:900}.main-split{display:grid;grid-template-columns:1.05fr .95fr;gap:18px}.box-title{font-size:16px;font-weight:900;color:#0f3b63;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;gap:10px}.subcard{border:1px solid #dbe3ee;border-radius:16px;background:#fbfdff;padding:14px;margin-bottom:14px}.table{width:100%;border-collapse:collapse;font-size:13px;background:#fff}th{background:#eef4fa;color:#33536b;text-align:left;padding:10px;border:1px solid var(--line)}td{padding:9px 10px;border:1px solid var(--line);vertical-align:top}.num{text-align:right}.link-banner{border:1px solid #bbf7d0;background:#ecfdf5;border-radius:14px;padding:12px;margin-bottom:14px;display:flex;justify-content:space-between;gap:12px;align-items:center}.alert{border:1px solid #fed7aa;background:#fff7ed;color:#9a3412;border-radius:14px;padding:12px;margin-bottom:14px;line-height:1.55}.source-line{display:flex;justify-content:space-between;gap:12px;border:1px dashed #93c5fd;background:#eff6ff;border-radius:12px;padding:10px;margin-bottom:10px}.doc-card{border:1px solid #dbe3ee;background:#fff;border-radius:14px;padding:12px;margin-bottom:10px}.doc-head{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.doc-name{font-weight:900;color:#0f3b63}.doc-meta{font-size:12px;color:#64748b;margin-top:4px;line-height:1.45}.upload-box{border:2px dashed #cbd5e1;background:#f8fafc;border-radius:14px;padding:18px;text-align:center;color:#64748b;margin-bottom:12px}.checklist{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.check-item{border:1px solid #dbe3ee;background:#fff;border-radius:12px;padding:10px;display:flex;gap:8px;align-items:flex-start}.check-item input{margin-top:2px}.logline{background:#fbfdff;border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px;line-height:1.55}.preview{border:1px solid #cbd5e1;background:#fff;border-radius:14px;min-height:460px;padding:18px;box-shadow:inset 0 0 0 8px #f8fafc}.paper-title{text-align:center;font-size:18px;font-weight:900;letter-spacing:.5px;margin:10px 0 16px}.paper-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.paper-field{border:1px solid #111;padding:8px;min-height:70px;font-size:12px;white-space:pre-line}.paper-field b{display:block;margin-bottom:4px}.paper-long{border:1px solid #111;padding:8px;min-height:120px;font-size:12px;white-space:pre-line;margin-top:10px}.toast{position:fixed;right:24px;bottom:24px;background:#0f3b63;color:#fff;border-radius:12px;padding:12px 16px;box-shadow:0 10px 30px rgba(15,23,42,.25);display:none;z-index:60;font-weight:800}.toast.active{display:block}@media(max-width:1250px){.layout,.main-split{grid-template-columns:1fr}.sidebar{position:static}.summary-grid{grid-template-columns:repeat(3,1fr)}}@media(max-width:760px){.topbar{height:auto;align-items:flex-start;flex-direction:column;padding:14px}.content{padding:14px}.summary-grid,.grid-2,.grid-3,.grid-4,.checklist{grid-template-columns:1fr}.actions{width:100%}.paper-grid{grid-template-columns:1fr}}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;header class=&quot;topbar&quot;&gt;
+  &lt;div&gt;&lt;div class=&quot;page-title&quot;&gt;Air Export Execution Center｜空運出口執行中心&lt;/div&gt;&lt;div class=&quot;subtitle&quot;&gt;空運出口專用流程：Space Confirm、HAWB、進倉、出口報關、安檢、MAWB、Flight Departure / Arrival 與交付追蹤&lt;/div&gt;&lt;/div&gt;
+  &lt;div class=&quot;actions&quot;&gt;&lt;button class=&quot;btn gray&quot; onclick=&quot;showToast('返回 Job')&quot;&gt;返回 Job&lt;/button&gt;&lt;button class=&quot;btn gray&quot; onclick=&quot;showToast('開啟 Document Flow')&quot;&gt;Document Flow&lt;/button&gt;&lt;button class=&quot;btn primary&quot; onclick=&quot;showToast('空運 Execution 已儲存')&quot;&gt;儲存&lt;/button&gt;&lt;/div&gt;
+&lt;/header&gt;
+&lt;main class=&quot;content&quot;&gt;
+  &lt;div class=&quot;note&quot;&gt;定位：這是海運 Execution Center 的空運版本。核心仍是「Job / Shipment + Execution 節點 + 文件附件 + 狀態控管」，但把 SI / MBL / On Board 改為空運常見的 HAWB、MAWB、Cargo Received、Security Screening、Flight Departure / Arrival。&lt;/div&gt;
+  &lt;section class=&quot;card&quot;&gt;&lt;div class=&quot;section-title&quot;&gt;Air Job / Shipment Summary&lt;/div&gt;&lt;div class=&quot;summary-grid&quot;&gt;&lt;div class=&quot;summary-item&quot;&gt;&lt;b&gt;Job No.&lt;/b&gt;&lt;span&gt;FAEJ26050001&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;summary-item&quot;&gt;&lt;b&gt;Shipment&lt;/b&gt;&lt;span&gt;Air Export｜Consol&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;summary-item&quot;&gt;&lt;b&gt;Airline / Agent&lt;/b&gt;&lt;span&gt;CI / TPE Cargo&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;summary-item&quot;&gt;&lt;b&gt;Flight&lt;/b&gt;&lt;span&gt;CI-008 / 2026-05-08&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;summary-item&quot;&gt;&lt;b&gt;Origin → Destination&lt;/b&gt;&lt;span&gt;TPE → LAX&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;summary-item&quot;&gt;&lt;b&gt;ETD / ETA&lt;/b&gt;&lt;span&gt;05-08 23:50 / 05-08 20:40&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/section&gt;
+  &lt;div class=&quot;layout&quot;&gt;
+    &lt;aside class=&quot;sidebar&quot;&gt;
+      &lt;section class=&quot;card&quot;&gt;&lt;div class=&quot;section-title&quot;&gt;Air Execution Timeline&lt;/div&gt;&lt;div class=&quot;timeline&quot;&gt;
+        &lt;div class=&quot;step done&quot; onclick=&quot;openTab('space')&quot;&gt;&lt;div class=&quot;step-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;step-title&quot;&gt;1. Space / Booking Confirm&lt;/div&gt;&lt;div class=&quot;step-desc&quot;&gt;航空公司 / 空運代理已確認艙位&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill green&quot;&gt;Done&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;step active&quot; onclick=&quot;openTab('hawb')&quot;&gt;&lt;div class=&quot;step-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;step-title&quot;&gt;2. HAWB Draft / Issue&lt;/div&gt;&lt;div class=&quot;step-desc&quot;&gt;HAWB 草稿確認與正式開立&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill blue&quot;&gt;Active&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;step warn&quot; onclick=&quot;openTab('warehouse')&quot;&gt;&lt;div class=&quot;step-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;step-title&quot;&gt;3. Cargo Received / Warehouse&lt;/div&gt;&lt;div class=&quot;step-desc&quot;&gt;等待倉庫入倉、秤重、丈量&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill amber&quot;&gt;Open&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;step warn&quot; onclick=&quot;openTab('customs')&quot;&gt;&lt;div class=&quot;step-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;step-title&quot;&gt;4. Export Customs&lt;/div&gt;&lt;div class=&quot;step-desc&quot;&gt;報關文件準備中&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill amber&quot;&gt;Open&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;step&quot; onclick=&quot;openTab('security')&quot;&gt;&lt;div class=&quot;step-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;step-title&quot;&gt;5. Security / Screening&lt;/div&gt;&lt;div class=&quot;step-desc&quot;&gt;安檢、危險品、電池貨提示&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill gray&quot;&gt;Todo&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;step&quot; onclick=&quot;openTab('mawb')&quot;&gt;&lt;div class=&quot;step-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;step-title&quot;&gt;6. MAWB / Manifest&lt;/div&gt;&lt;div class=&quot;step-desc&quot;&gt;航空公司主單與艙單資料&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill gray&quot;&gt;Todo&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+        &lt;div class=&quot;step lock&quot; onclick=&quot;openTab('flight')&quot;&gt;&lt;div class=&quot;step-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;step-title&quot;&gt;7. Flight / Delivery&lt;/div&gt;&lt;div class=&quot;step-desc&quot;&gt;ATD / ATA / POD 待更新&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill gray&quot;&gt;Locked&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;
+      &lt;/div&gt;&lt;/section&gt;
+      &lt;section class=&quot;card&quot;&gt;&lt;div class=&quot;section-title&quot;&gt;目前待辦&lt;/div&gt;&lt;div class=&quot;logline&quot;&gt;確認 HAWB Party、件重尺與品名是否可正式出單。&lt;/div&gt;&lt;div class=&quot;logline&quot;&gt;等待倉庫回傳實際重量 / 材積，計算 Chargeable Weight。&lt;/div&gt;&lt;div class=&quot;logline&quot;&gt;鋰電池貨需確認 MSDS / DG Declaration / Security Screening 狀態。&lt;/div&gt;&lt;/section&gt;
+    &lt;/aside&gt;
+    &lt;main&gt;
+      &lt;section class=&quot;card&quot;&gt;&lt;div class=&quot;section-title&quot;&gt;Air Execution 狀態流程&lt;/div&gt;&lt;div class=&quot;flow&quot;&gt;&lt;span class=&quot;flow-step done&quot;&gt;Space Confirmed&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;&lt;span class=&quot;flow-step active&quot;&gt;HAWB Draft&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;&lt;span class=&quot;flow-step warn&quot;&gt;Cargo Received&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;&lt;span class=&quot;flow-step warn&quot;&gt;Customs Open&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;&lt;span class=&quot;flow-step&quot;&gt;Security&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;&lt;span class=&quot;flow-step&quot;&gt;MAWB&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;&lt;span class=&quot;flow-step&quot;&gt;Flight / POD&lt;/span&gt;&lt;/div&gt;&lt;/section&gt;
+      &lt;nav class=&quot;tabs&quot;&gt;
+        &lt;button class=&quot;tab active&quot; data-tab=&quot;space&quot; onclick=&quot;openTab('space')&quot;&gt;Space / Booking&lt;/button&gt;&lt;button class=&quot;tab&quot; data-tab=&quot;hawb&quot; onclick=&quot;openTab('hawb')&quot;&gt;HAWB 管理&lt;/button&gt;&lt;button class=&quot;tab&quot; data-tab=&quot;warehouse&quot; onclick=&quot;openTab('warehouse')&quot;&gt;進倉 / 件重尺&lt;/button&gt;&lt;button class=&quot;tab&quot; data-tab=&quot;customs&quot; onclick=&quot;openTab('customs')&quot;&gt;出口報關&lt;/button&gt;&lt;button class=&quot;tab&quot; data-tab=&quot;security&quot; onclick=&quot;openTab('security')&quot;&gt;安檢 / DG&lt;/button&gt;&lt;button class=&quot;tab&quot; data-tab=&quot;mawb&quot; onclick=&quot;openTab('mawb')&quot;&gt;MAWB / Manifest&lt;/button&gt;&lt;button class=&quot;tab&quot; data-tab=&quot;flight&quot; onclick=&quot;openTab('flight')&quot;&gt;Flight / Delivery&lt;/button&gt;&lt;button class=&quot;tab&quot; data-tab=&quot;docs&quot; onclick=&quot;openTab('docs')&quot;&gt;文件與附件&lt;/button&gt;&lt;button class=&quot;tab&quot; data-tab=&quot;log&quot; onclick=&quot;openTab('log')&quot;&gt;操作記錄&lt;/button&gt;
+      &lt;/nav&gt;
+      &lt;section class=&quot;panel active&quot; id=&quot;space&quot;&gt;&lt;div class=&quot;main-split&quot;&gt;&lt;div&gt;&lt;div class=&quot;box-title&quot;&gt;Space / Booking Confirmation &lt;span class=&quot;pill green&quot;&gt;Confirmed&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;link-banner&quot;&gt;&lt;div&gt;&lt;b&gt;空運訂艙重點：&lt;/b&gt;確認航空公司、航班、艙位、Cut-off、交貨倉庫與 Rate。&lt;div class=&quot;hint&quot;&gt;此節點會帶入 HAWB / MAWB / Warehouse / Flight 節點。&lt;/div&gt;&lt;/div&gt;&lt;button class=&quot;btn primary&quot; onclick=&quot;showToast('已同步訂艙資料到後續節點')&quot;&gt;同步後續節點&lt;/button&gt;&lt;/div&gt;&lt;div class=&quot;grid-4&quot;&gt;&lt;div class=&quot;field-wrap required&quot;&gt;&lt;label&gt;Airline / Agent *&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;China Airlines / TPE Cargo&quot;&gt;&lt;/div&gt;&lt;div class=&quot;field-wrap required&quot;&gt;&lt;label&gt;Booking Ref *&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;AIR-BK-260508-001&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Flight No.&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;CI-008&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Service Type&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;Direct Flight&lt;/option&gt;&lt;option selected&gt;Consol&lt;/option&gt;&lt;option&gt;Back-to-Back&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Origin Airport&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;TPE&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Destination Airport&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;LAX&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;ETD&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;datetime-local&quot; value=&quot;2026-05-08T23:50&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;ETA&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;datetime-local&quot; value=&quot;2026-05-08T20:40&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Cargo Cut-off&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;datetime-local&quot; value=&quot;2026-05-08T16:00&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Doc Cut-off&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;datetime-local&quot; value=&quot;2026-05-08T14:00&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Warehouse&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;TPE Terminal 1 Cargo Warehouse&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Rate Basis&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;USD 4.80 / KG&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;aside&gt;&lt;div class=&quot;box-title&quot;&gt;Booking Summary&lt;/div&gt;&lt;table class=&quot;table&quot;&gt;&lt;tr&gt;&lt;th&gt;項目&lt;/th&gt;&lt;th&gt;內容&lt;/th&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;狀態&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill green&quot;&gt;Space Confirmed&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;艙位&lt;/td&gt;&lt;td&gt;300 KG / 2.3 CBM&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;條件&lt;/td&gt;&lt;td&gt;Airport to Airport&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;提醒&lt;/td&gt;&lt;td&gt;鋰電池貨，需安檢文件&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/aside&gt;&lt;/div&gt;&lt;/section&gt;
+      &lt;section class=&quot;panel&quot; id=&quot;hawb&quot;&gt;&lt;div class=&quot;main-split&quot;&gt;&lt;div&gt;&lt;div class=&quot;box-title&quot;&gt;HAWB 管理 &lt;span class=&quot;pill blue&quot;&gt;Draft&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;alert&quot;&gt;空運 HAWB 是客戶文件主軸，狀態可沿用海運 HBL 的 Draft → Pending Confirm → Confirmed → Issued → Released。&lt;/div&gt;&lt;div class=&quot;grid-3&quot;&gt;&lt;div class=&quot;field-wrap required&quot;&gt;&lt;label&gt;HAWB No. *&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;FATPE26050001&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;HAWB Status&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;Draft&lt;/option&gt;&lt;option&gt;Pending Confirm&lt;/option&gt;&lt;option&gt;Confirmed&lt;/option&gt;&lt;option&gt;Issued&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Freight Term&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;FREIGHT PREPAID&lt;/option&gt;&lt;option&gt;FREIGHT COLLECT&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;&lt;div class=&quot;grid-2&quot;&gt;&lt;div&gt;&lt;label&gt;Shipper&lt;/label&gt;&lt;textarea&gt;ABC ELECTRONICS CO., LTD.
+TAIPEI, TAIWAN&lt;/textarea&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Consignee&lt;/label&gt;&lt;textarea&gt;XYZ IMPORT INC.
+LOS ANGELES, CA, USA&lt;/textarea&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Notify / Also Notify&lt;/label&gt;&lt;textarea&gt;SAME AS CONSIGNEE&lt;/textarea&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Accounting Information&lt;/label&gt;&lt;textarea&gt;FREIGHT PREPAID
+SECURITY SCREENING REQUIRED&lt;/textarea&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Nature and Quantity of Goods&lt;/label&gt;&lt;textarea style=&quot;min-height:130px&quot;&gt;ELECTRONIC PARTS WITH LITHIUM ION BATTERIES
+120 CTNS / G.W. 860.00 KGS / 2.30 CBM
+Chargeable Weight: 860.00 KGS&lt;/textarea&gt;&lt;/div&gt;&lt;div style=&quot;margin-top:14px;text-align:right&quot;&gt;&lt;button class=&quot;btn gray&quot;&gt;儲存 Draft&lt;/button&gt; &lt;button class=&quot;btn&quot;&gt;匯出 HAWB Draft&lt;/button&gt; &lt;button class=&quot;btn green&quot; onclick=&quot;showToast('HAWB 已標記為 Pending Confirm')&quot;&gt;送客戶確認&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;aside&gt;&lt;div class=&quot;box-title&quot;&gt;HAWB 預覽&lt;/div&gt;&lt;div class=&quot;preview&quot;&gt;&lt;div class=&quot;paper-title&quot;&gt;HOUSE AIR WAYBILL&lt;/div&gt;&lt;div class=&quot;paper-grid&quot;&gt;&lt;div class=&quot;paper-field&quot;&gt;&lt;b&gt;Shipper&lt;/b&gt;ABC ELECTRONICS CO., LTD.
+TAIPEI, TAIWAN&lt;/div&gt;&lt;div class=&quot;paper-field&quot;&gt;&lt;b&gt;Consignee&lt;/b&gt;XYZ IMPORT INC.
+LOS ANGELES, CA&lt;/div&gt;&lt;div class=&quot;paper-field&quot;&gt;&lt;b&gt;Airport of Departure&lt;/b&gt;TPE / TAIPEI&lt;/div&gt;&lt;div class=&quot;paper-field&quot;&gt;&lt;b&gt;Airport of Destination&lt;/b&gt;LAX / LOS ANGELES&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;paper-long&quot;&gt;&lt;b&gt;Goods&lt;/b&gt;120 CTNS / 860.00 KGS / 2.30 CBM
+ELECTRONIC PARTS WITH LITHIUM ION BATTERIES&lt;/div&gt;&lt;/div&gt;&lt;/aside&gt;&lt;/div&gt;&lt;/section&gt;
+      &lt;section class=&quot;panel&quot; id=&quot;warehouse&quot;&gt;&lt;div class=&quot;box-title&quot;&gt;進倉 / 件重尺確認 &lt;span class=&quot;pill amber&quot;&gt;Waiting Actual&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;grid-4&quot;&gt;&lt;div&gt;&lt;label&gt;Warehouse Receipt No.&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;WH-TPE-260508-018&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Cargo Received Time&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;datetime-local&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Pieces&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;120 CTNS&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Status&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;Waiting Cargo&lt;/option&gt;&lt;option&gt;Cargo Received&lt;/option&gt;&lt;option&gt;Measured&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;&lt;table class=&quot;table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;項目&lt;/th&gt;&lt;th&gt;預估&lt;/th&gt;&lt;th&gt;實際&lt;/th&gt;&lt;th&gt;差異&lt;/th&gt;&lt;th&gt;狀態&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;Gross Weight&lt;/td&gt;&lt;td&gt;850.00 KGS&lt;/td&gt;&lt;td&gt;&lt;input class=&quot;field&quot; value=&quot;860.00&quot;&gt;&lt;/td&gt;&lt;td&gt;+10.00&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill amber&quot;&gt;需同步&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Volume&lt;/td&gt;&lt;td&gt;2.25 CBM&lt;/td&gt;&lt;td&gt;&lt;input class=&quot;field&quot; value=&quot;2.30&quot;&gt;&lt;/td&gt;&lt;td&gt;+0.05&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill green&quot;&gt;OK&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Chargeable Weight&lt;/td&gt;&lt;td&gt;850.00 KGS&lt;/td&gt;&lt;td&gt;&lt;input class=&quot;field&quot; value=&quot;860.00&quot;&gt;&lt;/td&gt;&lt;td&gt;+10.00&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill amber&quot;&gt;影響報價/費用&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;div style=&quot;margin-top:14px;text-align:right&quot;&gt;&lt;button class=&quot;btn gray&quot; onclick=&quot;showToast('已上傳倉單')&quot;&gt;上傳倉單&lt;/button&gt; &lt;button class=&quot;btn primary&quot; onclick=&quot;showToast('實際件重尺已同步到 HAWB / MAWB / APAR')&quot;&gt;同步實際件重尺&lt;/button&gt;&lt;/div&gt;&lt;/section&gt;
+      &lt;section class=&quot;panel&quot; id=&quot;customs&quot;&gt;&lt;div class=&quot;main-split&quot;&gt;&lt;div&gt;&lt;div class=&quot;box-title&quot;&gt;出口報關 &lt;span class=&quot;pill amber&quot;&gt;Preparing&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;grid-4&quot;&gt;&lt;div&gt;&lt;label&gt;Broker&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;ABC CUSTOMS BROKER&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Declaration No.&lt;/label&gt;&lt;input class=&quot;field&quot; placeholder=&quot;待報關行回覆&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Customs Status&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;Preparing&lt;/option&gt;&lt;option&gt;Submitted&lt;/option&gt;&lt;option&gt;Released&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Release Time&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;datetime-local&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;&lt;div class=&quot;checklist&quot;&gt;&lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot; checked&gt; Commercial Invoice&lt;/label&gt;&lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot; checked&gt; Packing List&lt;/label&gt;&lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; Export Declaration&lt;/label&gt;&lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; Customs Release Proof&lt;/label&gt;&lt;/div&gt;&lt;div style=&quot;margin-top:14px;text-align:right&quot;&gt;&lt;button class=&quot;btn gray&quot; onclick=&quot;showToast('已送報關行，等待回覆')&quot;&gt;送報關行&lt;/button&gt; &lt;button class=&quot;btn green&quot; onclick=&quot;showToast('報關已標記放行')&quot;&gt;標記放行&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;aside&gt;&lt;div class=&quot;box-title&quot;&gt;報關文件&lt;/div&gt;&lt;div class=&quot;doc-card&quot;&gt;&lt;div class=&quot;doc-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;Commercial Invoice.pdf&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;Customer / v1&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill green&quot;&gt;Ready&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;doc-card&quot;&gt;&lt;div class=&quot;doc-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;Packing List.pdf&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;Customer / v1&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill green&quot;&gt;Ready&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;doc-card&quot;&gt;&lt;div class=&quot;doc-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;Export Declaration&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;Broker 回傳&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill red&quot;&gt;Missing&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/aside&gt;&lt;/div&gt;&lt;/section&gt;
+      &lt;section class=&quot;panel&quot; id=&quot;security&quot;&gt;&lt;div class=&quot;box-title&quot;&gt;安檢 / 危險品 / 特殊貨控管 &lt;span class=&quot;pill gray&quot;&gt;Todo&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;alert&quot;&gt;空運相較海運需要更明確管理 Security Screening、DG / Battery 文件與航空公司接受條件；若貨名包含鋰電池或特殊品，應在此節點提醒。&lt;/div&gt;&lt;div class=&quot;grid-3&quot;&gt;&lt;div&gt;&lt;label&gt;Security Screening&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;Not Started&lt;/option&gt;&lt;option&gt;Screening Passed&lt;/option&gt;&lt;option&gt;Rejected / Need Review&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;DG Type&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;General Cargo&lt;/option&gt;&lt;option selected&gt;Lithium Battery&lt;/option&gt;&lt;option&gt;DG Cargo&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Airline Acceptance&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;Pending&lt;/option&gt;&lt;option&gt;Accepted&lt;/option&gt;&lt;option&gt;Rejected&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;&lt;div class=&quot;checklist&quot;&gt;&lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; MSDS&lt;/label&gt;&lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; Battery Declaration&lt;/label&gt;&lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; Security Screening Report&lt;/label&gt;&lt;label class=&quot;check-item&quot;&gt;&lt;input type=&quot;checkbox&quot;&gt; Airline Approval Email&lt;/label&gt;&lt;/div&gt;&lt;div style=&quot;margin-top:14px;text-align:right&quot;&gt;&lt;button class=&quot;btn gray&quot; onclick=&quot;showToast('已上傳安檢文件')&quot;&gt;上傳安檢文件&lt;/button&gt; &lt;button class=&quot;btn green&quot; onclick=&quot;showToast('安檢已通過')&quot;&gt;標記安檢通過&lt;/button&gt;&lt;/div&gt;&lt;/section&gt;
+      &lt;section class=&quot;panel&quot; id=&quot;mawb&quot;&gt;&lt;div class=&quot;main-split&quot;&gt;&lt;div&gt;&lt;div class=&quot;box-title&quot;&gt;MAWB / Manifest &lt;span class=&quot;pill gray&quot;&gt;Waiting&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;grid-4&quot;&gt;&lt;div&gt;&lt;label&gt;MAWB No.&lt;/label&gt;&lt;input class=&quot;field&quot; placeholder=&quot;例：297-12345675&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;MAWB Provider&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;China Airlines&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Manifest Status&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;Not Ready&lt;/option&gt;&lt;option&gt;Draft&lt;/option&gt;&lt;option&gt;Submitted&lt;/option&gt;&lt;option&gt;Final&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Matched HAWB&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;FATPE26050001&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;&lt;table class=&quot;table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;HAWB&lt;/th&gt;&lt;th&gt;Pieces&lt;/th&gt;&lt;th&gt;G.W.&lt;/th&gt;&lt;th&gt;C.W.&lt;/th&gt;&lt;th&gt;Destination&lt;/th&gt;&lt;th&gt;Status&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;FATPE26050001&lt;/td&gt;&lt;td&gt;120 CTNS&lt;/td&gt;&lt;td&gt;860.00&lt;/td&gt;&lt;td&gt;860.00&lt;/td&gt;&lt;td&gt;LAX&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill blue&quot;&gt;Ready&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;FATPE26050002&lt;/td&gt;&lt;td&gt;45 CTNS&lt;/td&gt;&lt;td&gt;320.00&lt;/td&gt;&lt;td&gt;360.00&lt;/td&gt;&lt;td&gt;LAX&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill amber&quot;&gt;Waiting HAWB&lt;/span&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;div style=&quot;margin-top:14px;text-align:right&quot;&gt;&lt;button class=&quot;btn gray&quot; onclick=&quot;showToast('Manifest 已匯出')&quot;&gt;匯出 Manifest&lt;/button&gt; &lt;button class=&quot;btn primary&quot; onclick=&quot;showToast('MAWB / Manifest 已送出')&quot;&gt;標記已送出&lt;/button&gt;&lt;/div&gt;&lt;/div&gt;&lt;aside&gt;&lt;div class=&quot;box-title&quot;&gt;MAWB 文件&lt;/div&gt;&lt;div class=&quot;upload-box&quot;&gt;上傳 Airline MAWB / Manifest PDF&lt;br&gt;&lt;button class=&quot;btn gray&quot; style=&quot;margin-top:10px&quot;&gt;選擇檔案&lt;/button&gt;&lt;/div&gt;&lt;div class=&quot;doc-card&quot;&gt;&lt;div class=&quot;doc-head&quot;&gt;&lt;div&gt;&lt;div class=&quot;doc-name&quot;&gt;MAWB Draft.pdf&lt;/div&gt;&lt;div class=&quot;doc-meta&quot;&gt;Airline 回傳後上傳&lt;/div&gt;&lt;/div&gt;&lt;span class=&quot;pill red&quot;&gt;Missing&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&lt;/aside&gt;&lt;/div&gt;&lt;/section&gt;
+      &lt;section class=&quot;panel&quot; id=&quot;flight&quot;&gt;&lt;div class=&quot;box-title&quot;&gt;Flight Tracking / Arrival / Delivery &lt;span class=&quot;pill gray&quot;&gt;Pending&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;grid-4&quot;&gt;&lt;div&gt;&lt;label&gt;Flight No.&lt;/label&gt;&lt;input class=&quot;field&quot; value=&quot;CI-008&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;ATD&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;datetime-local&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;ATA&lt;/label&gt;&lt;input class=&quot;field&quot; type=&quot;datetime-local&quot;&gt;&lt;/div&gt;&lt;div&gt;&lt;label&gt;Delivery Status&lt;/label&gt;&lt;select class=&quot;select&quot;&gt;&lt;option&gt;Not Arrived&lt;/option&gt;&lt;option&gt;Arrived&lt;/option&gt;&lt;option&gt;Released to Agent&lt;/option&gt;&lt;option&gt;POD Received&lt;/option&gt;&lt;/select&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;&lt;div class=&quot;flow&quot;&gt;&lt;span class=&quot;flow-step&quot;&gt;Cargo Tendered&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;&lt;span class=&quot;flow-step&quot;&gt;Departed&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;&lt;span class=&quot;flow-step&quot;&gt;Arrived&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;&lt;span class=&quot;flow-step&quot;&gt;Released&lt;/span&gt;&lt;span class=&quot;arrow&quot;&gt;→&lt;/span&gt;&lt;span class=&quot;flow-step&quot;&gt;POD&lt;/span&gt;&lt;/div&gt;&lt;div style=&quot;margin-top:14px;text-align:right&quot;&gt;&lt;button class=&quot;btn gray&quot; onclick=&quot;showToast('航班狀態已更新')&quot;&gt;更新航班狀態&lt;/button&gt; &lt;button class=&quot;btn green&quot; onclick=&quot;showToast('已標記 POD Received')&quot;&gt;標記 POD Received&lt;/button&gt;&lt;/div&gt;&lt;/section&gt;
+      &lt;section class=&quot;panel&quot; id=&quot;docs&quot;&gt;&lt;div class=&quot;box-title&quot;&gt;文件與附件總覽&lt;/div&gt;&lt;table class=&quot;table&quot;&gt;&lt;thead&gt;&lt;tr&gt;&lt;th&gt;文件&lt;/th&gt;&lt;th&gt;類型&lt;/th&gt;&lt;th&gt;來源節點&lt;/th&gt;&lt;th&gt;狀態&lt;/th&gt;&lt;th&gt;操作&lt;/th&gt;&lt;/tr&gt;&lt;/thead&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td&gt;HAWB Draft.pdf&lt;/td&gt;&lt;td&gt;HAWB&lt;/td&gt;&lt;td&gt;HAWB 管理&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill blue&quot;&gt;Draft&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;btn gray&quot; onclick=&quot;showToast('開啟文件預覽')&quot;&gt;預覽&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;Commercial Invoice.pdf&lt;/td&gt;&lt;td&gt;報關&lt;/td&gt;&lt;td&gt;出口報關&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill green&quot;&gt;Ready&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;btn gray&quot; onclick=&quot;showToast('下載文件')&quot;&gt;下載&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;MSDS.pdf&lt;/td&gt;&lt;td&gt;DG / Security&lt;/td&gt;&lt;td&gt;安檢 / DG&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill red&quot;&gt;Missing&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;btn amber&quot; onclick=&quot;showToast('已建立追件任務')&quot;&gt;追件&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;&lt;tr&gt;&lt;td&gt;MAWB Final.pdf&lt;/td&gt;&lt;td&gt;MAWB&lt;/td&gt;&lt;td&gt;MAWB / Manifest&lt;/td&gt;&lt;td&gt;&lt;span class=&quot;pill red&quot;&gt;Missing&lt;/span&gt;&lt;/td&gt;&lt;td&gt;&lt;button class=&quot;btn gray&quot; onclick=&quot;showToast('開啟補傳視窗')&quot;&gt;補傳&lt;/button&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/section&gt;
+      &lt;section class=&quot;panel&quot; id=&quot;log&quot;&gt;&lt;div class=&quot;box-title&quot;&gt;操作記錄&lt;/div&gt;&lt;div class=&quot;logline&quot;&gt;2026-04-30 09:30｜TONY｜建立 Air Export Execution｜由 Booking AIR-BK-260508-001 轉入&lt;/div&gt;&lt;div class=&quot;logline&quot;&gt;2026-04-30 09:45｜TONY｜確認 Space｜CI-008 / TPE-LAX&lt;/div&gt;&lt;div class=&quot;logline&quot;&gt;2026-04-30 10:05｜TONY｜建立 HAWB Draft｜等待客戶確認&lt;/div&gt;&lt;/section&gt;
+    &lt;/main&gt;
+  &lt;/div&gt;
+&lt;/main&gt;
+&lt;div id=&quot;toast&quot; class=&quot;toast&quot;&gt;&lt;/div&gt;
+&lt;script&gt;
+function openTab(id){document.querySelectorAll('.tab').forEach(t=&gt;t.classList.toggle('active',t.dataset.tab===id));document.querySelectorAll('.panel').forEach(p=&gt;p.classList.toggle('active',p.id===id));}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('active');setTimeout(()=&gt;t.classList.remove('active'),1800)}
+&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+"></iframe></section>
+</div>
+<script>
+function switchMode(mode){
+  document.getElementById('panelOcean').classList.toggle('active',mode==='ocean');
+  document.getElementById('panelAir').classList.toggle('active',mode==='air');
+  document.getElementById('btnOcean').classList.toggle('active',mode==='ocean');
+  document.getElementById('btnAir').classList.toggle('active',mode==='air');
+}
+</script>
+</body></html>

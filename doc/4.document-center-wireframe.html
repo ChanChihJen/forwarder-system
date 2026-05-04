@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Document Center｜文件中心 Wireframe</title>
+<style>
+:root{--blue:#1769aa;--blue2:#eaf5ff;--line:#d7dee8;--text:#1f2937;--muted:#64748b;--green:#16a34a;--greenbg:#ecfdf5;--amber:#d97706;--amberbg:#fff7ed;--red:#dc2626;--redbg:#fee2e2;--purple:#7c3aed;--purplebg:#f3e8ff;--soft:#f8fafc}*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",Arial,sans-serif;background:#f3f6fa;color:var(--text);font-size:14px}.topbar{height:68px;background:#fff;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;padding:0 28px;position:sticky;top:0;z-index:20}.page-title{font-size:21px;font-weight:900}.subtitle{font-size:12px;color:var(--muted);margin-top:3px}.actions{display:flex;gap:10px;align-items:center}.btn{border:1px solid #cbd5e1;background:#fff;border-radius:9px;padding:8px 12px;font-size:13px;font-weight:800;cursor:pointer}.btn.primary{background:var(--blue);color:#fff;border-color:var(--blue)}.btn.green{background:var(--green);color:#fff;border-color:var(--green)}.btn.amber{background:var(--amber);color:#fff;border-color:var(--amber)}.btn.gray{background:#f8fafc;color:#334155}.btn.danger{background:#fff;color:var(--red);border-color:#fecaca}.content{max-width:1600px;margin:0 auto;padding:22px 28px 44px}.note{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.55;margin-bottom:16px}.card{background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:16px;box-shadow:0 2px 8px rgba(15,59,99,.05)}.section-title{font-size:15px;font-weight:900;color:#0f3b63;margin:4px 0 12px;display:flex;justify-content:space-between;align-items:center;gap:12px}.summary-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}.summary-item{background:#fff;border:1px solid #dbeafe;border-radius:12px;padding:10px}.summary-item b{display:block;color:#0f3b63;margin-bottom:4px;font-size:12px}.summary-item span{font-size:14px;font-weight:800}.tabs{display:flex;gap:6px;border-bottom:1px solid var(--line);overflow-x:auto}.tab{padding:11px 16px;border:1px solid var(--line);border-bottom:0;border-radius:12px 12px 0 0;background:#eef4fa;color:#33536b;font-size:14px;font-weight:800;cursor:pointer;white-space:nowrap}.tab.active{background:#fff;color:#0f3b63}.panel{display:none;background:#fff;border:1px solid var(--line);border-top:0;border-radius:0 0 16px 16px;padding:18px;margin-bottom:18px}.panel.active{display:block}.layout{display:grid;grid-template-columns:330px 1fr;gap:18px}.side{position:sticky;top:88px;align-self:start}.grid-2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.grid-5{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;font-weight:800}.field,.select,textarea{width:100%;border:1px solid #cbd5e1;background:#fff;border-radius:8px;min-height:36px;padding:8px 10px;font-size:14px;font-family:inherit}textarea{min-height:82px;resize:vertical}.filter-card{border:1px solid #dbe3ee;background:#fbfdff;border-radius:16px;padding:14px;margin-bottom:12px}.pill{display:inline-flex;align-items:center;gap:4px;border-radius:999px;padding:4px 9px;font-size:12px;font-weight:900;white-space:nowrap}.pill.blue{background:var(--blue2);color:var(--blue)}.pill.green{background:var(--greenbg);color:#166534}.pill.amber{background:var(--amberbg);color:#9a3412}.pill.red{background:#fee2e2;color:#991b1b}.pill.gray{background:#f1f5f9;color:#475569}.pill.purple{background:var(--purplebg);color:#5b21b6}.table{width:100%;border-collapse:collapse;font-size:13px;background:#fff}th{background:#eef4fa;color:#33536b;text-align:left;padding:10px;border:1px solid var(--line)}td{padding:9px 10px;border:1px solid var(--line);vertical-align:top}.num{text-align:right}.doc-name{font-weight:900;color:#0f3b63}.doc-sub{font-size:12px;color:#64748b;margin-top:3px;line-height:1.45}.row-actions{display:flex;gap:6px;flex-wrap:wrap}.mini-btn{border:1px solid #cbd5e1;background:#fff;border-radius:7px;padding:5px 8px;font-size:12px;font-weight:800;cursor:pointer}.mini-btn.primary{background:#1769aa;color:#fff;border-color:#1769aa}.mini-btn.green{background:#ecfdf5;color:#166534;border-color:#86efac}.mini-btn.gray{background:#f8fafc;color:#334155}.hint{font-size:12px;color:var(--muted);line-height:1.55}.divider{height:1px;background:#e5edf5;margin:18px 0}.kpi-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-bottom:16px}.kpi{background:#fff;border:1px solid #dbe3ee;border-radius:16px;padding:14px}.kpi b{display:block;color:#64748b;font-size:12px;margin-bottom:8px}.kpi .big{font-size:26px;font-weight:900;color:#0f3b63}.kpi.warn .big{color:#d97706}.kpi.red .big{color:#dc2626}.link-banner{border:1px solid #bbf7d0;background:#ecfdf5;border-radius:14px;padding:12px;margin-bottom:14px;display:flex;justify-content:space-between;gap:12px;align-items:center}.link-banner.purple{border-color:#ddd6fe;background:#f5f3ff}.link-banner b{color:#0f3b63}.doc-card{border:1px solid #dbe3ee;background:#fff;border-radius:16px;padding:14px;margin-bottom:12px}.doc-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.doc-meta{font-size:12px;color:#64748b;line-height:1.55;margin-top:5px}.preview-layout{display:grid;grid-template-columns:1fr 420px;gap:18px}.preview-box{border:1px solid #cbd5e1;background:#fff;border-radius:14px;min-height:520px;padding:18px;box-shadow:inset 0 0 0 8px #f8fafc}.paper-title{text-align:center;font-size:18px;font-weight:900;letter-spacing:.5px;margin:10px 0 16px}.paper-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.paper-field{border:1px solid #111;padding:8px;min-height:66px;font-size:12px;white-space:pre-line}.paper-long{border:1px solid #111;padding:8px;min-height:120px;font-size:12px;white-space:pre-line;margin-top:10px}.upload-box{border:2px dashed #cbd5e1;background:#f8fafc;border-radius:14px;padding:22px;text-align:center;color:#64748b;margin-bottom:12px}.timeline{display:flex;flex-direction:column;gap:9px}.step{border:1px solid #dbe3ee;background:#fff;border-radius:14px;padding:12px}.step.done{border-color:#86efac;background:#ecfdf5}.step.active{border-color:#1769aa;background:#eaf5ff}.step.warn{border-color:#fed7aa;background:#fff7ed}.step-title{font-weight:900;color:#0f3b63}.step-desc{font-size:12px;color:#64748b;line-height:1.45;margin-top:5px}.logline{background:#fbfdff;border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px;line-height:1.55}.folder-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}.folder{border:1px solid #dbe3ee;border-radius:16px;background:#fff;padding:14px;min-height:112px}.folder b{display:block;color:#0f3b63;margin-bottom:6px}.folder .count{font-size:24px;font-weight:900;color:#1769aa;margin-top:8px}.modal-mask{display:none;position:fixed;inset:0;background:rgba(15,23,42,.45);z-index:50;align-items:center;justify-content:center;padding:20px}.modal-mask.active{display:flex}.modal{background:#fff;border-radius:18px;border:1px solid var(--line);box-shadow:0 20px 60px rgba(15,23,42,.22);max-width:760px;width:100%;overflow:hidden}.modal-h{padding:16px 18px;background:#f8fafc;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.modal-title{font-weight:900;font-size:18px;color:#0f3b63}.modal-b{padding:18px}.modal-f{padding:14px 18px;background:#f8fafc;border-top:1px solid var(--line);display:flex;justify-content:flex-end;gap:10px}.close-x{border:0;background:transparent;font-size:22px;cursor:pointer;color:#64748b}.toast{position:fixed;right:24px;bottom:24px;background:#0f3b63;color:#fff;border-radius:12px;padding:12px 16px;box-shadow:0 10px 30px rgba(15,23,42,.25);display:none;z-index:60;font-weight:800}.toast.active{display:block}@media(max-width:1250px){.layout,.preview-layout{grid-template-columns:1fr}.side{position:static}.summary-grid,.kpi-grid,.grid-5{grid-template-columns:repeat(3,1fr)}.folder-grid{grid-template-columns:1fr 1fr}}@media(max-width:760px){.topbar{height:auto;align-items:flex-start;flex-direction:column;padding:14px}.content{padding:14px}.summary-grid,.grid-2,.grid-3,.grid-4,.grid-5,.kpi-grid,.folder-grid{grid-template-columns:1fr}.actions,.row-actions{flex-wrap:wrap}.paper-grid{grid-template-columns:1fr}.link-banner{align-items:flex-start;flex-direction:column}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div><div class="page-title">Document Center｜文件中心 Wireframe</div><div class="subtitle">集中查詢 / 預覽 / 下載 / 補傳 / 歸檔；操作流程仍回到 Job、Execution Center、Document Flow 與 HBL / MBL 節點</div></div>
+  <div class="actions"><button class="btn gray" onclick="openJob()">開啟 Job</button><button class="btn gray" onclick="openExecution()">Execution Center</button><button class="btn" onclick="openDocumentFlow()">Document Flow</button><button class="btn primary" onclick="showToast('文件中心設定已儲存')">儲存</button></div>
+</header>
+<main class="content">
+  <div class="note">定位：Document Center 不是新的操作中心，而是「文件集中庫」。它承接 Document Flow 完成後的文件，也允許從這裡補傳缺件、下載、預覽與回到來源節點處理。</div>
+
+  <section class="card">
+    <div class="section-title">Document Center 角色定位</div>
+    <div class="link-banner purple">
+      <div><b>Document Flow 管流程，Document Center 管檔案</b><div class="hint">文件卡在哪個節點請看 Document Flow；要找檔案、下載、預覽、補傳與稽核，進 Document Center。</div></div>
+      <div class="row-actions"><button class="btn gray" onclick="openDocumentFlow()">查看 Document Flow</button><button class="btn primary" onclick="showToast('新增文件：請選擇 Job / 文件類型 / 來源節點')">＋新增文件</button></div>
+    </div>
+    <div class="summary-grid">
+      <div class="summary-item"><b>Job No.</b><span>FSEJ25040001</span></div>
+      <div class="summary-item"><b>Customer</b><span>WUXI YADEA</span></div>
+      <div class="summary-item"><b>Shipment</b><span>Shipment 1｜FCL</span></div>
+      <div class="summary-item"><b>Carrier</b><span>COSCO</span></div>
+      <div class="summary-item"><b>POL → POD</b><span>SHANGHAI → MELBOURNE</span></div>
+      <div class="summary-item"><b>ETD / ETA</b><span>2021-10-30 / 2021-11-10</span></div>
+    </div>
+  </section>
+
+  <nav class="tabs">
+    <button class="tab active" data-tab="dashboard" onclick="openTab('dashboard')">文件總覽</button>
+    <button class="tab" data-tab="search" onclick="openTab('search')">文件查詢</button>
+    <button class="tab" data-tab="folders" onclick="openTab('folders')">分類 / 資料夾</button>
+    <button class="tab" data-tab="preview" onclick="openTab('preview')">預覽與版本</button>
+    <button class="tab" data-tab="missing" onclick="openTab('missing')">缺件追蹤</button>
+    <button class="tab" data-tab="archive" onclick="openTab('archive')">歸檔 / 稽核</button>
+    <button class="tab" data-tab="log" onclick="openTab('log')">操作記錄</button>
+  </nav>
+
+  <section class="panel active" id="dashboard">
+    <div class="kpi-grid">
+      <div class="kpi"><b>全部文件</b><div class="big">18</div><div class="hint">本 Job / Shipment 關聯文件</div></div>
+      <div class="kpi"><b>已完成</b><div class="big">11</div><div class="hint">Final / Confirmed / Received</div></div>
+      <div class="kpi warn"><b>待確認</b><div class="big">4</div><div class="hint">Draft MBL / HBL / 報關附件</div></div>
+      <div class="kpi red"><b>缺件</b><div class="big">3</div><div class="hint">Final MBL、On Board、放單證明</div></div>
+      <div class="kpi"><b>可下載包</b><div class="big">2</div><div class="hint">Customer Pack / Internal Pack</div></div>
+    </div>
+
+    <div class="layout">
+      <aside class="side">
+        <div class="card" style="margin:0 0 16px">
+          <div class="section-title">快速篩選</div>
+          <div class="filter-card"><label>關鍵字</label><input class="field" placeholder="Job No. / HBL No. / MBL No. / 文件名稱"></div>
+          <div class="grid-2">
+            <div><label>文件狀態</label><select class="select"><option>全部</option><option>Missing</option><option>Draft</option><option>Pending</option><option>Confirmed</option><option>Final</option></select></div>
+            <div><label>來源</label><select class="select"><option>全部</option><option>系統產生</option><option>客戶提供</option><option>Carrier 回傳</option><option>報關行回傳</option><option>車行 / 倉庫回傳</option></select></div>
+          </div>
+          <div style="margin-top:12px"><button class="btn primary" style="width:100%" onclick="showToast('已套用篩選條件')">查詢</button></div>
+        </div>
+        <div class="card" style="margin:0">
+          <div class="section-title">來源節點</div>
+          <div class="timeline">
+            <div class="step done"><div class="step-title">HBL 管理</div><div class="step-desc">HBL Draft / Final / Release 文件</div></div>
+            <div class="step active"><div class="step-title">Execution Center</div><div class="step-desc">SI、MBL、報關、拖車、On Board</div></div>
+            <div class="step warn"><div class="step-title">Document Flow</div><div class="step-desc">跨節點狀態與文件生命週期</div></div>
+          </div>
+        </div>
+      </aside>
+
+      <div>
+        <div class="section-title">最近文件 / 常用清單 <div class="row-actions"><button class="btn gray" onclick="downloadPack('customer')">下載客戶文件包</button><button class="btn gray" onclick="downloadPack('internal')">下載內部文件包</button></div></div>
+        <table class="table">
+          <thead><tr><th style="width:38px"><input type="checkbox"></th><th>文件名稱</th><th>類型</th><th>來源</th><th>狀態</th><th>版本</th><th>最後更新</th><th>回到來源</th><th>操作</th></tr></thead>
+          <tbody>
+            <tr><td><input type="checkbox"></td><td><div class="doc-name">HBL Draft - FHSMELEJ2110001.pdf</div><div class="doc-sub">關聯：HBL FHSMELEJ2110001｜Shipment 1</div></td><td>HBL</td><td>系統產生</td><td><span class="pill blue">Draft</span></td><td>v1</td><td>2025-04-25</td><td><button class="mini-btn gray" onclick="openSource('HBL 管理')">HBL 管理</button></td><td><div class="row-actions"><button class="mini-btn primary" onclick="previewDoc('HBL Draft')">預覽</button><button class="mini-btn">下載</button></div></td></tr>
+            <tr><td><input type="checkbox"></td><td><div class="doc-name">SI - COSCO - Sent.html</div><div class="doc-sub">關聯：Execution / SI 發送｜送 Carrier</div></td><td>SI</td><td>系統匯出</td><td><span class="pill green">Sent</span></td><td>v1</td><td>2025-04-25</td><td><button class="mini-btn gray" onclick="openSource('SI 節點')">SI 節點</button></td><td><div class="row-actions"><button class="mini-btn primary" onclick="previewDoc('SI')">預覽</button><button class="mini-btn">下載</button></div></td></tr>
+            <tr><td><input type="checkbox"></td><td><div class="doc-name">Draft MBL - COSCO.pdf</div><div class="doc-sub">關聯：MBL Draft｜需比對 SI</div></td><td>MBL</td><td>Carrier 回傳</td><td><span class="pill amber">Pending Check</span></td><td>v1</td><td>2025-04-26</td><td><button class="mini-btn gray" onclick="openSource('MBL 管理')">MBL 管理</button></td><td><div class="row-actions"><button class="mini-btn primary" onclick="previewDoc('Draft MBL')">預覽</button><button class="mini-btn green">確認</button></div></td></tr>
+            <tr><td><input type="checkbox"></td><td><div class="doc-name">Commercial Invoice.pdf</div><div class="doc-sub">關聯：出口報關｜客戶提供</div></td><td>報關</td><td>客戶提供</td><td><span class="pill green">Ready</span></td><td>v1</td><td>2025-04-24</td><td><button class="mini-btn gray" onclick="openSource('出口報關')">出口報關</button></td><td><div class="row-actions"><button class="mini-btn primary">預覽</button><button class="mini-btn">下載</button></div></td></tr>
+            <tr><td><input type="checkbox"></td><td><div class="doc-name">Final MBL.pdf</div><div class="doc-sub">關聯：MBL 管理｜Carrier 尚未回傳</div></td><td>MBL</td><td>Carrier 回傳</td><td><span class="pill red">Missing</span></td><td>-</td><td>-</td><td><button class="mini-btn gray" onclick="openSource('MBL 管理')">MBL 管理</button></td><td><div class="row-actions"><button class="mini-btn primary" onclick="openUploadModal('Final MBL')">補傳</button></div></td></tr>
+            <tr><td><input type="checkbox"></td><td><div class="doc-name">On Board Confirmation</div><div class="doc-sub">關聯：On Board 節點｜待船公司確認</div></td><td>On Board</td><td>Carrier 回傳</td><td><span class="pill gray">Not Ready</span></td><td>-</td><td>-</td><td><button class="mini-btn gray" onclick="openSource('On Board')">On Board</button></td><td><div class="row-actions"><button class="mini-btn primary">查看</button></div></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="search">
+    <div class="section-title">文件查詢</div>
+    <div class="card" style="box-shadow:none">
+      <div class="grid-5">
+        <div><label>Job No.</label><input class="field" value="FSEJ25040001"></div>
+        <div><label>HBL No.</label><input class="field" placeholder="FHSMELEJ..."></div>
+        <div><label>MBL No.</label><input class="field" placeholder="COSU..."></div>
+        <div><label>文件類型</label><select class="select"><option>全部</option><option>HBL</option><option>MBL</option><option>SI</option><option>報關</option><option>拖車 / 進倉</option><option>On Board</option><option>帳務</option></select></div>
+        <div><label>文件狀態</label><select class="select"><option>全部</option><option>Missing</option><option>Draft</option><option>Pending</option><option>Ready</option><option>Final</option><option>Archived</option></select></div>
+      </div>
+      <div class="divider"></div>
+      <div class="grid-4">
+        <div><label>來源</label><select class="select"><option>全部來源</option><option>系統產生</option><option>客戶提供</option><option>Carrier / Co-loader</option><option>報關行</option><option>車行 / 倉庫</option></select></div>
+        <div><label>更新日期 From</label><input class="field" type="date"></div>
+        <div><label>更新日期 To</label><input class="field" type="date"></div>
+        <div><label>歸檔狀態</label><select class="select"><option>全部</option><option>未歸檔</option><option>已歸檔</option><option>已鎖定</option></select></div>
+      </div>
+      <div style="margin-top:14px;text-align:right"><button class="btn gray">清除</button> <button class="btn primary" onclick="showToast('查詢完成')">查詢文件</button></div>
+    </div>
+    <div class="section-title">查詢結果</div>
+    <table class="table">
+      <thead><tr><th>Job</th><th>文件</th><th>類型</th><th>來源</th><th>狀態</th><th>節點</th><th>操作</th></tr></thead>
+      <tbody>
+        <tr><td>FSEJ25040001</td><td>HBL Draft - FHSMELEJ2110001.pdf</td><td>HBL</td><td>系統產生</td><td><span class="pill blue">Draft</span></td><td>HBL 管理</td><td><button class="mini-btn primary">預覽</button> <button class="mini-btn">下載</button></td></tr>
+        <tr><td>FSEJ25040001</td><td>Draft MBL - COSCO.pdf</td><td>MBL</td><td>Carrier</td><td><span class="pill amber">Pending Check</span></td><td>MBL 管理</td><td><button class="mini-btn primary">預覽</button> <button class="mini-btn green">比對</button></td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section class="panel" id="folders">
+    <div class="section-title">文件分類 / 資料夾視角</div>
+    <div class="folder-grid">
+      <div class="folder"><b>01 HBL 文件</b><div class="hint">Draft / Final / Release</div><div class="count">4</div></div>
+      <div class="folder"><b>02 MBL 文件</b><div class="hint">Draft / Final / Telex / Surrender</div><div class="count">3</div></div>
+      <div class="folder"><b>03 SI / Carrier Instruction</b><div class="hint">SI 匯出與寄送紀錄</div><div class="count">2</div></div>
+      <div class="folder"><b>04 報關文件</b><div class="hint">Invoice / PL / 報關單 / 放行</div><div class="count">5</div></div>
+      <div class="folder"><b>05 拖車 / 進倉</b><div class="hint">派車單 / 裝櫃照片 / CFS 收據</div><div class="count">1</div></div>
+      <div class="folder"><b>06 On Board / Release</b><div class="hint">On Board Notice / Release Evidence</div><div class="count">1</div></div>
+      <div class="folder"><b>07 客戶文件包</b><div class="hint">可對外提供的文件集合</div><div class="count">6</div></div>
+      <div class="folder"><b>08 Internal Audit Pack</b><div class="hint">內部稽核、結案留存</div><div class="count">12</div></div>
+    </div>
+    <div class="divider"></div>
+    <div class="link-banner"><div><b>設計原則</b><div class="hint">資料夾是視圖，不一定代表實體目錄。實際檔案應以文件主表 + 關聯 Job / Shipment / Execution Node 管理。</div></div><button class="btn gray" onclick="showToast('已套用分類視圖')">套用分類規則</button></div>
+  </section>
+
+  <section class="panel" id="preview">
+    <div class="preview-layout">
+      <div>
+        <div class="section-title">文件詳細資料 / 版本</div>
+        <div class="doc-card">
+          <div class="doc-head"><div><div class="doc-name">Draft MBL - COSCO.pdf</div><div class="doc-meta">文件類型：MBL｜來源：Carrier / COSCO｜關聯節點：Execution Center → MBL 管理</div></div><span class="pill amber">Pending Check</span></div>
+          <div class="divider"></div>
+          <div class="grid-4">
+            <div><label>文件編號</label><input class="field" value="DOC-MBL-202504-003" readonly></div>
+            <div><label>版本</label><input class="field" value="v1" readonly></div>
+            <div><label>上傳者</label><input class="field" value="TONY" readonly></div>
+            <div><label>上傳時間</label><input class="field" value="2025-04-26 11:20" readonly></div>
+          </div>
+          <div class="divider"></div>
+          <table class="table"><tr><th>版本</th><th>狀態</th><th>來源</th><th>說明</th><th>操作</th></tr><tr><td>v1</td><td><span class="pill amber">待比對</span></td><td>Email Attachment</td><td>Carrier 初次回傳 Draft MBL</td><td><button class="mini-btn primary">預覽</button></td></tr><tr><td>v2</td><td><span class="pill gray">未建立</span></td><td>-</td><td>若 Carrier 修正後重新上傳</td><td><button class="mini-btn gray" onclick="openUploadModal('Draft MBL v2')">新增版本</button></td></tr></table>
+          <div class="divider"></div>
+          <div class="row-actions"><button class="btn gray" onclick="openSource('MBL 管理')">回到 MBL 管理</button><button class="btn" onclick="openDocumentFlow()">看 Document Flow</button><button class="btn green" onclick="showToast('Draft MBL 已標記為確認')">標記已確認</button></div>
+        </div>
+      </div>
+      <aside>
+        <div class="section-title">文件預覽</div>
+        <div class="preview-box">
+          <div class="paper-title">DRAFT MASTER BILL OF LADING</div>
+          <div class="paper-grid"><div class="paper-field"><b>Shipper</b>FLY INT'L LOGISTICS CO., LTD.</div><div class="paper-field"><b>Consignee</b>TO ORDER OF COSCO SHIPPING LINES</div><div class="paper-field"><b>Vessel / Voyage</b>OOCL BEIJING / 092S</div><div class="paper-field"><b>POL / POD</b>SHANGHAI / MELBOURNE</div></div>
+          <div class="paper-long"><b>Cargo</b>1 X 40'HQ / 149 CARTONS / 5,432.5000 KGS / 53.8230 CBM\nContainer: BMOU5853097 / Seal: CN937420</div>
+          <div style="margin-top:14px;text-align:center;color:#64748b;font-size:12px">此為 wireframe 預覽區，實際可嵌入 PDF Viewer。</div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="panel" id="missing">
+    <div class="section-title">缺件追蹤</div>
+    <table class="table">
+      <thead><tr><th>缺件文件</th><th>影響節點</th><th>來源對象</th><th>優先度</th><th>目前狀態</th><th>建議動作</th><th>操作</th></tr></thead>
+      <tbody>
+        <tr><td>Final MBL PDF</td><td>MBL 管理 / 放單</td><td>COSCO</td><td><span class="pill red">High</span></td><td><span class="pill red">Missing</span></td><td>追 Carrier 回傳 Final MBL</td><td><button class="mini-btn primary" onclick="openUploadModal('Final MBL')">補傳</button></td></tr>
+        <tr><td>報關放行文件</td><td>出口報關</td><td>ABC Customs Broker</td><td><span class="pill amber">Medium</span></td><td><span class="pill amber">Waiting</span></td><td>確認是否已放行並上傳回執</td><td><button class="mini-btn gray" onclick="openSource('出口報關')">開啟節點</button></td></tr>
+        <tr><td>On Board Confirmation</td><td>On Board</td><td>Carrier</td><td><span class="pill amber">Medium</span></td><td><span class="pill gray">Not Ready</span></td><td>船開後取得上船確認</td><td><button class="mini-btn gray" onclick="openSource('On Board')">開啟節點</button></td></tr>
+      </tbody>
+    </table>
+    <div class="divider"></div>
+    <div class="link-banner"><div><b>缺件規則</b><div class="hint">缺件不是單純檔案不存在，也可能是文件狀態未達 Final / Confirmed / Released。Document Center 顯示缺件，實際處理仍回到來源節點。</div></div><button class="btn gray" onclick="showToast('缺件提醒已更新')">更新提醒</button></div>
+  </section>
+
+  <section class="panel" id="archive">
+    <div class="section-title">歸檔 / 稽核 / 下載包</div>
+    <div class="grid-3">
+      <div class="doc-card"><div class="doc-head"><div><div class="doc-name">Customer Document Pack</div><div class="doc-meta">給客戶或海外代理使用；排除內部備註與成本文件。</div></div><span class="pill green">Ready</span></div><div class="divider"></div><button class="btn primary" style="width:100%" onclick="downloadPack('customer')">下載客戶文件包</button></div>
+      <div class="doc-card"><div class="doc-head"><div><div class="doc-name">Internal Audit Pack</div><div class="doc-meta">內部留存：HBL、MBL、SI、報關、拖車、On Board 與操作紀錄。</div></div><span class="pill amber">缺 3 件</span></div><div class="divider"></div><button class="btn gray" style="width:100%" onclick="downloadPack('internal')">下載目前可用版本</button></div>
+      <div class="doc-card"><div class="doc-head"><div><div class="doc-name">Close Job Archive</div><div class="doc-meta">結案時鎖定文件版本，避免後續覆蓋歷史檔案。</div></div><span class="pill gray">Not Ready</span></div><div class="divider"></div><button class="btn green" style="width:100%" onclick="showToast('尚有缺件，暫不建議結案歸檔')">檢查結案歸檔</button></div>
+    </div>
+    <div class="divider"></div>
+    <table class="table"><tr><th>歸檔規則</th><th>說明</th><th>是否鎖定</th></tr><tr><td>HBL Confirmed / Issued</td><td>保留每一版 PDF / HTML 快照，修改需新版本。</td><td><span class="pill green">是</span></td></tr><tr><td>Final MBL Received</td><td>外部回傳檔不可覆蓋，只能新增版本或標記作廢。</td><td><span class="pill green">是</span></td></tr><tr><td>報關放行</td><td>放行文件與送關資料需保存當下快照。</td><td><span class="pill green">是</span></td></tr><tr><td>拖車 / On Board</td><td>附件與時間點作為執行證明。</td><td><span class="pill amber">完成後鎖定</span></td></tr></table>
+  </section>
+
+  <section class="panel" id="log">
+    <div class="section-title">操作記錄</div>
+    <div class="logline">2025-04-26 11:20｜TONY｜上傳 Draft MBL - COSCO.pdf｜來源：Email Attachment</div>
+    <div class="logline">2025-04-25 16:30｜系統｜SI 已匯出並標記 Sent｜同步 Execution Center</div>
+    <div class="logline">2025-04-25 15:30｜TONY｜產生 HBL Draft v1｜來源：HBL 管理</div>
+    <div class="logline">2025-04-24 10:12｜MARY｜上傳 Commercial Invoice / Packing List｜來源：Customer Email</div>
+  </section>
+</main>
+
+<div class="modal-mask" id="uploadModal">
+  <div class="modal">
+    <div class="modal-h"><div class="modal-title" id="uploadTitle">補傳文件</div><button class="close-x" onclick="closeUploadModal()">×</button></div>
+    <div class="modal-b">
+      <div class="grid-3"><div><label>文件類型</label><select class="select"><option>Final MBL</option><option>Draft MBL</option><option>報關放行文件</option><option>On Board Confirmation</option></select></div><div><label>來源</label><select class="select"><option>Carrier / Co-loader</option><option>Customer</option><option>Customs Broker</option><option>Truck / Warehouse</option></select></div><div><label>關聯節點</label><select class="select"><option>MBL 管理</option><option>出口報關</option><option>On Board</option><option>拖車 / 進倉</option></select></div></div>
+      <div class="divider"></div>
+      <div class="upload-box">拖曳 PDF / 圖片 / Email Attachment 到此處<br><button class="btn gray" style="margin-top:10px">選擇檔案</button></div>
+      <label>備註</label><textarea placeholder="例如：Carrier 第二次修正版、客戶補傳、報關行回傳放行證明"></textarea>
+    </div>
+    <div class="modal-f"><button class="btn gray" onclick="closeUploadModal()">取消</button><button class="btn primary" onclick="saveUpload()">上傳並關聯</button></div>
+  </div>
+</div>
+<div class="toast" id="toast">已完成</div>
+<script>
+function openTab(id){document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('active',t.dataset.tab===id));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('active');setTimeout(()=>t.classList.remove('active'),2200)}
+function openJob(){showToast('Wireframe：開啟 Job 主畫面')}
+function openExecution(){showToast('Wireframe：開啟 Execution Center')}
+function openDocumentFlow(){showToast('Wireframe：開啟 Document Flow')}
+function openSource(name){showToast('Wireframe：回到來源節點：'+name)}
+function previewDoc(name){openTab('preview');showToast('已切換預覽：'+name)}
+function downloadPack(type){showToast(type==='customer'?'下載客戶文件包':'下載內部稽核文件包')}
+function openUploadModal(name){document.getElementById('uploadTitle').textContent='補傳文件｜'+name;document.getElementById('uploadModal').classList.add('active')}
+function closeUploadModal(){document.getElementById('uploadModal').classList.remove('active')}
+function saveUpload(){closeUploadModal();showToast('文件已上傳並關聯到來源節點')}
+</script>
+</body>
+</html>

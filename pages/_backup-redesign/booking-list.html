@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Booking 管理</title><link rel="stylesheet" href="../assets/app.css"></head>
+  <body data-title="Booking 管理" data-subtitle="來源：Quick Quote to Booking 與 Booking 多 Job 管理 wireframe，保留 Ocean / Air、FCL / LCL 與轉 Job 流程">
+    <div data-shell>
+      <section class="page-head">
+        <div><h2 class="page-title">Booking List</h2><p class="page-desc">展示詢價、報價、訂艙確認與轉 Job 的列表入口。點擊列可進入 Booking Detail。</p></div>
+        <a class="btn primary" href="booking-form.html">新增 Booking</a>
+      </section>
+      <section class="kpi-grid">
+        <div class="kpi"><b>Inquiry</b><strong>5</strong><small>待報價</small></div>
+        <div class="kpi"><b>Quoted</b><strong>7</strong><small>待客戶確認</small></div>
+        <div class="kpi"><b>Confirmed</b><strong>4</strong><small>可轉 Job</small></div>
+        <div class="kpi"><b>Converted</b><strong>18</strong><small>本月完成</small></div>
+      </section>
+      <section class="card">
+        <div class="card-head"><h3 class="card-title">Booking 清單</h3><div class="actions"><button class="btn gray sm" data-toast="已下載 Booking 報表">下載</button><button class="btn gray sm" data-modal="批次更新 Booking 狀態">批次更新</button></div></div>
+        <div class="card-body">
+          <div class="filters"><div><label>搜尋</label><input class="field" placeholder="Booking No. / Customer / POL / POD"></div><div><label>Mode</label><select class="select"><option>Ocean + Air</option><option>Ocean</option><option>Air</option></select></div><div><label>Status</label><select class="select"><option>All</option><option>Quoted</option><option>Confirmed</option></select></div><div><label>Sales</label><select class="select"><option>All</option><option>TONY</option></select></div><button class="btn primary" data-toast="搜尋完成">搜尋</button></div>
+          <div class="table-wrap"><table class="table">
+            <thead><tr><th>Booking No.</th><th>Customer</th><th>Mode</th><th>POL / POD</th><th>FCL / LCL</th><th>Quote</th><th>狀態</th><th>下一步</th></tr></thead>
+            <tbody>
+              <tr data-href="booking-form.html"><td><b>BKG-2504-0008</b><div class="hint">SO WHL9823</div></td><td>ABC TRADING</td><td><span class="pill blue">Ocean</span></td><td>Kaohsiung to Los Angeles</td><td>1 x 40'HQ</td><td>USD 2,850</td><td><span class="pill green">Booking Confirmed</span></td><td><a class="btn sm primary" href="booking-multi-job.html">轉多 Job</a></td></tr>
+              <tr data-href="booking-form.html"><td><b>BKG-2504-0011</b></td><td>Green Ocean Foods</td><td><span class="pill blue">Ocean</span></td><td>Taichung to Rotterdam</td><td>LCL 18.4 CBM</td><td>EUR 1,260</td><td><span class="pill amber">Quoted</span></td><td><a class="btn sm soft" href="booking-form.html">追蹤報價</a></td></tr>
+              <tr data-href="booking-form.html"><td><b>BKG-2504-0016</b><div class="hint">MAWB 297-88126644</div></td><td>Metro Retail</td><td><span class="pill purple">Air</span></td><td>TPE to SIN</td><td>620 CW</td><td>USD 1,980</td><td><span class="pill green">Booking Confirmed</span></td><td><a class="btn sm primary" href="booking-multi-job.html">轉多 Job</a></td></tr>
+              <tr data-href="booking-form.html"><td><b>BKG-2504-0019</b></td><td>Bright Living</td><td><span class="pill blue">Ocean</span></td><td>KHH to Sydney</td><td>FCL 20'TK</td><td>TWD 86,000</td><td><span class="pill gray">Inquiry</span></td><td><a class="btn sm soft" href="booking-form.html">Quick Quote</a></td></tr>
+              <tr data-href="booking-form.html"><td><b>BKG-2504-0022</b></td><td>Pacific Star</td><td><span class="pill purple">Air</span></td><td>TPE to LAX</td><td>1,240 CW</td><td>USD 5,480</td><td><span class="pill blue">Converted to Job</span></td><td><a class="btn sm soft" href="job-detail.html">查看 Job</a></td></tr>
+            </tbody>
+          </table></div>
+        </div>
+      </section>
+    </div>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>

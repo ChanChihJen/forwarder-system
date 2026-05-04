@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Execution Center</title><link rel="stylesheet" href="../assets/app.css"></head>
+  <body data-title="Execution Center" data-subtitle="來源：doc/3.execution-center-ocean-air-dual-mode-full-wireframe.html，保留 Ocean / Air 作業節點">
+    <div data-shell>
+      <section class="page-head"><div><h2 class="page-title">FSEJ25040001 Execution <span class="pill blue">Active</span></h2><p class="page-desc">Ocean 節點包含 SI、MBL、出口報關、拖車 / 進倉、On Board；Air 節點包含 Space、HAWB、進倉、報關、Security、MAWB、Flight、POD。</p></div><div class="actions"><a class="btn gray" href="execution-list.html">返回待辦</a><a class="btn gray" href="../doc/3.execution-center-ocean-air-dual-mode-full-wireframe.html">原始 Wireframe</a><a class="btn primary" href="document-flow.html">文件流程</a></div></section>
+      <div class="layout-2">
+        <section class="card pad" data-mode-scope>
+          <div class="card-head" style="padding:0 0 14px;border-bottom:0"><h3 class="card-title">作業節點</h3><div class="mode-switch"><button class="mode-btn active" data-mode="ocean">Ocean</button><button class="mode-btn" data-mode="air">Air</button></div></div>
+          <div class="mode-panel active" data-mode-panel="ocean">
+            <div class="flow"><div class="flow-step done"><div class="flow-no">01</div><div class="flow-name">SI</div><span class="pill green">Sent</span><div class="flow-desc">送 Carrier / Co-loader。</div></div><div class="flow-step active"><div class="flow-no">02</div><div class="flow-name">MBL</div><span class="pill blue">Draft</span><div class="flow-desc">等待 Carrier 回傳 Draft MBL。</div></div><div class="flow-step warn"><div class="flow-no">03</div><div class="flow-name">出口報關</div><span class="pill amber">Waiting</span><div class="flow-desc">缺 Packing List。</div></div><div class="flow-step"><div class="flow-no">04</div><div class="flow-name">拖車 / 進倉</div><span class="pill gray">Todo</span></div><div class="flow-step"><div class="flow-no">05</div><div class="flow-name">On Board</div><span class="pill gray">Planned</span></div></div>
+          </div>
+          <div class="mode-panel" data-mode-panel="air">
+            <div class="flow"><div class="flow-step done"><div class="flow-no">01</div><div class="flow-name">Space</div><span class="pill green">Confirmed</span></div><div class="flow-step done"><div class="flow-no">02</div><div class="flow-name">HAWB</div><span class="pill green">Issued</span></div><div class="flow-step active"><div class="flow-no">03</div><div class="flow-name">Security</div><span class="pill blue">Active</span></div><div class="flow-step warn"><div class="flow-no">04</div><div class="flow-name">MAWB</div><span class="pill amber">Waiting</span></div><div class="flow-step"><div class="flow-no">05</div><div class="flow-name">Flight / POD</div><span class="pill gray">Planned</span></div></div>
+          </div>
+          <div class="divider"></div>
+          <section data-tabs="execution">
+            <nav class="tabs"><button class="tab active" data-tab-target="node">節點表單</button><button class="tab" data-tab-target="docs">文件節點</button><button class="tab" data-tab-target="vendors">供應商作業</button><button class="tab" data-tab-target="logs">操作紀錄</button></nav>
+            <div class="panel active" id="node" data-tab-panel="execution"><div class="grid-3"><div><label>節點</label><select class="select"><option>出口報關</option><option>MBL 管理</option><option>拖車 / 進倉</option></select></div><div><label>負責人</label><input class="field" value="OP TONY"></div><div><label>狀態</label><select class="select"><option>Waiting External</option><option>Active</option><option>Done</option></select></div></div><div class="divider"></div><button class="btn primary" data-toast="Execution 節點已更新">儲存節點</button></div>
+            <div class="panel" id="docs" data-tab-panel="execution"><table class="table"><thead><tr><th>文件</th><th>來源節點</th><th>狀態</th><th>入口</th></tr></thead><tbody><tr><td>SI</td><td>SI Node</td><td><span class="pill green">Sent</span></td><td><a class="btn sm soft" href="document-center.html">查看</a></td></tr><tr><td>Packing List</td><td>Customs</td><td><span class="pill red">Missing</span></td><td><a class="btn sm soft" href="document-flow.html">追件</a></td></tr><tr><td>Draft MBL</td><td>MBL</td><td><span class="pill amber">Pending Review</span></td><td><a class="btn sm soft" href="document-center.html">預覽</a></td></tr></tbody></table></div>
+            <div class="panel" id="vendors" data-tab-panel="execution"><div class="grid-3"><div class="mini-card"><b>Truck Vendor</b><div class="hint">Formosa Trucking，待派車確認。</div></div><div class="mini-card"><b>Customs Broker</b><div class="hint">KHH Customs Desk，等待 PL。</div></div><div class="mini-card"><b>Carrier</b><div class="hint">WHL，等待 Draft MBL。</div></div></div></div>
+            <div class="panel" id="logs" data-tab-panel="execution"><div class="list-cards"><div class="mini-card"><b>2026-05-04 11:30</b><div class="hint">SI Sent，文件同步 Document Center。</div></div><div class="mini-card"><b>2026-05-04 14:20</b><div class="hint">Customs 節點標記缺 Packing List。</div></div></div></div>
+          </section>
+        </section>
+        <aside class="side-panel card pad"><h3 class="card-title">跨模組入口</h3><div class="divider"></div><div class="list-cards"><a class="mini-card" href="job-detail.html"><b>返回 Job Detail</b><div class="hint">查看 shipment、費用與文件摘要。</div></a><a class="mini-card" href="document-flow.html"><b>Document Flow</b><div class="hint">確認文件生命週期與卡點。</div></a><a class="mini-card" href="document-center.html"><b>Document Center</b><div class="hint">補傳、預覽、版本與批次下載。</div></a></div></aside>
+      </div>
+    </div>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>

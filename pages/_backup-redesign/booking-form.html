@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Booking Detail</title><link rel="stylesheet" href="../assets/app.css"></head>
+  <body data-title="Booking Detail" data-subtitle="Quick Quote、Quote → Booking、FCL / LCL 決策、Ocean / Air 雙模式與轉 Job 操作">
+    <div data-shell>
+      <section class="page-head">
+        <div><h2 class="page-title">BKG-2504-0008 <span class="pill green">Booking Confirmed</span></h2><p class="page-desc">ABC TRADING，Kaohsiung to Los Angeles，1 x 40'HQ，SO WHL9823。</p></div>
+        <div class="actions"><a class="btn gray" href="booking-list.html">返回列表</a><a class="btn gray" href="../doc/1-0.booking-quick-quote-to-booking-wireframe-v2.html">原始 Wireframe</a><button class="btn soft" data-toast="報價單 PDF 已產生">下載報價單</button><a class="btn primary" href="booking-multi-job.html">轉 Job</a></div>
+      </section>
+      <section class="summary-grid">
+        <div class="summary-item"><b>Customer</b><span>ABC TRADING</span></div>
+        <div class="summary-item"><b>Incoterms</b><span>FOB</span></div>
+        <div class="summary-item"><b>Quote Amount</b><span>USD 2,850</span></div>
+        <div class="summary-item"><b>Split Plan</b><span>By HBL / SO</span></div>
+      </section>
+      <section class="card pad" data-mode-scope>
+        <div class="card-head" style="padding:0 0 14px;border-bottom:0"><h3 class="card-title">運輸模式</h3><div class="mode-switch"><button class="mode-btn active" data-mode="ocean">Ocean</button><button class="mode-btn" data-mode="air">Air</button></div></div>
+        <div class="mode-panel active" data-mode-panel="ocean">
+          <div class="grid-4"><div><label>POL</label><input class="field" value="Kaohsiung"></div><div><label>POD</label><input class="field" value="Los Angeles"></div><div><label>FCL / LCL</label><select class="select"><option>FCL 1 x 40'HQ</option><option>LCL 18.4 CBM</option></select></div><div><label>Carrier</label><input class="field" value="WHL"></div></div>
+        </div>
+        <div class="mode-panel" data-mode-panel="air">
+          <div class="grid-4"><div><label>Origin</label><input class="field" value="TPE"></div><div><label>Destination</label><input class="field" value="LAX"></div><div><label>CW</label><input class="field" value="1,240 KG"></div><div><label>Airline</label><input class="field" value="CI"></div></div>
+        </div>
+      </section>
+      <section data-tabs="booking">
+        <nav class="tabs"><button class="tab active" data-tab-target="quote">Quick Quote</button><button class="tab" data-tab-target="booking">Booking</button><button class="tab" data-tab-target="cargo">Cargo / Party</button><button class="tab" data-tab-target="decision">FCL / LCL 決策</button><button class="tab" data-tab-target="timeline">狀態紀錄</button></nav>
+        <div class="panel active" id="quote" data-tab-panel="booking">
+          <div class="grid-3"><div class="mini-card"><b>Ocean Freight</b><span>USD 2,200</span><div class="hint">Carrier WHL，valid until 2026-05-15</div></div><div class="mini-card"><b>Local Charge</b><span>USD 450</span><div class="hint">THC / DOC / Seal</div></div><div class="mini-card"><b>Margin</b><span>USD 200</span><div class="hint">可帶入 AP/AR</div></div></div>
+        </div>
+        <div class="panel" id="booking" data-tab-panel="booking">
+          <div class="flow"><div class="flow-step done"><div class="flow-no">01</div><div class="flow-name">Inquiry</div><span class="pill green">Done</span><div class="flow-desc">客戶詢價完成</div></div><div class="flow-step done"><div class="flow-no">02</div><div class="flow-name">Quoted</div><span class="pill green">Done</span><div class="flow-desc">報價單已下載</div></div><div class="flow-step active"><div class="flow-no">03</div><div class="flow-name">Confirmed</div><span class="pill blue">Current</span><div class="flow-desc">SO 已確認，可轉多 Job</div></div><div class="flow-step warn"><div class="flow-no">04</div><div class="flow-name">Convert Job</div><span class="pill amber">Next</span><div class="flow-desc">依拆分規則建立 Job</div></div></div>
+        </div>
+        <div class="panel" id="cargo" data-tab-panel="booking">
+          <table class="table"><thead><tr><th>Party</th><th>內容</th><th>來源</th></tr></thead><tbody><tr><td>Shipper</td><td>ABC TRADING CO., LTD.</td><td>商業夥伴主檔</td></tr><tr><td>Cargo</td><td>149 CARTONS / 5,432.5 KGS / 53.823 CBM</td><td>客戶 Booking</td></tr><tr><td>Dangerous Goods</td><td>DG 2.2(5.1)-2451</td><td>需文件確認</td></tr></tbody></table>
+        </div>
+        <div class="panel" id="decision" data-tab-panel="booking">
+          <div class="note">FCL 可依 SO / HBL / Container / 客戶拆分；LCL 可依 CBM / 客戶 / HBL 拆分；Air 可依 MAWB / HAWB / CW / 件重尺拆分。</div>
+          <a class="btn primary" href="booking-multi-job.html">進入 Booking → 多 Job 管理</a>
+        </div>
+        <div class="panel" id="timeline" data-tab-panel="booking"><div class="list-cards"><div class="mini-card"><b>2026-05-04 09:30</b><div class="hint">客戶確認報價，狀態改為 Booking Confirmed。</div></div><div class="mini-card"><b>2026-05-04 10:10</b><div class="hint">SO WHL9823 已上傳 Document Center。</div></div></div></div>
+      </section>
+    </div>
+    <script src="../assets/app.js"></script>
+  </body>
+</html>

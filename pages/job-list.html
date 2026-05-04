@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Job List｜Wireframe Demo</title>
+<link rel="stylesheet" href="../assets/demo-list.css">
+<link rel="stylesheet" href="../assets/demo-nav.css">
+</head>
+<body>
+<header class="topbar">
+  <div><div class="page-title">Job 管理｜列表入口</div><div class="subtitle">延伸入口頁；Detail 使用 doc 原始 Ocean / Air Job Wireframe。</div></div>
+  <div class="actions"><a class="btn gray" href="../index.html">Demo 首頁</a><a class="btn primary" href="job-detail.html">開啟 Job Detail</a></div>
+</header>
+<main class="content">
+  <section class="summary-grid">
+    <div class="summary-item"><b>Draft</b><span>6</span><div class="hint">待補資料</div></div>
+    <div class="summary-item"><b>In Execution</b><span>18</span><div class="hint">作業中</div></div>
+    <div class="summary-item"><b>Pending Document</b><span>9</span><div class="hint">缺件或待確認</div></div>
+    <div class="summary-item"><b>Closed</b><span>32</span><div class="hint">本月結案</div></div>
+  </section>
+  <section class="card">
+    <div class="section-title">Job List <a class="btn gray" href="job-detail.html">開啟原始 Job Detail</a></div>
+    <div class="grid-4">
+      <div><label>關鍵字</label><input class="field" placeholder="Job No. / Booking / HBL / Customer"></div>
+      <div><label>Mode</label><select class="select"><option>All</option><option>Ocean</option><option>Air</option></select></div>
+      <div><label>Status</label><select class="select"><option>All</option><option>In Execution</option><option>Pending Document</option><option>Closed</option></select></div>
+      <div><label>OP</label><select class="select"><option>All</option><option>TONY</option><option>MARY</option></select></div>
+    </div>
+    <div class="divider"></div>
+    <table class="table">
+      <thead><tr><th>Job No.</th><th>Customer</th><th>Mode</th><th>Shipment</th><th>Execution</th><th>文件</th><th>費用</th><th>狀態</th><th>入口</th></tr></thead>
+      <tbody>
+        <tr data-href="job-detail.html"><td><b>FSEJ25040001</b><div class="hint">From BKG-2504-0008</div></td><td>ABC TRADING</td><td><span class="pill blue">Ocean FCL</span></td><td>KHH → LAX<br>1 x 40'HQ</td><td>SI Sent / Customs Waiting</td><td><span class="pill amber">2 Missing</span></td><td>GP 18.4%</td><td><span class="pill blue">In Execution</span></td><td><a class="btn primary" href="job-detail.html">查看</a></td></tr>
+        <tr data-href="job-detail.html"><td><b>FSAJ25040009</b></td><td>Metro Retail</td><td><span class="pill purple">Air</span></td><td>TPE → SIN<br>620 CW</td><td>Flight Confirmed</td><td><span class="pill green">Ready</span></td><td>GP 14.2%</td><td><span class="pill green">Active</span></td><td><a class="btn gray" href="job-detail.html">查看</a></td></tr>
+        <tr data-href="job-detail.html"><td><b>FSEJ25040014</b></td><td>Green Ocean Foods</td><td><span class="pill blue">Ocean LCL</span></td><td>TXG → RTM<br>18.4 CBM</td><td>Draft HBL</td><td><span class="pill amber">Pending Review</span></td><td>Draft</td><td><span class="pill gray">Draft</span></td><td><a class="btn gray" href="job-detail.html">查看</a></td></tr>
+      </tbody>
+    </table>
+  </section>
+</main>
+<script src="../assets/demo-nav.js"></script>
+<script>document.querySelectorAll('tr[data-href]').forEach(row=>row.addEventListener('click',e=>{if(!e.target.closest('a,button,input,select')) location.href=row.dataset.href;}));</script>
+</body>
+</html>
