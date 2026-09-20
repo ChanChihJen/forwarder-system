@@ -1,5 +1,7 @@
 # 迅捷 Forwarder Wireframe Demo
 
+> 此公開 repository 僅保存需求討論、流程文件與 Wireframe。正式 Laravel MVP 位於 private repository `ChanChihJen/forwarder-system-mvp`，不得將 MVP 原始碼、客戶營運資料或產出的文件提交至此。
+
 這是一個可直接開啟的靜態展示網站，用來把 `doc/` 目錄既有 HTML wireframe 整理成客戶可操作的 Demo。
 
 ## 如何開啟
